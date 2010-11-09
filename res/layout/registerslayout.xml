@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+             />
+        
+    </LinearLayout>
+<ScrollView
+android:id="@+id/widget28"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<LinearLayout
+android:id="@+id/widget82"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:background="@drawable/test"
+android:orientation="vertical"
+>
+
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="10dp"
+     />
+
+<TableLayout
+android:id="@+id/widget68"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+>
+
+<TableRow
+android:id="@+id/widget69"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/widget71"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Voltage:"
+android:textStyle="bold"
+android:textColor="#ffffff"
+android:textSize="22sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<TextView
+android:id="@+id/widget72"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Current:"
+android:textStyle="bold"
+android:textColor="#ffffff"
+android:textSize="22sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+</TableRow>
+
+<TableRow
+android:id="@+id/widget73"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/textVoltage"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="4.172 V"
+android:textColor="#ffffff"
+android:textSize="32sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<TextView
+android:id="@+id/textCurrent"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="-185.8 mA"
+android:textColor="#ffffff"
+android:textSize="32sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+</TableRow>
+
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="3dp"
+    android:layout_below="@id/widget73" />
+
+<TableRow
+android:id="@+id/widget699"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/widget711"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Temp.:"
+android:textStyle="bold"
+android:textColor="#ffffff"
+android:textSize="22sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<TextView
+android:id="@+id/widget722"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Percent:"
+android:textStyle="bold"
+android:textColor="#ffffff"
+android:textSize="22sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+</TableRow>
+<TableRow
+android:id="@+id/widget733"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/textVolta"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="35 C"
+android:textColor="#ffffff"
+android:textSize="32sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<TextView
+android:id="@+id/textPercent"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="28%"
+android:textColor="#adff2f"
+android:textSize="32sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+</TableRow>
+
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="4dp"
+    android:layout_below="@id/widget733" />
+    
+<TableRow
+android:id="@+id/widget6999"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/widget7111"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Batt Age:"
+android:textStyle="bold"
+android:textColor="#ffffff"
+android:textSize="22sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<TextView
+android:id="@+id/widget7222"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Full40:"
+android:textStyle="bold"
+android:textColor="#ffffff"
+android:textSize="22sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+</TableRow>
+<TableRow
+android:id="@+id/widget7333"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/textAge"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="95% age"
+android:textColor="#ffffff"
+android:textSize="32sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<TextView
+android:id="@+id/textFull40"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="1452 mAh"
+android:textColor="#ffffff"
+android:textSize="32sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+</TableRow>
+
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="10dp"
+    android:layout_below="@id/widget6999" />
+    
+</TableLayout>
+
+
+
+
+
+
+
+<LinearLayout
+android:id="@+id/widget103"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:background="@drawable/rectangle"
+android:padding="5px"
+android:layout_marginTop="25px"
+android:orientation="vertical"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/widget104"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Real-Time Voltage:"
+android:textColor="#ffffff"
+android:textSize="28sp"
+android:textStyle="bold|italic"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:layout_below="@id/widget104" />
+    />
+
+<TextView
+android:id="@+id/txtRealTimeVoltage"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="3.678 V"
+android:textColor="#ff0000"
+android:textSize="66sp"
+android:gravity="center"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+
+</LinearLayout>
+<LinearLayout
+android:id="@+id/widget106"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:padding="5px"
+android:layout_gravity="center_horizontal"
+>
+<ToggleButton android:id="@+id/toggleCHGTF" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+/>
+<TextView
+android:id="@+id/widget109"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="CHGTF"
+android:textSize="20sp"
+android:textStyle="bold"
+android:layout_gravity="center_vertical"
+>
+</TextView>
+</LinearLayout>
+<TableLayout
+android:id="@+id/widget110"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+>
+<TableRow
+android:id="@+id/widget111"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+>
+<ToggleButton android:id="@+id/toggleAEF" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+/>
+<ToggleButton android:id="@+id/toggleSEF" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+/>
+<ToggleButton android:id="@+id/toggleLEARNF" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+/>
+<ToggleButton android:id="@+id/toggleUVF" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+/>
+<ToggleButton android:id="@+id/togglePORF" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+/>
+</TableRow>
+</TableLayout>
+<LinearLayout
+android:id="@+id/widget120"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+>
+<TextView
+android:id="@+id/widget121"
+android:layout_width="50px"
+android:layout_height="wrap_content"
+android:text="AEF"
+android:textSize="20sp"
+android:textStyle="bold|italic"
+android:gravity="center"
+>
+</TextView>
+<TextView
+android:id="@+id/widget122"
+android:layout_width="50px"
+android:layout_height="wrap_content"
+android:text="SEF"
+android:textSize="20sp"
+android:textStyle="bold|italic"
+android:gravity="center"
+>
+</TextView>
+<TextView
+android:id="@+id/widget123"
+android:layout_width="50px"
+android:layout_height="wrap_content"
+android:text="LEARNF"
+android:textSize="20sp"
+android:textStyle="bold|italic"
+android:gravity="center"
+>
+</TextView>
+<TextView
+android:id="@+id/widget124"
+android:layout_width="50px"
+android:layout_height="wrap_content"
+android:text="UVF"
+android:textSize="20sp"
+android:textStyle="bold|italic"
+android:gravity="center"
+>
+</TextView>
+<TextView
+android:id="@+id/widget125"
+android:layout_width="50px"
+android:layout_height="wrap_content"
+android:text="PORF"
+android:textSize="20sp"
+android:textStyle="bold|italic"
+android:gravity="center"
+>
+</TextView>
+</LinearLayout>
+<LinearLayout
+android:id="@+id/widget126"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:padding="20px"
+android:orientation="vertical"
+>
+<TextView
+android:id="@+id/txtStatus"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Get Status Register"
+android:textSize="20sp"
+android:textStyle="bold"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<Button
+android:id="@+id/btnStatus"
+android:layout_width="200px"
+android:layout_height="130px"
+android:layout_gravity="center_horizontal"
+>
+</Button>
+</LinearLayout>
+</LinearLayout>
+</ScrollView>
+
+    
+</TabHost>
