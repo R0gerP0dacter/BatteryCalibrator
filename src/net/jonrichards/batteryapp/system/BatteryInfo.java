@@ -104,6 +104,46 @@ public class BatteryInfo {
 	}
 	
 	/**
+	 * Returns the current current.
+	 * @return Returns the current current.
+	 */
+	public String getCurrent() {
+		String current = this.catFile(GET_CURRENT_PATH);
+		
+		return current;
+	}
+	
+	/**
+	 * Returns the current average current.
+	 * @return Returns the current average current.
+	 */
+	public String getAvgCurrent() {
+		String avg_current = this.catFile(GET_AVG_CURRENT_PATH);
+		
+		return avg_current;
+	}
+	
+	/**
+	 * Returns the current getFull40.
+	 * @return Returns the current getFull40.
+	 */
+	public String getFull40() {
+		String full_40 = this.catFile(GET_FULL40_PATH);
+		
+		return full_40;
+	}
+	
+	/**
+	 * Returns the current getmAh.
+	 * @return Returns the current getmAh.
+	 */
+	public String getMAh() {
+		String mAh = this.catFile(GET_MAH_PATH);
+		
+		return mAh;
+	}
+	
+	/**
 	 * Returns the value of the dump register from the given position.
 	 * @param the_dump_register_position The position in the dump register to return.
 	 * @return The value of the dump register from the given position.
