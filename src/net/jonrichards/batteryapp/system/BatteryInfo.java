@@ -136,6 +136,9 @@ public class BatteryInfo {
 	public String getFull40() {
 		String full_40 = this.catFile(GET_FULL40_PATH).trim();
 		
+		//Remove unneeded text
+		full_40 = full_40.substring(full_40.indexOf(" ") + 1, full_40.lastIndexOf(" "));
+		
 		return full_40;
 	}
 	
@@ -157,18 +160,26 @@ public class BatteryInfo {
 	public String getDumpRegister(int the_dump_register_position) {
 		String value = this.catFile(DUMP_REGISTER_PATH);
 		
+		//Replace newline characters with spaces
+		value = value.replaceAll("\n", " ").trim();
+		
 		//Create an 82 element array to hold the 82 values from the register
 		String[] dump_reg = new String[82];
 		
-		for(int index=0; index<value.length(); index++) {
-			String temp = value.substring(0, value.indexOf(" "));
+		String temp = "";
+		int index = 0;
+		while(value.contains(" ")) {
+			temp = value.substring(0, value.indexOf(" "));
 			//If the value isn't the first column
 			if(!temp.contains(":")) {
 				dump_reg[index] = temp.trim();
+				index++;
 			}
 			
-			value = value.substring(value.indexOf(" "));
+			value = value.substring(value.indexOf(" ") + 1);
 		}
+		//Add final register value
+		dump_reg[index] = temp.trim();
 		
 		return dump_reg[the_dump_register_position];
 	}

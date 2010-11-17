@@ -1,6 +1,6 @@
 package net.jonrichards.batteryapp.ui;
 
-import net.jonrichards.battery.R;
+import net.jonrichards.batteryapp.ui.R;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;

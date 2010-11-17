@@ -3,7 +3,7 @@ package net.jonrichards.batteryapp.ui;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import net.jonrichards.battery.R;
+import net.jonrichards.batteryapp.ui.R;
 
 import com.teslacoilsw.quicksshd.ShellCommand;
 import com.teslacoilsw.quicksshd.ShellCommand.CommandResult;
