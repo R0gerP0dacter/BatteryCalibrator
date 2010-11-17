@@ -19,25 +19,22 @@ public class BatteryApp extends TabActivity {
 	    Intent intent;  // Reusable Intent for each tab
 
 	    // Create an Intent to launch an Activity for the tab (to be reused)
-	    intent = new Intent().setClass(this, RealTimeActivity.class);
-
+	    intent = new Intent().setClass(this, GeneralActivity.class);
 	    // Initialize a TabSpec for each tab and add it to the TabHost
-	    spec = tabHost.newTabSpec("realtime").setIndicator("RealTime",
-	                      res.getDrawable(R.drawable.ic_tab_realtime))
-	                  .setContent(intent);
+	    spec = tabHost.newTabSpec("general").setIndicator("General", res.getDrawable(R.drawable.ic_tab_general)).setContent(intent);
+    	tabHost.addTab(spec);
+    	
+    	// Do the same for the other tabs
+    	intent = new Intent().setClass(this, LearnPrepActivity.class);
+	    spec = tabHost.newTabSpec("learnprep").setIndicator("LearnPrep", res.getDrawable(R.drawable.ic_tab_learnprep)).setContent(intent);
 	    tabHost.addTab(spec);
 
-	    // Do the same for the other tabs
+	    intent = new Intent().setClass(this, LearnModeActivity.class);
+	    spec = tabHost.newTabSpec("learnmode").setIndicator("LearnMode", res.getDrawable(R.drawable.ic_tab_learnmode)).setContent(intent);
+	    tabHost.addTab(spec);
+
 	    intent = new Intent().setClass(this, RegistersActivity.class);
-	    spec = tabHost.newTabSpec("registers").setIndicator("Registers",
-	                      res.getDrawable(R.drawable.ic_tab_registers))
-	                  .setContent(intent);
-	    tabHost.addTab(spec);
-
-	    intent = new Intent().setClass(this, EventsActivity.class);
-	    spec = tabHost.newTabSpec("events").setIndicator("Events",
-	                      res.getDrawable(R.drawable.ic_tab_events))
-	                  .setContent(intent);
+	    spec = tabHost.newTabSpec("registers").setIndicator("Registers", res.getDrawable(R.drawable.ic_tab_registers)).setContent(intent);
 	    tabHost.addTab(spec);
 
 	    tabHost.setCurrentTab(1);
