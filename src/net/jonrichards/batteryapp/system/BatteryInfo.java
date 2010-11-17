@@ -5,6 +5,11 @@ import android.util.Log;
 import com.teslacoilsw.quicksshd.ShellCommand;
 import com.teslacoilsw.quicksshd.ShellCommand.CommandResult;
 
+/**
+ * A class for getting information about the battery.
+ * @author Jon Richards
+ * @author Roger Podacter
+ */
 public class BatteryInfo {
 	
 	//Static Variables
@@ -54,12 +59,13 @@ public class BatteryInfo {
 	 */
 	private static String GET_MAH_PATH = "/sys/devices/platform/ds2784-battery/getmAh";
 	
-	
-	
 	//Instance Variables
 	
 	//Constructors
-
+	
+	/**
+	 * Constructs a new BatteryInfo object.
+	 */
 	public BatteryInfo() {
 		
 	}
@@ -98,9 +104,49 @@ public class BatteryInfo {
 	 * @return Returns the current voltage.
 	 */
 	public String getVoltage() {
-		String voltage = this.catFile(VOLTAGE_PATH);
+		String voltage = this.catFile(VOLTAGE_PATH).trim();
 		
 		return voltage;
+	}
+	
+	/**
+	 * Returns the current current.
+	 * @return Returns the current current.
+	 */
+	public String getCurrent() {
+		String current = this.catFile(GET_CURRENT_PATH).trim();
+		
+		return current;
+	}
+	
+	/**
+	 * Returns the current average current.
+	 * @return Returns the current average current.
+	 */
+	public String getAvgCurrent() {
+		String avg_current = this.catFile(GET_AVG_CURRENT_PATH).trim();
+		
+		return avg_current;
+	}
+	
+	/**
+	 * Returns the current getFull40.
+	 * @return Returns the current getFull40.
+	 */
+	public String getFull40() {
+		String full_40 = this.catFile(GET_FULL40_PATH).trim();
+		
+		return full_40;
+	}
+	
+	/**
+	 * Returns the current getmAh.
+	 * @return Returns the current getmAh.
+	 */
+	public String getMAh() {
+		String mAh = this.catFile(GET_MAH_PATH).trim();
+		
+		return mAh;
 	}
 	
 	/**
@@ -111,24 +157,27 @@ public class BatteryInfo {
 	public String getDumpRegister(int the_dump_register_position) {
 		String value = this.catFile(DUMP_REGISTER_PATH);
 		
+		//Create an 82 element array to hold the 82 values from the register
 		String[] dump_reg = new String[82];
 		
 		for(int index=0; index<value.length(); index++) {
 			String temp = value.substring(0, value.indexOf(" "));
+			//If the value isn't the first column
 			if(!temp.contains(":")) {
-				dump_reg[index] = temp;
+				dump_reg[index] = temp.trim();
 			}
 			
 			value = value.substring(value.indexOf(" "));
 		}
 		
-		return value;
+		return dump_reg[the_dump_register_position];
 	}
 	
 	//Private Methods	
 	
 	/**
 	 * Returns the contents of a file.
+	 * @param the_file The file of which to return the contents of.
 	 * @return Returns the contents of a file.
 	 */
 	private String catFile(String the_file) {
