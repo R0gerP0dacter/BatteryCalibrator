@@ -1,7 +1,5 @@
 package net.jonrichards.batteryapp.ui;
 
-import net.jonrichards.batteryapp.ui.R;
-import net.jonrichards.batteryapp.system.BatteryInfo;
 import android.app.Activity;
 import android.os.Bundle;
 
