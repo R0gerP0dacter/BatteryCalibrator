@@ -37,6 +37,6 @@ public class BatteryApp extends TabActivity {
 	    spec = tabHost.newTabSpec("registers").setIndicator("Registers", res.getDrawable(R.drawable.ic_tab_registers)).setContent(intent);
 	    tabHost.addTab(spec);
 
-	    tabHost.setCurrentTab(1);
+	    tabHost.setCurrentTab(0);
 	}
 }

@@ -23,6 +23,7 @@ public class GeneralActivity extends Activity {
 	private TextView chargecurrent;
 	private TextView emptyvolt;
 	private TextView statusreg;
+	private TextView capacity;
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +39,16 @@ public class GeneralActivity extends Activity {
         full40 = (TextView)findViewById(R.id.txtFull40);
         chargecurrent = (TextView)findViewById(R.id.txtMinChgCurrent);
         emptyvolt = (TextView)findViewById(R.id.txtAEvolt);       
-        statusreg = (TextView)findViewById(R.id.txtStatusReg);        
+        statusreg = (TextView)findViewById(R.id.txtStatusReg);
+        capacity = (TextView)findViewById(R.id.txtCapacity);        
 
+        
+        //Initial poll when activity is first created
         mHandler.postDelayed(mUpdateUITimerTask, 60 * 1000);
         getUIText();
 
     }
-	//Our runnable to update the UI, polled every 10 seconds
+	//Our runnable to continuously update the UI, polled every 60 seconds
 	private final Runnable mUpdateUITimerTask = new Runnable() {
 	    public void run() {
 	    	getUIText();
@@ -67,7 +71,7 @@ public class GeneralActivity extends Activity {
 		String full40text = battery_info.getFull40();
 		full40.setText(full40text);
 		
-		//Populate temperature
+		//Populate temperature - not outputting correctly (my fault, conversion issue)
 		//String temperaturetext = battery_info.getTemperature();
 		//temperature.setText(temperaturetext);
 		
@@ -89,5 +93,9 @@ public class GeneralActivity extends Activity {
 		String emptyvolttext = battery_info.getDumpRegister(54);
 		int emptyconverted = (Integer.parseInt(emptyvolttext,16))*1952/100;
 		emptyvolt.setText(Integer.toString(emptyconverted));
+		
+		//Populate mAh capacity
+		String capacitytext = battery_info.getMAh();
+		capacity.setText(capacitytext);
 	}
 }

@@ -4,25 +4,33 @@ import net.jonrichards.batteryapp.system.DS2784Battery;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class LearnModeActivity extends Activity {
 	
+	//Declare the status reg flag toggle buttons
 	private ToggleButton CHGTFlight;
 	private ToggleButton AEFlight;
 	private ToggleButton SEFlight;
 	private ToggleButton LEARNFlight;
 	private ToggleButton UVFlight;
 	private ToggleButton PORFlight;
-	
+	//Declare the learn detect on/off radio buttons
+	RadioGroup learngroup;
 	private RadioButton learnon;
 	private RadioButton learnoff;
 	
+	//Used to turn learn mode on or off
 	private boolean learnmode = false;
-	private int SAMPLE_POLL;
+	
+	//Sample rate used for learn mode on or off
+	private int SAMPLE_POLL = 3;
 
 	private final Handler mHandler = new Handler();
 
@@ -33,6 +41,11 @@ public class LearnModeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learnmodelayout);
         
+        learngroup = (RadioGroup) findViewById(R.id.learnmodegroup);
+        learnon=(RadioButton)findViewById(R.id.btnLearnOn);
+		learnoff=(RadioButton)findViewById(R.id.btnLearnOff);
+		learnoff.setChecked(true);
+		
         livevoltage = (TextView)findViewById(R.id.txtRealTimeVoltage);
         
         CHGTFlight = (ToggleButton) findViewById(R.id.CHGTFlight);
@@ -42,23 +55,34 @@ public class LearnModeActivity extends Activity {
         UVFlight = (ToggleButton) findViewById(R.id.UVFlight);
         PORFlight = (ToggleButton) findViewById(R.id.PORFlight);
         
-        learnon=(RadioButton)findViewById(R.id.btnLearnOn);
-		learnoff=(RadioButton)findViewById(R.id.btnLearnOff);        
-        ;
+        mHandler.postDelayed(mUpdateUITimerTask, SAMPLE_POLL * 500);
+        getUIText();
         
-
-        mHandler.postDelayed(mUpdateUITimerTask, 3 * 500);
-        getUIText();        
+        final RadioButton learnon = (RadioButton) findViewById(R.id.btnLearnOn);
+        final RadioButton learnoff = (RadioButton) findViewById(R.id.btnLearnOff);
+        learnon.setOnClickListener(radio_listener);
+        learnoff.setOnClickListener(radio_listener);
     }
-	
-	
+	//Radio Button listener to set learn detect on or off
+	OnClickListener radio_listener = new OnClickListener() {
+	    public void onClick(View v) {
+	        // Perform action on clicks
+	        RadioButton rb = (RadioButton) v;
+	        if(v.getId() == R.id.btnLearnOn){
+	        	learnmode = true;
+	        }
+	        else if (v.getId() == R.id.btnLearnOff){
+	        	learnmode = false;
+	        }
+	    }
+	};
 
 	
-	//Our runnable to update the UI, polled every 10 seconds
+	//Our runnable to update the UI, polled every 1.5 seconds
 	private final Runnable mUpdateUITimerTask = new Runnable() {
 	    public void run() {
-	    	getUIText();
-	        mHandler.postDelayed(mUpdateUITimerTask, 3 * 500);
+	    	getUIText();	    	
+	        mHandler.postDelayed(mUpdateUITimerTask, SAMPLE_POLL * 500);
 	    }
 	};
 	
@@ -68,7 +92,17 @@ public class LearnModeActivity extends Activity {
 		
 		//Populate voltage
 		String voltagetext = battery_info.getVoltage();
+		int volt = Integer.parseInt(voltagetext);
 		livevoltage.setText(voltagetext);
+		
+		//Added volt check and learn mode check to update sample poll
+		if(learnmode = true && volt <= 3600000){
+			SAMPLE_POLL = 3;
+		}else if(learnmode = true && volt > 360000){
+			SAMPLE_POLL = 10;
+		}else if(learnmode = false){
+			SAMPLE_POLL = 30;
+		}
 		
 		//Populate status register flags
 		int CHGTF = battery_info.getStatusRegister(7);
