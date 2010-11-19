@@ -153,6 +153,19 @@ public class DS2784Battery {
 	}
 	
 	/**
+	 * Returns the current temperature of the battery.
+	 * @return The current temperature of the battery.
+	 */
+	public String getTemperature() {
+		String tempMSB = this.getDumpRegister(10);
+        String tempLSB = this.getDumpRegister(11);
+	    int tempMSBconverted = Integer.parseInt(tempMSB);
+	    int tempLSBconverted = Integer.parseInt(tempLSB);
+	    int temp = ((tempMSBconverted | tempLSBconverted)*10)/8;
+	    return Integer.toString(temp);
+	}
+	
+	/**
 	 * Returns the value of the dump register from the given position.
 	 * @param the_dump_register_position The position in the dump register to return.
 	 * @return The value of the dump register from the given position.
