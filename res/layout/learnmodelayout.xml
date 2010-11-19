@@ -99,7 +99,7 @@ android:padding="5px"
 android:layout_gravity="center_horizontal"
 android:orientation="vertical"
 >
-<ToggleButton android:id="@+id/toggleCHGTF" 
+<ToggleButton android:id="@+id/CHGTFlight" 
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content" 
 android:layout_gravity="center_horizontal"
@@ -130,34 +130,34 @@ android:layout_height="wrap_content"
 android:orientation="horizontal"
 android:layout_gravity="center_horizontal"
 >
-<ToggleButton android:id="@+id/toggleAEF" 
+<ToggleButton android:id="@+id/AEFlight" 
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content" 
 android:textOff="AEF"
 android:textOn="AEF"
 
 />
-<ToggleButton android:id="@+id/toggleSEF" 
+<ToggleButton android:id="@+id/SEFlight" 
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content" 
 android:textOff="SEF"
 android:textOn="SEF"
 
 />
-<ToggleButton android:id="@+id/toggleLEARNF" 
+<ToggleButton android:id="@+id/LEARNFlight" 
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content" 
 android:textOff="LEARNF"
 android:textOn="LEARNF"
 />
-<ToggleButton android:id="@+id/toggleUVF" 
+<ToggleButton android:id="@+id/UVFlight" 
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content" 
 android:textOff="UVF"
 android:textOn="UVF"
 
 />
-<ToggleButton android:id="@+id/togglePORF" 
+<ToggleButton android:id="@+id/PORFlight" 
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content" 
 android:textOff="PORF"
@@ -257,14 +257,14 @@ android:textStyle="bold"
 >
 </TextView>
 <RadioGroup
-android:id="@+id/widget325"
+android:id="@+id/learnmodegroup"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:background="@drawable/rectangle_lighter_shade"
 android:orientation="vertical"
 >
 <RadioButton
-android:id="@+id/widget326"
+android:id="@+id/btnLearnOn"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text=" - ON"
@@ -274,7 +274,7 @@ android:textStyle="bold"
 >
 </RadioButton>
 <RadioButton
-android:id="@+id/widget327"
+android:id="@+id/btnLearnOff"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text=" - OFF"
@@ -287,32 +287,7 @@ android:textStyle="bold"
 </LinearLayout>
 
 
-<LinearLayout
-android:id="@+id/widget126"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:padding="20px"
-android:orientation="vertical"
->
-<TextView
-android:id="@+id/txtStatus"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Get Status Register"
-android:textSize="20sp"
-android:textStyle="bold"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<Button
-android:id="@+id/btnStatus"
-android:layout_width="200px"
-android:layout_height="130px"
-android:layout_gravity="center_horizontal"
->
-</Button>
-</LinearLayout>
+
 </LinearLayout>
 </ScrollView>
 

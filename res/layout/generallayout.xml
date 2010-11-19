@@ -19,12 +19,7 @@
              />
         
     </LinearLayout>
-<ScrollView
-android:id="@+id/widget28"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-xmlns:android="http://schemas.android.com/apk/res/android"
->
+
 <LinearLayout
 android:id="@+id/widget29666"
 android:layout_width="fill_parent"
@@ -34,10 +29,50 @@ android:orientation="vertical"
 >
 
 <View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="10dp"
-     />
+android:background="@drawable/black_white_gradient"
+android:layout_width="fill_parent"
+android:layout_height="10dp"
+/>
+     
+<LinearLayout
+android:id="@+id/widget131"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:padding="5px"
+>
+<TextView
+android:id="@+id/statusreg"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Battery Status Register:"
+android:textColor="#ffffff"
+android:textSize="18sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+
+<TextView
+android:id="@+id/txtStatusReg"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="0x71"
+android:textColor="#ffffff"
+android:textSize="18sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+</LinearLayout>
+<View android:id="@+id/divider"
+android:background="@drawable/black_white_gradient"
+android:layout_width="fill_parent"
+android:layout_height="10dp"
+android:layout_below="@id/widget131" />
+/>
 
 <TableLayout
 android:id="@+id/widget6"
@@ -58,7 +93,6 @@ android:id="@+id/widget710"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Voltage:"
-android:textStyle="bold"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:gravity="center"
@@ -71,7 +105,6 @@ android:id="@+id/widget720"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Current:"
-android:textStyle="bold"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:gravity="center"
@@ -132,7 +165,6 @@ android:id="@+id/widget711"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Temp.:"
-android:textStyle="bold"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:gravity="center"
@@ -145,7 +177,6 @@ android:id="@+id/widget722"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Percent:"
-android:textStyle="bold"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:gravity="center"
@@ -205,7 +236,6 @@ android:id="@+id/widget7111"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Batt Age:"
-android:textStyle="bold"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:gravity="center"
@@ -218,7 +248,6 @@ android:id="@+id/widget7222"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Full40:"
-android:textStyle="bold"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:gravity="center"
@@ -278,7 +307,6 @@ android:id="@+id/widget711221"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Chg Current:"
-android:textStyle="bold"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:gravity="center"
@@ -291,7 +319,6 @@ android:id="@+id/widget7222"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Empty Volt:"
-android:textStyle="bold"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:gravity="center"
@@ -341,69 +368,7 @@ android:layout_gravity="center_horizontal"
     
 </TableLayout>
 
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="10dp"
-    android:layout_below="@id/widget6"
-     />
-
-
-
-
-
-
-
-
-
-<LinearLayout
-android:id="@+id/widget131"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:padding="5px"
->
 
 </LinearLayout>
-
-
-
-    
-
-
-
-
-
-    
-<LinearLayout
-android:id="@+id/widget1266"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:padding="20px"
-android:orientation="vertical"
->
-<TextView
-android:id="@+id/txtParameters"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Update Parameters"
-android:textSize="20sp"
-android:textStyle="bold"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<Button
-android:id="@+id/btnParameters"
-android:layout_width="200px"
-android:layout_height="130px"
-android:layout_gravity="center_horizontal"
->
-</Button>
-</LinearLayout>
-
-
-
-</LinearLayout>
-</ScrollView>
     
 </TabHost>
