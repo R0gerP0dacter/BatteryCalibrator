@@ -31,12 +31,7 @@ public class RegistersActivity extends Activity {
 	private TextView textview;
 	private final Handler mHandler = new Handler();
 	
-	private EditText statusregister;
-	private Button statusbutton;
-	private EditText full40;
-	private TextView statustext;
-	private EditText voltage;
-	private EditText realtimevolt;
+	
 
 
 	
@@ -47,20 +42,7 @@ public class RegistersActivity extends Activity {
         
 
         
-        //statusregister = (EditText)findViewById(R.id.etStatus);
-        full40 = (EditText)findViewById(R.id.widget35);
-        statusbutton = (Button)findViewById(R.id.btnStatus);
-        //statustext = (TextView)findViewById(R.id.widget56);
-        voltage = (EditText)findViewById(R.id.etVoltage);
-        realtimevolt = (EditText)findViewById(R.id.etRealTimeVolt);
         
-        statusbutton.setOnClickListener(new OnClickListener() {
-        	public void onClick(View v) {
-        		statusbutton.setText(getStatusText());
-        		voltage.setText(getVoltageText());
-        		realtimevolt.setText(getVoltageText());
-        	}
-        });
         //textview = new TextView(this);
         //textview.setText(getText());
         //textview.append("Status register last read at: " + getDateTime());
@@ -69,12 +51,7 @@ public class RegistersActivity extends Activity {
         //mHandler.postDelayed(mUpdateUITimerTask, 10 * 1000);
     }
 	
-	@Override
-    public void onAttachedToWindow() {
-    	    super.onAttachedToWindow();
-    	    Window window = getWindow();
-    	    window.setFormat(PixelFormat.RGBA_8888);
-    	}
+	
 
 	
 	private final Runnable mUpdateUITimerTask = new Runnable() {
@@ -115,22 +92,7 @@ public class RegistersActivity extends Activity {
 		return result;
 	}
 	
-	private String getVoltageText() {
-		String result = "";
-		
-		ShellCommand cmd = new ShellCommand();
-		CommandResult r = cmd.sh.runWaitFor("cat /sys/devices/platform/ds2784-battery/getvoltage");
-
-		if (!r.success()) {
-		  Log.v(TAG, "Error " + r.stderr);
-		} else {
-		  result = r.stdout;
-		}		
-		
-		//result = "Status Register: " + result + "\n\n";
-				
-		return result;
-	}
+	
 	
 	private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

@@ -26,180 +26,295 @@ android:layout_height="fill_parent"
 xmlns:android="http://schemas.android.com/apk/res/android"
 >
 <LinearLayout
-android:id="@+id/widget29"
+android:id="@+id/widget82"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
-android:background="@drawable/gradient_test"
+android:background="@drawable/test"
 android:orientation="vertical"
 >
+
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="10dp"
+     />
+
+
+
+    
+
+
 <LinearLayout
-android:id="@+id/widget30"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
->
-<TextView
-android:id="@+id/widget32"
+android:id="@+id/widget103"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="Age Scalar"
-android:textStyle="bold"
+android:background="@drawable/rectangle"
+android:padding="2px"
+android:layout_marginTop="25px"
+android:orientation="vertical"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/widget104"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text=" Real-Time Voltage: "
+android:textColor="#ffffff"
+android:textSize="26sp"
+android:textStyle="bold|italic"
+android:layout_gravity="center_horizontal"
 >
 </TextView>
-<EditText
-android:id="@+id/widget33"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:textSize="18sp"
-android:layout_weight="1"
->
-</EditText>
-</LinearLayout>
+
+
+
 <TextView
-android:id="@+id/widget34"
-android:layout_width="wrap_content"
+android:id="@+id/txtRealTimeVoltage"
+android:layout_width="fill_parent"
 android:layout_height="wrap_content"
-android:text="Full40:"
-android:textStyle="bold"
+android:background="@drawable/rectangle_lighter_shade"
+android:text="3.678 V"
+android:textColor="#ff0000"
+android:textSize="66sp"
+android:gravity="center"
+android:layout_gravity="center_horizontal"
 >
 </TextView>
-<EditText
-android:id="@+id/widget35"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Enter full40"
-android:textSize="18sp"
->
-</EditText>
-<LinearLayout
-android:id="@+id/widget36"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
->
-<ToggleButton android:id="@+id/toggle1" 
-android:layout_width="wrap_content" 
-android:layout_height="wrap_content" 
-/> 
-<ToggleButton android:id="@+id/toggle2" 
-android:layout_width="wrap_content" 
-android:layout_height="wrap_content" 
-/>
-<ToggleButton android:id="@+id/toggle3" 
-android:layout_width="wrap_content" 
-android:layout_height="wrap_content" 
-/>
-<ToggleButton android:id="@+id/toggle4" 
-android:layout_width="wrap_content" 
-android:layout_height="wrap_content" 
-/>
-<ToggleButton android:id="@+id/toggle5" 
-android:layout_width="wrap_content" 
-android:layout_height="wrap_content" 
-/>
-<ToggleButton android:id="@+id/toggle6" 
-android:layout_width="wrap_content" 
-android:layout_height="wrap_content" 
-/>
+
 </LinearLayout>
+
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_marginTop="25px"
+    android:layout_height="3dp"
+    android:layout_below="@id/widget103" />
+    />
+    
 <LinearLayout
-android:id="@+id/widget42"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:padding="5px"
->
-<TextView
-android:id="@+id/widget43"
+android:id="@+id/widget106"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:padding="5px"
-android:text="Testing a table layout below"
+android:layout_gravity="center_horizontal"
+android:orientation="vertical"
+>
+<ToggleButton android:id="@+id/toggleCHGTF" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:layout_gravity="center_horizontal"
+android:textOff="CHGTF"
+android:textOn="CHGTF"
+/>
+<TextView
+android:id="@+id/widget109"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="CHGTF"
+android:textSize="16sp"
+android:textColor="#000000"
+android:layout_gravity="center_horizontal"
 >
 </TextView>
-</LinearLayout>
-<LinearLayout
-android:id="@+id/widget44"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:padding="5px"
->
-<EditText
-android:id="@+id/widget45"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:padding="10px"
-android:text="fill space"
-android:textSize="18sp"
->
-</EditText>
 </LinearLayout>
 <TableLayout
-android:id="@+id/widget46"
+android:id="@+id/widget110"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="center_horizontal"
+>
+<TableRow
+android:id="@+id/widget111"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_gravity="center_horizontal"
 >
+<ToggleButton android:id="@+id/toggleAEF" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:textOff="AEF"
+android:textOn="AEF"
+
+/>
+<ToggleButton android:id="@+id/toggleSEF" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:textOff="SEF"
+android:textOn="SEF"
+
+/>
+<ToggleButton android:id="@+id/toggleLEARNF" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:textOff="LEARNF"
+android:textOn="LEARNF"
+/>
+<ToggleButton android:id="@+id/toggleUVF" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:textOff="UVF"
+android:textOn="UVF"
+
+/>
+<ToggleButton android:id="@+id/togglePORF" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:textOff="PORF"
+android:textOn="PORF"
+
+/>
+</TableRow>
+
+<TableRow
+android:id="@+id/widget337"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/widget338"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="AEF"
+android:textSize="16sp"
+android:textColor="#000000"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<TextView
+android:id="@+id/widget339"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="SEF"
+android:textSize="16sp"
+android:textColor="#000000"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<TextView
+android:id="@+id/widget340"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:textSize="16sp"
+android:textColor="#000000"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<TextView
+android:id="@+id/widget341"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="UVF"
+android:textSize="16sp"
+android:textColor="#000000"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<TextView
+android:id="@+id/widget342"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="PORF"
+android:textSize="16sp"
+android:textColor="#000000"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+</TableRow>
+
+
+</TableLayout>
+
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_marginTop="25px"
+    android:layout_height="3dp"
+    android:layout_below="@id/widget110" />
+    />
+
+
+<LinearLayout
+android:id="@+id/widget323"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:background="@drawable/rectangle"
+android:layout_marginTop="25px"
+android:padding="2px"
+android:orientation="vertical"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/widget324"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Detect Learn Mode (ON/OFF)"
+android:textSize="18sp"
+android:textColor="#ffffff"
+android:textStyle="bold"
+>
+</TextView>
 <RadioGroup
-android:id="@+id/widget47"
+android:id="@+id/widget325"
 android:layout_width="fill_parent"
-android:layout_height="fill_parent"
+android:layout_height="wrap_content"
+android:background="@drawable/rectangle_lighter_shade"
+android:orientation="vertical"
 >
 <RadioButton
-android:id="@+id/widget48"
+android:id="@+id/widget326"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:checked="true"
->
-</RadioButton>
-<RadioButton
-android:id="@+id/widget49"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
->
-</RadioButton>
-<RadioButton
-android:id="@+id/widget50"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
+android:text=" - ON"
+android:textSize="20sp"
+android:textColor="#000000"
+android:textStyle="bold"
 >
 </RadioButton>
 <RadioButton
-android:id="@+id/widget51"
+android:id="@+id/widget327"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:checked="true"
->
-</RadioButton>
-<RadioButton
-android:id="@+id/widget52"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
->
-</RadioButton>
-<RadioButton
-android:id="@+id/widget53"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
+android:text=" - OFF"
+android:textSize="20sp"
+android:textColor="#000000"
+android:textStyle="bold"
 >
 </RadioButton>
 </RadioGroup>
-</TableLayout>
+</LinearLayout>
+
+
+<LinearLayout
+android:id="@+id/widget126"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:padding="20px"
+android:orientation="vertical"
+>
 <TextView
-android:id="@+id/widget54"
+android:id="@+id/txtStatus"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:padding="10px"
-android:text="This is a testing"
-android:textSize="24sp"
-android:textStyle="bold|italic"
+android:text="Get Status Register"
+android:textSize="20sp"
+android:textStyle="bold"
+android:textColor="#ffffff"
+android:layout_gravity="center_horizontal"
 >
 </TextView>
-<EditText
-android:id="@+id/widget55"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="EditText"
-android:textSize="18sp"
+<Button
+android:id="@+id/btnStatus"
+android:layout_width="200px"
+android:layout_height="130px"
+android:layout_gravity="center_horizontal"
 >
-</EditText>
+</Button>
+</LinearLayout>
 </LinearLayout>
 </ScrollView>
+
     
 </TabHost>
