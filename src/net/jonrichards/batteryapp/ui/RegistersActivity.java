@@ -1,24 +1,14 @@
 package net.jonrichards.batteryapp.ui;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import net.jonrichards.batteryapp.ui.R;
-
 import android.app.Activity;
-import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,42 +21,32 @@ public class RegistersActivity extends Activity {
 	private TextView textview;
 	private final Handler mHandler = new Handler();
 	
-	
+	private TextView dump01;
+	private Button updatebutton;
 
-
-	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registerslayout);
         
-        
-
-        
-        
-        //textview = new TextView(this);
-        //textview.setText(getText());
-        //textview.append("Status register last read at: " + getDateTime());
-        //setContentView(textview);
-                
-        //mHandler.postDelayed(mUpdateUITimerTask, 10 * 1000);
+        //Added raw dumpreg to registers tab
+        dump01 = (TextView)findViewById(R.id.widget1);
+		updatebutton = (Button)findViewById(R.id.btnUpdate);
+		dump01.setText(getUIText());
+		
+		//button click to manually update dumpreg
+        updatebutton.setOnClickListener(new OnClickListener() {
+        	public void onClick(View v) {        		
+        		//Populate raw dumpreg for now
+        		dump01.setText(getUIText());        		
+        	}
+        });        
     }
 	
-	
-
-	
-	private final Runnable mUpdateUITimerTask = new Runnable() {
-	    public void run() {
-	    	textview.setText(getStatusText());
-	        textview.append("Status register last read at: " + getDateTime());
-	        mHandler.postDelayed(mUpdateUITimerTask, 10 * 1000);
-	    }
-	};
-	
-	private String getStatusText() {
+	private String getUIText() {
 		String result = "";
 		
 		ShellCommand cmd = new ShellCommand();
-		CommandResult r = cmd.sh.runWaitFor("cat /sys/devices/platform/ds2784-battery/statusreg");
+		CommandResult r = cmd.sh.runWaitFor("cat /sys/devices/platform/ds2784-battery/dumpreg");
 
 		if (!r.success()) {
 		  Log.v(TAG, "Error " + r.stderr);
@@ -74,31 +54,9 @@ public class RegistersActivity extends Activity {
 		  result = r.stdout;
 		}		
 		
-		int chgtf = ((Integer.parseInt("80", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0;
-		int aef = ((Integer.parseInt("40", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0;
-		int sef = ((Integer.parseInt("20", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0;
-		int learnf = ((Integer.parseInt("10", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0;
-		int uvf = ((Integer.parseInt("04", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0;
-		int porf = ((Integer.parseInt("02", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0;
-		
-		result = "Status Register: " + result + "\n\n";
-		result += "Charge-Termination Flag (CHGTF): " + chgtf + "\n";
-		result += "Active-Empty Flag (AEF): " + aef + "\n";
-		result += "Standby-Empty Flag (SEF): " + sef + "\n";
-		result += "Learn Flag (LEARNF): " + learnf + "\n";
-		result += "Undervoltage Flag (UVF): " + uvf + "\n";
-		result += "Power-On Reset Flag (PORF): " + porf + "\n\n";
-		
 		return result;
 	}
 	
-	
-	
-	private String getDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
 	private void CreateMenu(Menu menu)
     {
         menu.setQwertyMode(true);
@@ -172,18 +130,6 @@ public class RegistersActivity extends Activity {
     {    
          return MenuChoice(item);    
     }
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View view, 
-    ContextMenuInfo menuInfo) 
-    {
-         super.onCreateContextMenu(menu, view, menuInfo);
-         CreateMenu(menu);
-    }
- 
-    @Override
-    public boolean onContextItemSelected(MenuItem item)
-    {    
-         return MenuChoice(item);    
-    }    
+    
 
 }

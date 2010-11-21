@@ -4,9 +4,8 @@ import net.jonrichards.batteryapp.system.DS2784Battery;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.TextView;
 
 public class GeneralActivity extends Activity {
@@ -61,15 +60,17 @@ public class GeneralActivity extends Activity {
 		
 		//Populate voltage
 		String voltagetext = battery_info.getVoltage();
-		voltage.setText(voltagetext);
+		int volt = (Integer.parseInt(voltagetext))/1000;
+		voltage.setText(Integer.toString(volt));
 		
 		//Populate current
 		String currenttext = battery_info.getCurrent();
-		current.setText(currenttext);
+		int curr = (Integer.parseInt(currenttext))/1000;
+		current.setText(Integer.toString(curr));
 		
 		//Populate full40
-		String full40text = battery_info.getFull40();
-		full40.setText(full40text);
+		//String full40text = battery_info.getFull40();
+		//full40.setText(full40text);
 		
 		//Populate temperature - not outputting correctly (my fault, conversion issue)
 		//String temperaturetext = battery_info.getTemperature();
@@ -96,6 +97,15 @@ public class GeneralActivity extends Activity {
 		
 		//Populate mAh capacity
 		String capacitytext = battery_info.getMAh();
-		capacity.setText(capacitytext);
+		int mAh = (Integer.parseInt(capacitytext))/1000;
+		capacity.setText(Integer.toString(mAh));
+		
+		//Populate status register
+		String statustext = battery_info.getDumpRegister(01);
+		statusreg.setText("0x" + Integer.toString(Integer.parseInt(statustext)));
 	}
+	
+	
+	
+	
 }

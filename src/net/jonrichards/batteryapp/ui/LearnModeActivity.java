@@ -30,10 +30,11 @@ public class LearnModeActivity extends Activity {
 	private boolean learnmode = false;
 	
 	//Sample rate used for learn mode on or off
-	private int SAMPLE_POLL = 3;
+	private int SAMPLE_POLL = 30;
 
 	private final Handler mHandler = new Handler();
 
+	private TextView statusreg;
 	private TextView livevoltage;
 	
 
@@ -46,6 +47,7 @@ public class LearnModeActivity extends Activity {
 		learnoff=(RadioButton)findViewById(R.id.btnLearnOff);
 		learnoff.setChecked(true);
 		
+        statusreg = (TextView)findViewById(R.id.txtStatusNumber);
         livevoltage = (TextView)findViewById(R.id.txtRealTimeVoltage);
         
         CHGTFlight = (ToggleButton) findViewById(R.id.CHGTFlight);
@@ -70,15 +72,17 @@ public class LearnModeActivity extends Activity {
 	        RadioButton rb = (RadioButton) v;
 	        if(v.getId() == R.id.btnLearnOn){
 	        	learnmode = true;
+	        	getUIText();
 	        }
 	        else if (v.getId() == R.id.btnLearnOff){
 	        	learnmode = false;
+	        	getUIText();
 	        }
 	    }
 	};
 
 	
-	//Our runnable to update the UI, polled every 1.5 seconds
+	//Our runnable to update the UI, polled every SAMPLE_POLL*500 seconds
 	private final Runnable mUpdateUITimerTask = new Runnable() {
 	    public void run() {
 	    	getUIText();	    	
@@ -87,20 +91,24 @@ public class LearnModeActivity extends Activity {
 	};
 	
 	//Function for retrieving the UI text
-	protected void getUIText() {
+	public void getUIText() {
 		DS2784Battery battery_info = new DS2784Battery();
+		
+		//Populate status register
+		String statustext = battery_info.getDumpRegister(01);
+		statusreg.setText("(" + "0x" + Integer.toString(Integer.parseInt(statustext)) + ")");
 		
 		//Populate voltage
 		String voltagetext = battery_info.getVoltage();
-		int volt = Integer.parseInt(voltagetext);
-		livevoltage.setText(voltagetext);
+		int volt = (Integer.parseInt(voltagetext))/100;
+		livevoltage.setText(Integer.toString(volt));
 		
 		//Added volt check and learn mode check to update sample poll
-		if(learnmode = true && volt <= 3600000){
+		if(learnmode == true && volt <= 3490000){
 			SAMPLE_POLL = 3;
-		}else if(learnmode = true && volt > 360000){
-			SAMPLE_POLL = 10;
-		}else if(learnmode = false){
+		}else if(learnmode == true && volt > 349000){
+			SAMPLE_POLL = 20;
+		}else if(learnmode == false){
 			SAMPLE_POLL = 30;
 		}
 		

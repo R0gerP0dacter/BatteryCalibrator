@@ -35,26 +35,42 @@ android:background="@drawable/gradient_test1"
      />
 
 
-
 <View android:id="@+id/divider"
     android:background="@drawable/black_white_gradient"
     android:layout_width="fill_parent"
-    android:layout_height="10dp"
-    android:layout_below="@id/widget28" />
+    android:layout_height="10dp"/>
 
 <LinearLayout
 android:id="@+id/widget131"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:padding="5px"
+android:layout_gravity="center_horizontal"
+android:layout_marginBottom="30px"
 >
-
+<TextView
+android:id="@+id/title"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Use this page to configure your battery settings manually."
+android:textColor="#ffffff"
+android:textSize="18sp"
+android:layout_gravity="center_vertical"
+>
+</TextView>
 </LinearLayout>
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="3dp"
+    android:layout_below="@id/widget131" />
+    />
 <LinearLayout
 android:id="@+id/widget144"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:padding="5px"
+android:layout_marginTop="5px"
 >
 <TextView
 android:id="@+id/widget145"
@@ -156,13 +172,19 @@ android:layout_weight="1"
 </EditText>
 </LinearLayout>
 
-
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="3dp"
+    android:layout_below="@id/widget1500" />
+    />
     
 
 <LinearLayout
 android:id="@+id/widget3111"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
+android:layout_marginTop="5px"
 >
 <Button
 android:id="@+id/btnSave"
@@ -184,13 +206,16 @@ android:layout_weight="3"
 </Button>
 </LinearLayout>
 
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="10dp"/>
 
-
-    
-
-
-
-
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="10dp"/>
 </LinearLayout>
+
     
 </TabHost>
