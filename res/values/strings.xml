@@ -2,4 +2,31 @@
 <resources>
     <string name="hello">Hello World, BatteryApp!</string>
     <string name="app_name">Battery App</string>
+    <string name="about">About</string>
+    <string name="tech_help">Technical Info</string>
+    <string name="settings">Settings</string>
+    <string name="exit">Exit</string>
+    <string name="tech_text">
+    \nTechnical help is available at XDA via the link below.\n
+    \n
+    Need to add link.
+    </string>
+    <string name="waiting_message1">
+    "WAITING...\nDrain your battery to "
+    </string>
+    <string name="waiting_message2">
+    mV to activate learn mode.\n\nWhen the learn flag in the status register turns on, 
+    plug in the charger immediately.
+    </string>
+    <string name="recalibrate_message">
+    -To re-calibrate your battery, turn on learn detect below and then drain your battery.
+    </string>
+    <string name="in_progress_message">
+    -Learn cycle is in progress.  The calibration will be complete by charging to full 
+    uninterrupted.  At that point the CHGTF will be set and the battery\'s age will be 
+    updated with the new learned value.
+    </string>
+    <string name="chgtf_message">
+    -CHGTF is set, battery is fully charged.
+    </string>
 </resources>

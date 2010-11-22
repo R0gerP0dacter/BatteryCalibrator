@@ -4,6 +4,9 @@ import net.jonrichards.batteryapp.system.DS2784Battery;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RadioButton;
@@ -31,25 +34,39 @@ public class LearnModeActivity extends Activity {
 	
 	//Sample rate used for learn mode on or off
 	private int SAMPLE_POLL = 30;
-
+	//
 	private final Handler mHandler = new Handler();
-
+	//Declare the text views for this tab
 	private TextView statusreg;
 	private TextView livevoltage;
-	
+	private TextView message1;
+	private TextView message2;
 
+	/** 
+	 * Used to initially populate empty volt.  Is there better way? i.e. pull
+	 * existing param from the other activity?
+	 */
+	DS2784Battery battery_info = new DS2784Battery();
+    String emptyvolttext = battery_info.getDumpRegister(54);
+	int emptyconverted = (Integer.parseInt(emptyvolttext,16))*1952/100;
+
+	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learnmodelayout);
+        
+        statusreg = (TextView)findViewById(R.id.txtStatusNumber);
+        livevoltage = (TextView)findViewById(R.id.txtRealTimeVoltage);
+        message1 = (TextView)findViewById(R.id.txtMessage1);
+        message2 = (TextView)findViewById(R.id.txtMessage2);
+
         
         learngroup = (RadioGroup) findViewById(R.id.learnmodegroup);
         learnon=(RadioButton)findViewById(R.id.btnLearnOn);
 		learnoff=(RadioButton)findViewById(R.id.btnLearnOff);
 		learnoff.setChecked(true);
-		
-        statusreg = (TextView)findViewById(R.id.txtStatusNumber);
-        livevoltage = (TextView)findViewById(R.id.txtRealTimeVoltage);
-        
+		message1.setText("-To re-calibrate your battery, turn on learn detect below and then drain your battery.");
+
         CHGTFlight = (ToggleButton) findViewById(R.id.CHGTFlight);
         AEFlight = (ToggleButton) findViewById(R.id.AEFlight);
         SEFlight = (ToggleButton) findViewById(R.id.SEFlight);
@@ -63,7 +80,7 @@ public class LearnModeActivity extends Activity {
         final RadioButton learnon = (RadioButton) findViewById(R.id.btnLearnOn);
         final RadioButton learnoff = (RadioButton) findViewById(R.id.btnLearnOff);
         learnon.setOnClickListener(radio_listener);
-        learnoff.setOnClickListener(radio_listener);
+        learnoff.setOnClickListener(radio_listener);		
     }
 	//Radio Button listener to set learn detect on or off
 	OnClickListener radio_listener = new OnClickListener() {
@@ -72,15 +89,14 @@ public class LearnModeActivity extends Activity {
 	        RadioButton rb = (RadioButton) v;
 	        if(v.getId() == R.id.btnLearnOn){
 	        	learnmode = true;
-	        	getUIText();
+	        	getUIText();				
 	        }
 	        else if (v.getId() == R.id.btnLearnOff){
 	        	learnmode = false;
-	        	getUIText();
+	        	getUIText();	    		
 	        }
 	    }
-	};
-
+	};	
 	
 	//Our runnable to update the UI, polled every SAMPLE_POLL*500 seconds
 	private final Runnable mUpdateUITimerTask = new Runnable() {
@@ -96,11 +112,11 @@ public class LearnModeActivity extends Activity {
 		
 		//Populate status register
 		String statustext = battery_info.getDumpRegister(01);
-		statusreg.setText("(" + "0x" + Integer.toString(Integer.parseInt(statustext)) + ")");
+		statusreg.setText("(" + "0x" + statustext + ")");
 		
 		//Populate voltage
 		String voltagetext = battery_info.getVoltage();
-		int volt = (Integer.parseInt(voltagetext))/100;
+		int volt = (Integer.parseInt(voltagetext));
 		livevoltage.setText(Integer.toString(volt));
 		
 		//Added volt check and learn mode check to update sample poll
@@ -137,7 +153,7 @@ public class LearnModeActivity extends Activity {
 		}		
 		int LEARNF = battery_info.getStatusRegister(4);
 		if (LEARNF > 0) {
-			LEARNFlight.setChecked(true);		
+			LEARNFlight.setChecked(true);					
 		}
 		else {
 			LEARNFlight.setChecked(false);
@@ -155,8 +171,56 @@ public class LearnModeActivity extends Activity {
 		}
 		else {
 			PORFlight.setChecked(false);
-		}		
-		
-	}	
+		}
+		//Message output when learn mode is active and learn flag is off
+		if (learnmode == true && LEARNF <= 0) {
+			String text = this.getResources().getText(R.string.waiting_message1).toString();
+			String text1 = this.getResources().getText(R.string.waiting_message2).toString();
+
+			message1.setText(text + emptyconverted + text1);			
+		}
+		//Message output when learn mode is inactive
+		else if (learnmode == false) {
+			String text = this.getResources().getText(R.string.recalibrate_message).toString();
+			message1.setText(text);
+		}
+		//Message output when learn mode active and learn flag is on
+		else if (learnmode == true && LEARNF > 0) {
+			
+			String text = this.getResources().getText(R.string.in_progress_message).toString();
+			message1.setText(text);
+		}
+		//Message when full charge is on
+		if (CHGTF > 0) {
+			String text = this.getResources().getText(R.string.chgtf_message).toString();
+			message2.setText(text);
+		}
+	}
+	//Add options menu
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.menu, menu);
+	    return true;
+	}
+	//Add options menu
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case R.id.about:     
+	        	Toast.makeText(this, "Write an ABOUT section here?", Toast.LENGTH_LONG).show();
+	            break;
+	        case R.id.tech_help:     
+	        	Toast.makeText(this, "Add advnced technical info/help section here?", Toast.LENGTH_LONG).show();
+	        	break;
+	        case R.id.settings: 
+	        	Toast.makeText(this, "Any possible settings?", Toast.LENGTH_LONG).show();
+	            break;
+	        case R.id.exit: 
+	        	Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
+            break;
+	    }
+	    return true;
+	}
 		
 }

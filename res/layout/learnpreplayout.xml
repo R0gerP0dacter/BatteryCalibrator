@@ -20,12 +20,19 @@
         
     </LinearLayout>
 
+<ScrollView
+android:id="@+id/widget30"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:background="@drawable/gradient_test1"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+
 <LinearLayout
 android:id="@+id/widget29111"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:orientation="vertical"
-android:background="@drawable/gradient_test1"
 >
 
 <View android:id="@+id/divider"
@@ -46,23 +53,25 @@ android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:padding="5px"
 android:layout_gravity="center_horizontal"
-android:layout_marginBottom="30px"
+android:layout_marginBottom="10px"
 >
 <TextView
 android:id="@+id/title"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="Use this page to configure your battery settings manually."
+android:text="Use this to configure your battery settings manually. Writing 
+each parameter writes to the corresponding register stored in the battery EEPROM chip."
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:layout_gravity="center_vertical"
 >
 </TextView>
 </LinearLayout>
+
 <View android:id="@+id/divider"
     android:background="@drawable/black_white_gradient"
     android:layout_width="fill_parent"
-    android:layout_height="3dp"
+    android:layout_height="2dp"
     android:layout_below="@id/widget131" />
     />
 <LinearLayout
@@ -175,7 +184,7 @@ android:layout_weight="1"
 <View android:id="@+id/divider"
     android:background="@drawable/black_white_gradient"
     android:layout_width="fill_parent"
-    android:layout_height="3dp"
+    android:layout_height="2dp"
     android:layout_below="@id/widget1500" />
     />
     
@@ -216,6 +225,5 @@ android:layout_weight="3"
     android:layout_width="fill_parent"
     android:layout_height="10dp"/>
 </LinearLayout>
-
-    
+</ScrollView>    
 </TabHost>

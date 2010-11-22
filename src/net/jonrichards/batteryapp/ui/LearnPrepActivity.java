@@ -3,16 +3,18 @@ package net.jonrichards.batteryapp.ui;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import net.jonrichards.batteryapp.ui.R;
-
-import com.teslacoilsw.quicksshd.ShellCommand;
-import com.teslacoilsw.quicksshd.ShellCommand.CommandResult;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.teslacoilsw.quicksshd.ShellCommand;
+import com.teslacoilsw.quicksshd.ShellCommand.CommandResult;
 
 public class LearnPrepActivity extends Activity {
 
@@ -31,6 +33,32 @@ public class LearnPrepActivity extends Activity {
                 
         //mHandler.postDelayed(mUpdateUITimerTask, 10 * 1000);
     }
+	//Options menu
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.menu, menu);
+	    return true;
+	}
+	//Options menu
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case R.id.about:     
+	        	Toast.makeText(this, "Write an ABOUT section here?", Toast.LENGTH_LONG).show();
+	            break;
+	        case R.id.tech_help:     
+	        	Toast.makeText(this, "Add advnced technical info/help section here?", Toast.LENGTH_LONG).show();
+	        	break;
+	        case R.id.settings: 
+	        	Toast.makeText(this, "Any possible settings?", Toast.LENGTH_LONG).show();
+	            break;
+	        case R.id.exit: 
+	        	Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
+            break;
+	    }
+	    return true;
+	}
 	
 	private final Runnable mUpdateUITimerTask = new Runnable() {
 	    public void run() {

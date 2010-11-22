@@ -20,6 +20,12 @@
         
     </LinearLayout>
 
+<ScrollView
+android:id="@+id/widget288"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
 <LinearLayout
 android:id="@+id/widget29111"
 android:layout_width="fill_parent"
@@ -47,13 +53,35 @@ android:textSize="18sp"
 android:layout_margin="1dip"
 android:textColor="#ffffff"
 android:layout_gravity="center_horizontal"
-android:layout_marginBottom="20px"
+android:layout_marginBottom="5px"
 >
 </TextView>
 
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="2dp"
+    android:layout_below="@id/widget1022" />
 
+<TextView
+android:id="@+id/widget102233"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="This is a raw dump from your battery's EEPROM registers.  
+Each row contains 16 registers in hexadecimal format."
+android:textSize="16sp"
+android:layout_margin="1dip"
+android:textColor="#ffffff"
+android:layout_gravity="center_horizontal"
+android:layout_marginBottom="5px"
+>
+</TextView>
 
-
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="2dp"
+    android:layout_below="@id/widget102233" />
 
 <LinearLayout
 android:id="@+id/widget131"
@@ -72,106 +100,14 @@ android:textColor="#ffffff"
 android:layout_gravity="center_horizontal"
 >
 </TextView>
-<TextView
-android:id="@+id/widget2"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="Dumpreg"
-android:textSize="18sp"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget3"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="Dumpreg"
-android:textSize="18sp"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget4"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="Dumpreg"
-android:textSize="18sp"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget5"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="Dumpreg"
-android:textSize="18sp"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget6"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="Dumpreg"
-android:textSize="18sp"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget7"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="Dumpreg"
-android:textSize="18sp"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget8"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="Dumpreg"
-android:textSize="18sp"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget9"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="Dumpreg"
-android:textSize="18sp"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget10"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="Dumpreg"
-android:textSize="18sp"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
+
 </LinearLayout>
 
-
-
-    
-
-
-
-
-
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="2dp"
+    android:layout_below="@id/widget131" />
     
 <LinearLayout
 android:id="@+id/widget1266"
@@ -180,28 +116,24 @@ android:layout_height="wrap_content"
 android:padding="20px"
 android:orientation="vertical"
 >
-<TextView
-android:id="@+id/txtUpdate"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Update Dumpreg"
-android:textSize="20sp"
-android:textStyle="bold"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
+
 <Button
 android:id="@+id/btnUpdate"
-android:layout_width="200px"
+android:layout_width="300px"
 android:layout_height="130px"
+android:textSize="18sp"
+android:text="Update Dumpreg"
 android:layout_gravity="center_horizontal"
 >
 </Button>
 </LinearLayout>
 
-
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="10dp"
+    android:layout_below="@id/widget1266" />
 
 </LinearLayout>
-    
+</ScrollView>
 </TabHost>

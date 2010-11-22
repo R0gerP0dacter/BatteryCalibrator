@@ -19,6 +19,7 @@
              />
         
     </LinearLayout>
+    
 <ScrollView
 android:id="@+id/widget28"
 android:layout_width="fill_parent"
@@ -56,17 +57,15 @@ android:layout_gravity="center_horizontal"
 >
 <TextView
 android:id="@+id/widget104"
-android:layout_width="wrap_content"
+android:layout_width="380px"
 android:layout_height="wrap_content"
-android:text=" Real-Time Voltage: "
+android:text=" Real-Time Voltage (mV): "
 android:textColor="#ffffff"
-android:textSize="26sp"
-android:textStyle="bold|italic"
+android:textSize="20sp"
+android:textStyle="bold"
 android:layout_gravity="center_horizontal"
 >
 </TextView>
-
-
 
 <TextView
 android:id="@+id/txtRealTimeVoltage"
@@ -80,14 +79,13 @@ android:gravity="center"
 android:layout_gravity="center_horizontal"
 >
 </TextView>
-
 </LinearLayout>
 
 <View android:id="@+id/divider"
     android:background="@drawable/black_white_gradient"
     android:layout_width="fill_parent"
     android:layout_marginTop="25px"
-    android:layout_height="3dp"
+    android:layout_height="2dp"
     android:layout_below="@id/widget103" />
     />
     
@@ -196,7 +194,7 @@ android:textOn="PORF"
 <View android:id="@+id/divider"
     android:background="@drawable/black_white_gradient"
     android:layout_width="fill_parent"
-    android:layout_height="3dp"
+    android:layout_height="2dp"
     android:layout_below="@id/widget110" />
     />
 
@@ -223,7 +221,20 @@ android:layout_gravity="center_horizontal"
 </TextView>
 
 <TextView
-android:id="@+id/txtMessage"
+android:id="@+id/txtMessage1"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Waiting for learn mode at 3.416 V"
+android:textColor="#ff0000"
+android:textSize="18sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+
+<TextView
+android:id="@+id/txtMessage2"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Waiting for learn mode at 3.416 V"
@@ -238,7 +249,7 @@ android:layout_gravity="center_horizontal"
 <View android:id="@+id/divider"
     android:background="@drawable/black_white_gradient"
     android:layout_width="fill_parent"
-    android:layout_height="3dp"
+    android:layout_height="2dp"
     android:layout_below="@id/widget1066" />
     />
 
@@ -299,7 +310,5 @@ android:textStyle="bold"
     android:layout_height="10dp"/>
 
 </LinearLayout>
-</ScrollView>
-
-    
+</ScrollView>    
 </TabHost>

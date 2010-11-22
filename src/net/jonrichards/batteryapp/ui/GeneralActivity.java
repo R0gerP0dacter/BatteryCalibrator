@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GeneralActivity extends Activity {
 	
@@ -27,8 +29,7 @@ public class GeneralActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.generallayout);
-        
-        
+                
         //Defining all text views and linking to UI elements
         voltage = (TextView)findViewById(R.id.txtVoltage);
         current = (TextView)findViewById(R.id.txtCurrent);
@@ -39,14 +40,39 @@ public class GeneralActivity extends Activity {
         chargecurrent = (TextView)findViewById(R.id.txtMinChgCurrent);
         emptyvolt = (TextView)findViewById(R.id.txtAEvolt);       
         statusreg = (TextView)findViewById(R.id.txtStatusReg);
-        capacity = (TextView)findViewById(R.id.txtCapacity);        
-
+        capacity = (TextView)findViewById(R.id.txtCapacity);
         
         //Initial poll when activity is first created
         mHandler.postDelayed(mUpdateUITimerTask, 60 * 1000);
         getUIText();
-
     }
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.menu, menu);
+	    return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case R.id.about:     
+	        	Toast.makeText(this, "Write an ABOUT section here?", Toast.LENGTH_LONG).show();
+	            break;
+	        case R.id.tech_help:     
+	        	Toast.makeText(this, "Add advnced technical info/help section here?", Toast.LENGTH_LONG).show();
+	        	break;
+	        case R.id.settings: 
+	        	Toast.makeText(this, "Any possible settings?", Toast.LENGTH_LONG).show();
+	            break;
+	        case R.id.exit: 
+	        	Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
+            break;
+	    }
+	    return true;
+	}
+	
 	//Our runnable to continuously update the UI, polled every 60 seconds
 	private final Runnable mUpdateUITimerTask = new Runnable() {
 	    public void run() {
@@ -54,8 +80,9 @@ public class GeneralActivity extends Activity {
 	        mHandler.postDelayed(mUpdateUITimerTask, 60 * 1000);
 	    }
 	};
+	
 	//Function for retrieving the UI text
-	protected void getUIText() {
+	public void getUIText() {
 		DS2784Battery battery_info = new DS2784Battery();
 		
 		//Populate voltage
@@ -102,7 +129,7 @@ public class GeneralActivity extends Activity {
 		
 		//Populate status register
 		String statustext = battery_info.getDumpRegister(01);
-		statusreg.setText("0x" + Integer.toString(Integer.parseInt(statustext)));
+		statusreg.setText("0x" + statustext);
 	}
 	
 	
