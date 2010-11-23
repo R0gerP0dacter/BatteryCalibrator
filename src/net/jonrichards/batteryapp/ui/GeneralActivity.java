@@ -1,5 +1,7 @@
 package net.jonrichards.batteryapp.ui;
 
+import java.math.BigDecimal;
+
 import net.jonrichards.batteryapp.system.DS2784Battery;
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class GeneralActivity extends Activity {
-	
+	//Handler for updating the UI
 	private final Handler mHandler = new Handler();
 	
 	//Declaring all text views needed for general tab
@@ -25,6 +27,9 @@ public class GeneralActivity extends Activity {
 	private TextView emptyvolt;
 	private TextView statusreg;
 	private TextView capacity;
+	
+	private int SAMPLE_POLL = 60;
+
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +48,7 @@ public class GeneralActivity extends Activity {
         capacity = (TextView)findViewById(R.id.txtCapacity);
         
         //Initial poll when activity is first created
-        mHandler.postDelayed(mUpdateUITimerTask, 60 * 1000);
+        mHandler.postDelayed(mUpdateUITimerTask, SAMPLE_POLL * 1000);
         getUIText();
     }
 	
@@ -68,6 +73,7 @@ public class GeneralActivity extends Activity {
 	            break;
 	        case R.id.exit: 
 	        	Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
+	        	finish();
             break;
 	    }
 	    return true;
@@ -87,21 +93,25 @@ public class GeneralActivity extends Activity {
 		
 		//Populate voltage
 		String voltagetext = battery_info.getVoltage();
-		int volt = (Integer.parseInt(voltagetext))/1000;
-		voltage.setText(Integer.toString(volt));
+		//int volt = (Integer.parseInt(voltagetext));
+		BigDecimal big_decimal = new BigDecimal(Double.parseDouble(voltagetext) / 1000);
+		big_decimal = big_decimal.setScale(2,BigDecimal.ROUND_UP);
+		double mV = big_decimal.doubleValue();
+		voltage.setText(Double.toString(mV/1000));
 		
 		//Populate current
 		String currenttext = battery_info.getCurrent();
-		int curr = (Integer.parseInt(currenttext))/1000;
-		current.setText(Integer.toString(curr));
+		int curr = (Integer.parseInt(currenttext));
+		current.setText(Integer.toString(curr/1000) + "." + Integer.toString(curr%10));		
 		
 		//Populate full40
-		//String full40text = battery_info.getFull40();
-		//full40.setText(full40text);
+		String full40text = battery_info.getFull40();
+		full40.setText(full40text);
 		
 		//Populate temperature - not outputting correctly (my fault, conversion issue)
-		//String temperaturetext = battery_info.getTemperature();
-		//temperature.setText(temperaturetext);
+		String temperaturetext = battery_info.getTemperature();
+		int temp = Integer.parseInt(temperaturetext);
+		temperature.setText(Integer.toString(temp/10) + "." + Integer.toString(temp%10));
 		
 		//Populate age
 		String agetext = battery_info.getDumpRegister(20);
@@ -120,7 +130,7 @@ public class GeneralActivity extends Activity {
 		//Populate AEvolt
 		String emptyvolttext = battery_info.getDumpRegister(54);
 		int emptyconverted = (Integer.parseInt(emptyvolttext,16))*1952/100;
-		emptyvolt.setText(Integer.toString(emptyconverted));
+		emptyvolt.setText(Integer.toString(emptyconverted/1000) + "." + Integer.toString(emptyconverted%1000));
 		
 		//Populate mAh capacity
 		String capacitytext = battery_info.getMAh();
@@ -132,7 +142,20 @@ public class GeneralActivity extends Activity {
 		statusreg.setText("0x" + statustext);
 	}
 	
+	@Override
+    public void onPause()
+    {
+            super.onPause();
+            //SAMPLE_POLL = 0;
+    }
 	
+	@Override
+    public void onResume()
+    {
+            super.onResume();
+            //SAMPLE_POLL = 60;
+
+    }
 	
 	
 }

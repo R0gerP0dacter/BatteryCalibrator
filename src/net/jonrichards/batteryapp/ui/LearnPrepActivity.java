@@ -18,7 +18,7 @@ import com.teslacoilsw.quicksshd.ShellCommand.CommandResult;
 
 public class LearnPrepActivity extends Activity {
 
-	private static final String TAG = "NOW";
+	private static final String TAG = "LearnPrepActivity";
 	private TextView textview;
 	private final Handler mHandler = new Handler();
 	
@@ -55,6 +55,7 @@ public class LearnPrepActivity extends Activity {
 	            break;
 	        case R.id.exit: 
 	        	Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
+	        	finish();
             break;
 	    }
 	    return true;
@@ -87,5 +88,20 @@ public class LearnPrepActivity extends Activity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
+    }	
+	
+	@Override
+    public void onPause()
+    {
+            super.onPause();
+            //SAMPLE_POLL = 0;
+    }
+	
+	@Override
+    public void onResume()
+    {
+            super.onResume();
+            //SAMPLE_POLL = 30;
+
     }
 }

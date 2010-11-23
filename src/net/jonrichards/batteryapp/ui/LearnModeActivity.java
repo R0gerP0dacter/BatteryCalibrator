@@ -34,7 +34,7 @@ public class LearnModeActivity extends Activity {
 	
 	//Sample rate used for learn mode on or off
 	private int SAMPLE_POLL = 30;
-	//
+	//Handler for updating the UI
 	private final Handler mHandler = new Handler();
 	//Declare the text views for this tab
 	private TextView statusreg;
@@ -65,7 +65,8 @@ public class LearnModeActivity extends Activity {
         learnon=(RadioButton)findViewById(R.id.btnLearnOn);
 		learnoff=(RadioButton)findViewById(R.id.btnLearnOff);
 		learnoff.setChecked(true);
-		message1.setText("-To re-calibrate your battery, turn on learn detect below and then drain your battery.");
+		String text = this.getResources().getText(R.string.recalibrate_message).toString();
+		message1.setText(text);
 
         CHGTFlight = (ToggleButton) findViewById(R.id.CHGTFlight);
         AEFlight = (ToggleButton) findViewById(R.id.AEFlight);
@@ -120,9 +121,9 @@ public class LearnModeActivity extends Activity {
 		livevoltage.setText(Integer.toString(volt));
 		
 		//Added volt check and learn mode check to update sample poll
-		if(learnmode == true && volt <= 3490000){
+		if(learnmode == true && volt <= 3500000){
 			SAMPLE_POLL = 3;
-		}else if(learnmode == true && volt > 349000){
+		}else if(learnmode == true && volt > 3500000){
 			SAMPLE_POLL = 20;
 		}else if(learnmode == false){
 			SAMPLE_POLL = 30;
@@ -212,15 +213,35 @@ public class LearnModeActivity extends Activity {
 	            break;
 	        case R.id.tech_help:     
 	        	Toast.makeText(this, "Add advnced technical info/help section here?", Toast.LENGTH_LONG).show();
+	        	/*setContentView(R.layout.techinfo);
+	        	TextView tv = (TextView) findViewById(R.id.techtext);
+	        	String text = this.getResources().getText(R.string.tech_text).toString();
+                tv.setText(text);*/
 	        	break;
 	        case R.id.settings: 
 	        	Toast.makeText(this, "Any possible settings?", Toast.LENGTH_LONG).show();
 	            break;
 	        case R.id.exit: 
 	        	Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
+	        	finish();
             break;
 	    }
 	    return true;
 	}
+	
+	@Override
+    public void onPause()
+    {
+            super.onPause();
+            //SAMPLE_POLL = 0;
+    }
+	
+	@Override
+    public void onResume()
+    {
+            super.onResume();
+            //SAMPLE_POLL = 30;
+
+    }
 		
 }

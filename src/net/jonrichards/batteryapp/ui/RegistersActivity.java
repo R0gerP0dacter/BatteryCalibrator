@@ -18,8 +18,8 @@ import com.teslacoilsw.quicksshd.ShellCommand.CommandResult;
 
 public class RegistersActivity extends Activity {
 	
-	private static final String TAG = "NOW";
-	private TextView textview;
+	private static final String TAG = "RegistersActivity";
+
 	private final Handler mHandler = new Handler();
 	
 	private TextView dump01;
@@ -79,9 +79,25 @@ public class RegistersActivity extends Activity {
 	            break;
 	        case R.id.exit: 
 	        	Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
+	        	finish();
             break;
 	    }
 	    return true;
-	}    
+	}
+	
+	@Override
+    public void onPause()
+    {
+            super.onPause();
+            //SAMPLE_POLL = 0;
+    }
+	
+	@Override
+    public void onResume()
+    {
+            super.onResume();
+            //SAMPLE_POLL = 30;
+
+    }
 
 }
