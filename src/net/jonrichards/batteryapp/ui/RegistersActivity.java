@@ -43,6 +43,20 @@ public class RegistersActivity extends Activity {
         });        
     }
 	
+	@Override
+    public void onPause()
+    {
+            //mHandler.removeCallbacks(mUpdateUITimerTask);
+            super.onPause();
+    }
+	
+	@Override
+    public void onResume()
+    {
+            //mHandler.postDelayed(mUpdateUITimerTask, SAMPLE_POLL * 1000);
+            super.onResume();
+    }
+	
 	private String getUIText() {
 		String result = "";
 		
@@ -85,19 +99,6 @@ public class RegistersActivity extends Activity {
 	    return true;
 	}
 	
-	@Override
-    public void onPause()
-    {
-            super.onPause();
-            //SAMPLE_POLL = 0;
-    }
 	
-	@Override
-    public void onResume()
-    {
-            super.onResume();
-            //SAMPLE_POLL = 30;
-
-    }
 
 }

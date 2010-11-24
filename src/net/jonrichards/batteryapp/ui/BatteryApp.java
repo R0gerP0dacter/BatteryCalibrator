@@ -39,4 +39,19 @@ public class BatteryApp extends TabActivity {
 
 	    tabHost.setCurrentTab(0);
 	}
+	
+	@Override
+    public void onPause()
+    {
+            super.onPause();
+            //mHandler.removeCallbacks(mUpdateUITimerTask);
+    }
+	
+	@Override
+    public void onResume()
+    {
+            super.onResume();
+            //SAMPLE_POLL = 30;
+
+    }
 }

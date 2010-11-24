@@ -226,6 +226,7 @@ public final class R {
         public static final int exit=0x7f040005;
         public static final int hello=0x7f040000;
         public static final int in_progress_message=0x7f04000a;
+        public static final int learn_popup=0x7f04000c;
         public static final int recalibrate_message=0x7f040009;
         public static final int settings=0x7f040004;
         public static final int tech_help=0x7f040003;

@@ -61,6 +61,20 @@ public class LearnPrepActivity extends Activity {
 	    return true;
 	}
 	
+	@Override
+    public void onPause()
+    {
+            mHandler.removeCallbacks(mUpdateUITimerTask);
+            super.onPause();
+    }
+	
+	@Override
+    public void onResume()
+    {
+            mHandler.postDelayed(mUpdateUITimerTask, 10 * 1000);
+            super.onResume();
+    }
+	
 	private final Runnable mUpdateUITimerTask = new Runnable() {
 	    public void run() {
 	    	textview.setText(getText());
@@ -90,18 +104,5 @@ public class LearnPrepActivity extends Activity {
         return dateFormat.format(date);
     }	
 	
-	@Override
-    public void onPause()
-    {
-            super.onPause();
-            //SAMPLE_POLL = 0;
-    }
 	
-	@Override
-    public void onResume()
-    {
-            super.onResume();
-            //SAMPLE_POLL = 30;
-
-    }
 }

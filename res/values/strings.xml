@@ -29,4 +29,7 @@
     <string name="chgtf_message">
     -CHGTF is set, battery is fully charged.
     </string>
+    <string name="learn_popup">
+    PLUG IN NOW!!  Learn mode is active! (Back button to return)
+    </string>
 </resources>

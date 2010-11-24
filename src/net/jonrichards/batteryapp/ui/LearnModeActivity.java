@@ -2,6 +2,7 @@ package net.jonrichards.batteryapp.ui;
 
 import net.jonrichards.batteryapp.system.DS2784Battery;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -97,7 +98,22 @@ public class LearnModeActivity extends Activity {
 	        	getUIText();	    		
 	        }
 	    }
-	};	
+	};
+	
+	@Override
+    public void onPause()
+    {
+            mHandler.removeCallbacks(mUpdateUITimerTask);
+            super.onPause();
+    }
+	
+	@Override
+    public void onResume()
+    {
+            mHandler.postDelayed(mUpdateUITimerTask, SAMPLE_POLL * 1000);
+            getUIText();
+            super.onResume();
+    }
 	
 	//Our runnable to update the UI, polled every SAMPLE_POLL*500 seconds
 	private final Runnable mUpdateUITimerTask = new Runnable() {
@@ -187,14 +203,23 @@ public class LearnModeActivity extends Activity {
 		}
 		//Message output when learn mode active and learn flag is on
 		else if (learnmode == true && LEARNF > 0) {
-			
+			String text1 = this.getResources().getText(R.string.learn_popup).toString();
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	        builder.setMessage(text1).create().show();
 			String text = this.getResources().getText(R.string.in_progress_message).toString();
 			message1.setText(text);
+			
+			//need to add controls to only display popup dialog one time initially,
+			//then remove it on subsequent iterations.
+			//String text1 = this.getResources().getText(R.string.learn_popup).toString();
+			//AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	        //builder.setMessage(text1).create().show();
 		}
 		//Message when full charge is on
 		if (CHGTF > 0) {
 			String text = this.getResources().getText(R.string.chgtf_message).toString();
 			message2.setText(text);
+			
 		}
 	}
 	//Add options menu
@@ -229,19 +254,6 @@ public class LearnModeActivity extends Activity {
 	    return true;
 	}
 	
-	@Override
-    public void onPause()
-    {
-            super.onPause();
-            //SAMPLE_POLL = 0;
-    }
 	
-	@Override
-    public void onResume()
-    {
-            super.onResume();
-            //SAMPLE_POLL = 30;
-
-    }
 		
 }
