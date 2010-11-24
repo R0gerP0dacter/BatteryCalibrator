@@ -110,8 +110,8 @@ public class LearnModeActivity extends Activity {
 	@Override
     public void onResume()
     {
-            mHandler.postDelayed(mUpdateUITimerTask, SAMPLE_POLL * 1000);
-            getUIText();
+            mHandler.postDelayed(mUpdateUITimerTask, 2 * 1000);
+            //getUIText();
             super.onResume();
     }
 	

@@ -64,14 +64,14 @@ public class LearnPrepActivity extends Activity {
 	@Override
     public void onPause()
     {
-            mHandler.removeCallbacks(mUpdateUITimerTask);
+            //mHandler.removeCallbacks(mUpdateUITimerTask);
             super.onPause();
     }
 	
 	@Override
     public void onResume()
     {
-            mHandler.postDelayed(mUpdateUITimerTask, 10 * 1000);
+            //mHandler.postDelayed(mUpdateUITimerTask, 10 * 1000);
             super.onResume();
     }
 	

@@ -27,12 +27,25 @@ public class GeneralActivity extends Activity {
 	private TextView statusreg;
 	private TextView capacity;
 	
-	private int SAMPLE_POLL = 60;
+	private int SAMPLE_POLL = 40;
 
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.generallayout);        
+        setContentView(R.layout.generallayout);
+        
+        /**
+         * Ignore this savedInstanceState code below, was just experimenting
+         */
+        /*if (savedInstanceState != null)
+        {
+          String strValue = savedInstanceState.getString("vol");
+          if (strValue != null)
+          {
+            TextView oControl = (TextView)findViewById(R.id.txtVoltage);
+            oControl.setText(strValue);
+          }          
+        }*/
                 
         //Defining all text views and linking to UI elements
         voltage = (TextView)findViewById(R.id.txtVoltage);
@@ -48,7 +61,10 @@ public class GeneralActivity extends Activity {
         
         //Initial poll when activity is first created
         mHandler.postDelayed(mUpdateUITimerTask, SAMPLE_POLL * 1000);
-        getUIText();
+        if (savedInstanceState == null) {
+            getUIText();
+        }
+
     }
 	
 	@Override
@@ -78,6 +94,25 @@ public class GeneralActivity extends Activity {
 	    return true;
 	}
 	
+	/**
+	 * Ignore this Instance code, just experimenting.
+	 *
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) 
+	{
+	  // Store UI state to the savedInstanceState.
+	  // This bundle will be passed to onCreate on next call.
+
+	  TextView txtName1 = (TextView)findViewById(R.id.txtVoltage);
+	  String strName1 = txtName1.getText().toString();	  
+	  
+	  savedInstanceState.putString("vol", strName1);
+	  
+	  super.onSaveInstanceState(savedInstanceState);
+	}*/
+	
+	
+	
 	@Override
     public void onPause()
     {
@@ -88,9 +123,14 @@ public class GeneralActivity extends Activity {
 	@Override
     public void onResume()
     {
-            mHandler.postDelayed(mUpdateUITimerTask, SAMPLE_POLL * 1000);
-            //Should update the UI onResume; for now we won't
-            getUIText();
+            mHandler.postDelayed(mUpdateUITimerTask, 2 * 1000);
+            
+            /**Should update the UI onResume; for now we won't.  We see a delay
+             *when calling the detUIText function onResume.  We need a way to
+             *only poll the dynamic variables regularly, and only poll the static
+             *variables when they change, or less often.
+             */
+            //getUIText();
             super.onResume();
     }
 	
@@ -108,11 +148,13 @@ public class GeneralActivity extends Activity {
 		
 		//Populate voltage
 		String voltagetext = battery_info.getVoltage();
-		double volt = (Double.parseDouble(voltagetext))/1000;
+		//voltagetext = voltagetext.substring(voltagetext.indexOf(".") + 1);
+		//double volt = (Double.parseDouble(voltagetext))/1000;
 		//BigDecimal big_decimal = new BigDecimal(Double.parseDouble(voltagetext) / 1000);
 		//big_decimal = big_decimal.setScale(2,BigDecimal.ROUND_UP);
 		//double mV = big_decimal.doubleValue();
-		voltage.setText(Double.toString(volt/1000));
+		int volt = (Integer.parseInt(voltagetext))/1000;
+		voltage.setText(Integer.toString(volt));
 		
 		//Populate current
 		String currenttext = battery_info.getCurrent();
