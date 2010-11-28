@@ -223,7 +223,7 @@ public class GeneralActivity extends Activity {
 	//Private Methods
 
 	/**
-	 * Our runnable to continuously update the UI
+	 * Our runnable to continuously update the UI.
 	 */
 	private final Runnable mUpdateUITimerTask = new Runnable() {
 	    public void run() {
