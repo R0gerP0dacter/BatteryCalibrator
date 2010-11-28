@@ -3,15 +3,17 @@ package net.jonrichards.batteryapp.ui;
 import net.jonrichards.batteryapp.system.DS2784Battery;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -62,6 +64,9 @@ public class LearnModeActivity extends Activity {
 	 * A boolean for whether the alert has been displayed already.
 	 */
 	private boolean my_alert_displayed = false;
+	
+	private PowerManager power_manager;
+	private WakeLock wake_lock;
 
 	//Public Methods
 	
@@ -69,9 +74,12 @@ public class LearnModeActivity extends Activity {
 	 * Called when the activity is first created, initializations happen here.
 	 * @param savedInstanceState 
 	 */
-	public void onCreate(Bundle savedInstanceState) {		
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learnmodelayout);
+        
+        power_manager = (PowerManager)getSystemService(Context.POWER_SERVICE);
+        wake_lock = power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "LearnModeActivity");
         
         DS2784Battery battery_info = new DS2784Battery();
         String empty_volt_text = battery_info.getDumpRegister(54);
@@ -118,11 +126,17 @@ public class LearnModeActivity extends Activity {
 	        //RadioButton rb = (RadioButton) v;
 	        if(v.getId() == R.id.btnLearnOn){
 	        	my_learn_mode = true;
-	        	setUIText();				
+	        	setUIText();
+	        	//Acquire the wake lock to prevent the screen from turning off
+	        	wake_lock.acquire();
 	        }
 	        else if (v.getId() == R.id.btnLearnOff){
 	        	my_learn_mode = false;
-	        	setUIText();	    		
+	        	setUIText();
+	        	//If the wake lock is currently acquired, release it
+	        	if(wake_lock.isHeld()) {
+					wake_lock.release();
+				}
 	        }
 	    }
 	};
@@ -132,6 +146,10 @@ public class LearnModeActivity extends Activity {
 	 */
 	@Override
     public void onPause() {
+		//If the wake lock is currently acquired, release it
+		if(wake_lock.isHeld()) {
+			wake_lock.release();
+		}
 	    my_handler.removeCallbacks(mUpdateUITimerTask);
 	    super.onPause();
     }
@@ -141,6 +159,13 @@ public class LearnModeActivity extends Activity {
 	 */
 	@Override
     public void onResume() {
+		//If learn mode is on, acquire the wake lock
+		if(my_learn_mode) {
+			wake_lock.acquire();
+		//If learn mode is off and the wake lock is currently acquired, release it
+		} else if(!my_learn_mode && wake_lock.isHeld()) {
+				wake_lock.release();
+		}
 	    my_handler.postDelayed(mUpdateUITimerTask, 2000);
 	    //setUIText();
 	    super.onResume();
