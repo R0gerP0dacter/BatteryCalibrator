@@ -3,12 +3,15 @@ package net.jonrichards.batteryapp.ui;
 import net.jonrichards.batteryapp.system.DS2784Battery;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -66,7 +69,7 @@ public class LearnModeActivity extends Activity {
 	 * Called when the activity is first created, initializations happen here.
 	 * @param savedInstanceState 
 	 */
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {		
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learnmodelayout);
         
@@ -194,6 +197,14 @@ public class LearnModeActivity extends Activity {
 			//If the alert has not just been displayed
 			if(!my_alert_displayed) {
 				my_alert_displayed = true;
+				
+				//Play alert beep three times
+				ToneGenerator tone_generator = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, ToneGenerator.MAX_VOLUME);
+				tone_generator.startTone(ToneGenerator.TONE_PROP_BEEP);
+				tone_generator.startTone(ToneGenerator.TONE_PROP_BEEP);
+				tone_generator.startTone(ToneGenerator.TONE_PROP_BEEP);
+				
+				//Display alert message
 				String text1 = this.getResources().getText(R.string.learn_popup).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		        builder.setMessage(text1).create().show();
@@ -212,7 +223,6 @@ public class LearnModeActivity extends Activity {
 		if (intToBoolean(battery_info.getStatusRegister(7))) {
 			String text = this.getResources().getText(R.string.chgtf_message).toString();
 			my_message_2.setText(text);
-			
 		}
 	}
 
