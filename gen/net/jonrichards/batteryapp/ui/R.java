@@ -12,27 +12,31 @@ public final class R {
     }
     public static final class drawable {
         public static final int black_white_gradient=0x7f020000;
-        public static final int general_grey_icon=0x7f020001;
-        public static final int general_white_icon=0x7f020002;
-        public static final int gradient_test=0x7f020003;
-        public static final int gradient_test1=0x7f020004;
-        public static final int ic_tab_general=0x7f020005;
-        public static final int ic_tab_learnmode=0x7f020006;
-        public static final int ic_tab_learnprep=0x7f020007;
-        public static final int ic_tab_registers=0x7f020008;
-        public static final int icon=0x7f020009;
-        public static final int learnmode_grey_icon=0x7f02000a;
-        public static final int learnmode_white_icon=0x7f02000b;
-        public static final int learnprep_grey_icon=0x7f02000c;
-        public static final int learnprep_white_icon=0x7f02000d;
-        public static final int radialback=0x7f02000e;
-        public static final int realtime_grey_icon=0x7f02000f;
-        public static final int realtime_white_icon=0x7f020010;
-        public static final int rectangle=0x7f020011;
-        public static final int rectangle_lighter_shade=0x7f020012;
-        public static final int registers_grey_icon=0x7f020013;
-        public static final int registers_white_icon=0x7f020014;
-        public static final int test=0x7f020015;
+        public static final int events_grey_icon=0x7f020001;
+        public static final int events_white_icon=0x7f020002;
+        public static final int general_grey_icon=0x7f020003;
+        public static final int general_white_icon=0x7f020004;
+        public static final int gradient_test=0x7f020005;
+        public static final int gradient_test1=0x7f020006;
+        public static final int ic_tab_events=0x7f020007;
+        public static final int ic_tab_general=0x7f020008;
+        public static final int ic_tab_learnmode=0x7f020009;
+        public static final int ic_tab_learnprep=0x7f02000a;
+        public static final int ic_tab_realtime=0x7f02000b;
+        public static final int ic_tab_registers=0x7f02000c;
+        public static final int icon=0x7f02000d;
+        public static final int learnmode_grey_icon=0x7f02000e;
+        public static final int learnmode_white_icon=0x7f02000f;
+        public static final int learnprep_grey_icon=0x7f020010;
+        public static final int learnprep_white_icon=0x7f020011;
+        public static final int radialback=0x7f020012;
+        public static final int realtime_grey_icon=0x7f020013;
+        public static final int realtime_white_icon=0x7f020014;
+        public static final int rectangle=0x7f020015;
+        public static final int rectangle_lighter_shade=0x7f020016;
+        public static final int registers_grey_icon=0x7f020017;
+        public static final int registers_white_icon=0x7f020018;
+        public static final int test=0x7f020019;
     }
     public static final class id {
         public static final int AEFlight=0x7f06004a;
