@@ -29,7 +29,7 @@ public class GeneralActivity extends Activity {
 	
 	private int SAMPLE_POLL = 40;
 
-
+	//test
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.generallayout);
