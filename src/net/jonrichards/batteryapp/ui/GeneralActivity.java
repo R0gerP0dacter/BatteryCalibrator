@@ -34,13 +34,11 @@ public class GeneralActivity extends Activity {
 	private TextView my_charge_current;
 	private TextView my_empty_volt;
 	private TextView my_status_reg;
-	private TextView my_capacity;
-	
-<<<<<<< HEAD
+	private TextView my_capacity;	
+
 	private int SAMPLE_POLL = 40;
 
-	//test
-=======
+
 	/**
 	 * The polling frequency in milliseconds.
 	 */
@@ -52,7 +50,7 @@ public class GeneralActivity extends Activity {
 	 * Called when the activity is first created, initializations happen here.
 	 * @param savedInstanceState 
 	 */
->>>>>>> upstream/master
+
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.generallayout);
