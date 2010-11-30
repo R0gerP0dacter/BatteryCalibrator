@@ -157,11 +157,11 @@ public class DS2784Battery {
 	 * @return The current temperature of the battery.
 	 */
 	public String getTemperature() {
-		String tempMSB = this.getDumpRegister(10);
-        String tempLSB = this.getDumpRegister(11);        
-	    int tempMSBconverted = Integer.parseInt(tempMSB, 16);
-	    int tempLSBconverted = Integer.parseInt(tempLSB, 16);
-	    int temp = (((tempMSBconverted<<8) | (tempLSBconverted))>>5)*10/8;
+		String temp_MSB = this.getDumpRegister(10);
+        String temp_LSB = this.getDumpRegister(11);        
+	    int temp_MSB_converted = Integer.parseInt(temp_MSB, 16);
+	    int temp_LSB_converted = Integer.parseInt(temp_LSB, 16);
+	    int temp = (((temp_MSB_converted<<8) | (temp_LSB_converted))>>5)*10/8;
 	    return Integer.toString(temp);
 	}
 	
