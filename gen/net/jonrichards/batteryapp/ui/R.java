@@ -225,17 +225,20 @@ public final class R {
     }
     public static final class string {
         public static final int about=0x7f040002;
+        public static final int about_text=0x7f040007;
         public static final int app_name=0x7f040001;
-        public static final int chgtf_message=0x7f04000b;
+        public static final int chgtf_message=0x7f04000c;
         public static final int exit=0x7f040005;
         public static final int hello=0x7f040000;
-        public static final int in_progress_message=0x7f04000a;
-        public static final int learn_popup=0x7f04000c;
-        public static final int recalibrate_message=0x7f040009;
+        public static final int in_progress_message=0x7f04000b;
+        public static final int learn_popup=0x7f04000d;
+        public static final int learn_popup_title=0x7f04000e;
+        public static final int ok=0x7f04000f;
+        public static final int recalibrate_message=0x7f04000a;
         public static final int settings=0x7f040004;
         public static final int tech_help=0x7f040003;
         public static final int tech_text=0x7f040006;
-        public static final int waiting_message1=0x7f040007;
-        public static final int waiting_message2=0x7f040008;
+        public static final int waiting_message1=0x7f040008;
+        public static final int waiting_message2=0x7f040009;
     }
 }

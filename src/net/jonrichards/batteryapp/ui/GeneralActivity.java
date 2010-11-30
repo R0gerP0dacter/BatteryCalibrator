@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import net.jonrichards.batteryapp.system.DS2784Battery;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -109,7 +110,7 @@ public class GeneralActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        case R.id.about:     
-	        	Toast.makeText(this, "Write an ABOUT section here?", Toast.LENGTH_LONG).show();
+	        	Toast.makeText(this, "Write an ABOUT section here?", Toast.LENGTH_LONG).show();    	
 	            break;
 	        case R.id.tech_help:     
 	        	Toast.makeText(this, "Add advnced technical info/help section here?", Toast.LENGTH_LONG).show();

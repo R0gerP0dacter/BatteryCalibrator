@@ -229,25 +229,23 @@ public class LearnModeActivity extends Activity {
 				tone_generator.startTone(ToneGenerator.TONE_PROP_BEEP);
 				tone_generator.startTone(ToneGenerator.TONE_PROP_BEEP);
 				
-				//Display alert message
+				//Display alert popup message with title and OK button
 				String text1 = this.getResources().getText(R.string.learn_popup).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setTitle(R.string.learn_popup_title);
+				builder.setPositiveButton(R.string.ok, null);
 		        builder.setMessage(text1).create().show();
-				String text = this.getResources().getText(R.string.in_progress_message).toString();
-				my_message_1.setText(text);
-			}
-			
-			//need to add controls to only display popup dialog one time initially,
-			//then remove it on subsequent iterations.
-			//String text1 = this.getResources().getText(R.string.learn_popup).toString();
-			//AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	        //builder.setMessage(text1).create().show();
+				
+		        //Display message inside the activity
+		        String text = this.getResources().getText(R.string.in_progress_message).toString();
+				my_message_1.setText(text);				
+			}			
 		}
 		
 		//Message when full charge is on
 		if (intToBoolean(battery_info.getStatusRegister(7))) {
 			String text = this.getResources().getText(R.string.chgtf_message).toString();
-			my_message_2.setText(text);
+			my_message_2.setText(text);			
 		}
 	}
 

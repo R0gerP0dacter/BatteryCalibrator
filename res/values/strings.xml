@@ -11,6 +11,9 @@
     \n
     Need to add link.
     </string>
+    <string name="about_text">    
+    Need to add text.
+    </string>
     <string name="waiting_message1">
     "WAITING...\nDrain your battery to "
     </string>
@@ -30,6 +33,8 @@
     -CHGTF is set, battery is fully charged.
     </string>
     <string name="learn_popup">
-    PLUG IN NOW!!  Learn mode is active! (Back button to return)
+    PLUG IN NOW!!  The learn flag is on!
     </string>
+	<string name="learn_popup_title">LEARN IS ACTIVATED!</string>
+	<string name="ok">OK</string>
 </resources>
