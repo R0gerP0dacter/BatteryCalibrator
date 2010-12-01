@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, BatteryApp!</string>
     <string name="app_name">Battery App</string>
+    <string name="app_version">v1.0</string>
     <string name="about">About</string>
     <string name="tech_help">Technical Info</string>
     <string name="settings">Settings</string>
@@ -11,8 +11,53 @@
     \n
     Need to add link.
     </string>
+    <string name="about_title">
+    About
+    </string>
+    <string name="about_author">
+    \nAuthors:\n
+    Jon Richards\n
+    Roger Podacter\n
+    </string>
     <string name="about_text">    
-    Need to add text.
+    \n
+    This battery app interacts directly with the chip inside the DS2784 battery.  Each
+    parameter seen in this app is pulled from the corresponding register location inside
+    the EEPROM memory.  This app allows both read and write to any of these registers
+    giving the user full control over their batterys parameters.\n
+    \n
+    In order for this app to function it must be used on a custom ROM with an edited
+    ds2784_battery.c driver, which is most commonly available on Cyanogenmod 6.1 and
+    pershoots kernel for the Nexus One.\n
+    The driver edits to the Nexus battery driver are available thanks to:.\n
+    theloginwithnoname and RogerPodacter @ XDA
+    \n    
+    \n
+    Support:\n
+    Battery Calibration - Forum topic @ XDA:
+    \n\thttp://forum.xda-developers.com/showthread.php?t=702167\n
+    \nBattery Cal Tools - Forum Topic @ XDA:
+    \n\thttp://forum.xda-developers.com/showthread.php?t=765609\n
+    </string>
+    <string name="about_test">    
+    \n
+    This battery app interacts directly with the chip inside the DS2784 battery.  Each
+    parameter seen in this app is pulled from the corresponding register location inside
+    the EEPROM memory.  This app allows both read and write to any of these registers
+    giving the user full control over their batterys parameters.\n
+    \n
+    In order for this app to function it must be used on a custom ROM with an edited
+    ds2784_battery.c driver, which is most commonly available on Cyanogenmod 6.1 and
+    pershoots kernel for the Nexus One.\n
+    The driver edits to the Nexus battery driver are available thanks to:.\n
+    theloginwithnoname and RogerPodacter @ XDA
+    \n    
+    \n
+    Support:\n
+    Battery Calibration - Forum topic @ XDA:
+    \n\thttp://forum.xda-developers.com/showthread.php?t=702167\n
+    \nBattery Cal Tools - Forum Topic @ XDA:
+    \n\thttp://forum.xda-developers.com/showthread.php?t=765609\n
     </string>
     <string name="waiting_message1">
     "WAITING...\nDrain your battery to "

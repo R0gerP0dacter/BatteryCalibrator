@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import net.jonrichards.batteryapp.system.DS2784Battery;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -110,10 +112,16 @@ public class GeneralActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        case R.id.about:     
-	        	Toast.makeText(this, "Write an ABOUT section here?", Toast.LENGTH_LONG).show();    	
+	        	Intent myIntent = new Intent();
+                myIntent.setClass(this, AboutActivity.class);
+                startActivity(myIntent);
 	            break;
 	        case R.id.tech_help:     
-	        	Toast.makeText(this, "Add advnced technical info/help section here?", Toast.LENGTH_LONG).show();
+	        	String text = this.getResources().getText(R.string.about_test).toString();
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setTitle(R.string.about);
+				builder.setPositiveButton(R.string.ok, null);
+		        builder.setMessage(text).create().show();
 	        	break;
 	        case R.id.settings: 
 	        	Toast.makeText(this, "Any possible settings?", Toast.LENGTH_LONG).show();

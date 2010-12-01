@@ -88,6 +88,7 @@ android:layout_height="wrap_content"
 android:text="ACR:"
 android:textSize="20sp"
 android:textStyle="bold"
+android:textColor="#ffffff"
 android:layout_gravity="center_vertical"
 >
 </TextView>
@@ -114,6 +115,7 @@ android:layout_height="wrap_content"
 android:text="Active Empty Volt:"
 android:textSize="20sp"
 android:textStyle="bold"
+android:textColor="#ffffff"
 android:layout_gravity="center_vertical"
 >
 </TextView>
@@ -140,6 +142,7 @@ android:layout_height="wrap_content"
 android:text="Full40:"
 android:textSize="20sp"
 android:textStyle="bold"
+android:textColor="#ffffff"
 android:layout_gravity="center_vertical"
 >
 </TextView>
