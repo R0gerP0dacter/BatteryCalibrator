@@ -3,7 +3,7 @@ package net.jonrichards.batteryapp.ui;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
-
+//test
 public class AboutActivity extends Activity
 {
         
