@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Battery App</string>
-    <string name="app_version">v0.8.0 Beta</string>
+    <string name="app_version">v0.8.1 Beta</string>
     <string name="about">About</string>
     <string name="status_title">Status Register</string>    
     <string name="tech_help">Technical Info</string>

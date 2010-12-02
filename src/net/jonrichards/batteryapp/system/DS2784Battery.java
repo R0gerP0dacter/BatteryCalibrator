@@ -29,10 +29,10 @@ public class DS2784Battery {
 	 */
 	private static String VOLTAGE_PATH = "/sys/devices/platform/ds2784-battery/getvoltage";
 	
-	/**
-	 * The path to the uevent file.
-	 */
-	private static String UEVENT_PATH = "/sys/devices/platform/ds2784-battery/power_supply/battery/uevent";
+	///**
+	// * The path to the uevent file.
+	// */
+	//private static String UEVENT_PATH = "/sys/devices/platform/ds2784-battery/power_supply/battery/uevent";
 	
 	/**
 	 * The path to the dumpreg file.
@@ -86,14 +86,17 @@ public class DS2784Battery {
 		
 		String result = this.catFile(STATUS_REGISTER_PATH);
 		
-		switch(the_register_position) {
-			case 1: value = ((Integer.parseInt("02", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0; break;
-			case 2: value = ((Integer.parseInt("04", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0; break;
-			case 4: value = ((Integer.parseInt("10", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0; break;
-			case 5: value = ((Integer.parseInt("20", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0; break;
-			case 6: value = ((Integer.parseInt("40", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0; break;
-			case 7: value = ((Integer.parseInt("80", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0; break;
-			default: break;
+		//If the result is empty, the kernel most likely does not have the battery driver modifications
+		if(result.length() > 0) {
+			switch(the_register_position) {
+				case 1: value = ((Integer.parseInt("02", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0; break;
+				case 2: value = ((Integer.parseInt("04", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0; break;
+				case 4: value = ((Integer.parseInt("10", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0; break;
+				case 5: value = ((Integer.parseInt("20", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0; break;
+				case 6: value = ((Integer.parseInt("40", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0; break;
+				case 7: value = ((Integer.parseInt("80", 16) & Integer.parseInt(result.substring(2), 16)) != 0)?1:0; break;
+				default: break;
+			}
 		}
 		
 		return value;
@@ -136,8 +139,11 @@ public class DS2784Battery {
 	public String getFull40() {
 		String full_40 = this.catFile(GET_FULL40_PATH).trim();
 		
-		//Remove unneeded text
-		full_40 = full_40.substring(full_40.indexOf(" ") + 1, full_40.lastIndexOf(" "));
+		//If the full_40 is empty, the kernel most likely does not have the battery driver modifications
+		if(full_40.length() > 0) {
+			//Remove unneeded text
+			full_40 = full_40.substring(full_40.indexOf(" ") + 1, full_40.lastIndexOf(" "));
+		}
 		
 		return full_40;
 	}
@@ -157,12 +163,21 @@ public class DS2784Battery {
 	 * @return The current temperature of the battery.
 	 */
 	public String getTemperature() {
+		String temperature = "";
+		
 		String temp_MSB = this.getDumpRegister(10);
-        String temp_LSB = this.getDumpRegister(11);        
-	    int temp_MSB_converted = Integer.parseInt(temp_MSB, 16);
-	    int temp_LSB_converted = Integer.parseInt(temp_LSB, 16);
-	    int temp = (((temp_MSB_converted<<8) | (temp_LSB_converted))>>5)*10/8;
-	    return Integer.toString(temp);
+        String temp_LSB = this.getDumpRegister(11);
+        
+        //If the either temp_MSB or temp_LSB is empty, the kernel most likely does not have the battery driver modifications
+	    if(temp_MSB.length() > 0 && temp_LSB.length() > 0) {
+		    int temp_MSB_converted = Integer.parseInt(temp_MSB, 16);
+		    int temp_LSB_converted = Integer.parseInt(temp_LSB, 16);
+		    int temp = (((temp_MSB_converted<<8) | (temp_LSB_converted))>>5)*10/8;
+		    
+		    temperature = Integer.toString(temp);
+        }
+	    
+	    return temperature;
 	}
 	
 	/**
@@ -171,30 +186,50 @@ public class DS2784Battery {
 	 * @return The value of the dump register from the given position.
 	 */
 	public String getDumpRegister(int the_dump_register_position) {
-		String value = this.catFile(DUMP_REGISTER_PATH);
+		String register = "";
 		
-		//Replace newline characters with spaces
-		value = value.replaceAll("\n", " ").trim();
+		String dump_register_contents = this.catFile(DUMP_REGISTER_PATH);
 		
-		//Create an 82 element array to hold the 82 values from the register
-		String[] dump_reg = new String[82];
-		
-		String temp = "";
-		int index = 0;
-		while(value.contains(" ")) {
-			temp = value.substring(0, value.indexOf(" "));
-			//If the value isn't the first column
-			if(!temp.contains(":")) {
-				dump_reg[index] = temp.trim();
-				index++;
-			}
+		//If the dump register is empty, the kernel most likely does not have the battery driver modifications
+		if(dump_register_contents.length() > 0) {
+			//Replace newline characters with spaces
+			dump_register_contents = dump_register_contents.replaceAll("\n", " ").trim();
 			
-			value = value.substring(value.indexOf(" ") + 1);
+			//Create an 82 element array to hold the 82 values from the register
+			String[] dump_reg = new String[82];
+			
+			String temp = "";
+			int index = 0;
+			while(dump_register_contents.contains(" ")) {
+				temp = dump_register_contents.substring(0, dump_register_contents.indexOf(" "));
+				//If the value isn't the first column
+				if(!temp.contains(":")) {
+					dump_reg[index] = temp.trim();
+					index++;
+				}
+				
+				dump_register_contents = dump_register_contents.substring(dump_register_contents.indexOf(" ") + 1);
+			}
+			//Add final register value
+			dump_reg[index] = temp.trim();
+			
+			register = dump_reg[the_dump_register_position];
 		}
-		//Add final register value
-		dump_reg[index] = temp.trim();
 		
-		return dump_reg[the_dump_register_position];
+		return register;
+	}
+	
+	/**
+	 * Sets the battery age.
+	 * @param the_new_age The new battery age, between 80-100.
+	 */
+	public void setAge(int the_new_age) {
+		if(the_new_age > 100 || the_new_age < 80) {
+			return;
+		} else {
+			//TODO change this to be based of the_new_age, not hard coded to 100%
+			this.runSystemCommandAsRoot("echo 0x14 80 > /sys/devices/platform/ds2784-battery/setreg");
+		}
 	}
 	
 	//Private Methods	
@@ -207,16 +242,50 @@ public class DS2784Battery {
 	private String catFile(String the_file) {
 		String file_contents = "";
 		
-		ShellCommand cmd = new ShellCommand();
-		CommandResult r = cmd.sh.runWaitFor("cat " + the_file);
-		
-		if (!r.success()) {
-			Log.v(TAG, "Error " + r.stderr);
-		} else {
-			file_contents = r.stdout;
-		}
+		file_contents = this.runSystemCommand("cat " + the_file);
 		
 		return file_contents;
+	}
+	
+	/**
+	 * Runs a system command.
+	 * @param the_command_to_run The system command to run.
+	 * @return The result of the command.
+	 */
+	private String runSystemCommand(String the_command_to_run) {
+		String result = "";
+		
+		try {
+			ShellCommand shell_command = new ShellCommand();
+			CommandResult command_result = shell_command.sh.runWaitFor(the_command_to_run);
+			
+			if (!command_result.success()) {
+				Log.v(TAG, "Error " + command_result.stderr);
+			} else {
+				result = command_result.stdout;
+			}
+		} catch(Exception e) {
+			Log.v(TAG, "Error " + e.getMessage());
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Runs a system command as root.
+	 * @param the_command_to_run The system command to run as root.
+	 * @return The result of the system command.
+	 */
+	private String runSystemCommandAsRoot(String the_command_to_run) {
+		String result = "";
+		
+        try {
+            result = this.runSystemCommand("su -c \"" + the_command_to_run + "\"");
+        } catch (Exception e) {
+            Log.d(TAG, "Error " + e.getMessage());
+        }
+
+		return result;
 	}
 }
 //End of class BatteryInfo

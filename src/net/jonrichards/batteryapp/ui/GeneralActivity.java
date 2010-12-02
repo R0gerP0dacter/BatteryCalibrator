@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import net.jonrichards.batteryapp.system.DS2784Battery;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,9 +36,7 @@ public class GeneralActivity extends Activity {
 	private TextView my_charge_current;
 	private TextView my_empty_volt;
 	private TextView my_status_reg;
-	private TextView my_capacity;	
-
-	private int SAMPLE_POLL = 40;
+	private TextView my_capacity;
 
 
 	/**

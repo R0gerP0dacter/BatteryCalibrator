@@ -39,7 +39,9 @@ public class LearnPrepActivity extends Activity {
 		
 		//button click to manually set age to 100%
         my_age_button.setOnClickListener(new OnClickListener() {
-        	public void onClick(View v) {        		
+        	public void onClick(View v) {
+        		DS2784Battery battery = new DS2784Battery();
+        		battery.setAge(100);
         		//Populate age text view
         		setUIText();        		
         	}
