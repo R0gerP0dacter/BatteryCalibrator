@@ -59,8 +59,7 @@ android:layout_marginBottom="10px"
 android:id="@+id/title"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="Use this to configure your battery settings manually. Writing 
-each parameter writes to the corresponding register stored in the battery EEPROM chip."
+android:text="@string/learn_prep_text"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:layout_gravity="center_vertical"
@@ -71,64 +70,82 @@ android:layout_gravity="center_vertical"
 <View android:id="@+id/divider"
     android:background="@drawable/black_white_gradient"
     android:layout_width="fill_parent"
-    android:layout_height="2dp"
+    android:layout_height="10dp"
     android:layout_below="@id/widget131" />
     />
+
 <LinearLayout
-android:id="@+id/widget144"
+android:id="@+id/widget14243"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
+android:orientation="vertical"
 android:padding="5px"
 android:layout_marginTop="5px"
 >
+
 <TextView
-android:id="@+id/widget145"
+android:id="@+id/widget14598"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="ACR:"
-android:textSize="20sp"
+android:text="Press the Age button to set age to 100%."
+android:textSize="18sp"
 android:textStyle="bold"
 android:textColor="#ffffff"
 android:layout_gravity="center_vertical"
 >
 </TextView>
-<EditText
-android:id="@+id/widget146"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:textSize="18sp"
-android:textStyle="bold"
-android:layout_weight="1"
->
-</EditText>
-</LinearLayout>
-<LinearLayout
-android:id="@+id/widget147"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:padding="5px"
->
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:layout_below="@id/widget14598" />
+    />
+
 <TextView
-android:id="@+id/widget148"
+android:id="@+id/widget41"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="Active Empty Volt:"
-android:textSize="20sp"
-android:textStyle="bold"
+android:text="Age: "
+android:textSize="18sp"
 android:textColor="#ffffff"
-android:layout_gravity="center_vertical"
+android:layout_gravity="center_horizontal"
 >
 </TextView>
-<EditText
-android:id="@+id/etAEvolt"
+
+<TextView
+android:id="@+id/txtAge"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:textSize="18sp"
-android:textStyle="bold"
-android:layout_weight="1"
+android:text="100%"
+android:textSize="20sp"
+android:textColor="#ffffff"
+android:layout_gravity="center_horizontal"
 >
-</EditText>
+</TextView>
+
+<Button
+android:id="@+id/btnAge"
+android:layout_width="300px"
+android:layout_height="150px"
+android:text="Set Age (100)"
+android:textSize="16sp"
+android:layout_gravity="center_horizontal"
+corners="android:radius=30dp"
+>
+</Button>
+
+
 </LinearLayout>
+
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="2dp"
+    android:layout_below="@id/widget14243" />
+    />
+
+
+
 <LinearLayout
 android:id="@+id/widget150"
 android:layout_width="fill_parent"
@@ -157,38 +174,13 @@ android:layout_weight="1"
 </EditText>
 </LinearLayout>
 
-<LinearLayout
-android:id="@+id/widget1500"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:padding="5px"
->
-<TextView
-android:id="@+id/widget1511"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Age:"
-android:textSize="20sp"
-android:textStyle="bold"
-android:layout_gravity="center_vertical"
->
-</TextView>
-<EditText
-android:id="@+id/etAge"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:textSize="18sp"
-android:textStyle="bold"
-android:layout_weight="1"
->
-</EditText>
-</LinearLayout>
+
 
 <View android:id="@+id/divider"
     android:background="@drawable/black_white_gradient"
     android:layout_width="fill_parent"
     android:layout_height="2dp"
-    android:layout_below="@id/widget1500" />
+    android:layout_below="@id/widget150" />
     />
     
 

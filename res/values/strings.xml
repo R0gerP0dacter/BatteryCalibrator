@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Battery App</string>
-    <string name="app_version">v1.0</string>
+    <string name="app_version">v0.8.0 Beta</string>
     <string name="about">About</string>
     <string name="tech_help">Technical Info</string>
     <string name="settings">Settings</string>
     <string name="exit">Exit</string>
+    <string name="learn_prep_text">
+    Use this to configure your battery to setup for learn mode. Writing 
+	each parameter writes to the corresponding register stored in the 
+	battery EEPROM chip.
+    </string>
     <string name="tech_text">
     \nTechnical help is available at XDA via the link below.\n
     \n
@@ -24,11 +29,11 @@
     This battery app interacts directly with the chip inside the DS2784 battery.  Each
     parameter seen in this app is pulled from the corresponding register location inside
     the EEPROM memory.  This app allows both read and write to any of these registers
-    giving the user full control over their batterys parameters.\n
+    giving the user full control over their battery\'s parameters.\n
     \n
     In order for this app to function it must be used on a custom ROM with an edited
     ds2784_battery.c driver, which is most commonly available on Cyanogenmod 6.1 and
-    pershoots kernel for the Nexus One.\n
+    pershoot\'s kernel for the Nexus One.\n
     The driver edits to the Nexus battery driver are available thanks to:.\n
     theloginwithnoname and RogerPodacter @ XDA
     \n    

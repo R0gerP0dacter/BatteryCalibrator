@@ -42,7 +42,7 @@ public class RegistersActivity extends Activity {
         		//Populate raw dumpreg for now
         		dump01.setText(getUIText());        		
         	}
-        });        
+        });
     }
 	
 	@Override
