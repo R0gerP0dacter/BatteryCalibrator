@@ -56,6 +56,8 @@ public class LearnModeActivity extends Activity {
 	//Declare the text views for this tab
 	private TextView my_status_reg;
 	private TextView my_live_voltage;
+	private TextView my_current;
+	private TextView my_capacity;
 	private TextView my_message_1;
 	private TextView my_message_2;
 	
@@ -88,6 +90,8 @@ public class LearnModeActivity extends Activity {
         
         my_status_reg = (TextView)findViewById(R.id.txtStatusNumber);
         my_live_voltage = (TextView)findViewById(R.id.txtRealTimeVoltage);
+        my_current = (TextView)findViewById(R.id.txtRealTimeCurrent);
+        my_capacity = (TextView)findViewById(R.id.txtRealTimeCapacity);
         my_message_1 = (TextView)findViewById(R.id.txtMessage1);
         my_message_2 = (TextView)findViewById(R.id.txtMessage2);
 
@@ -180,12 +184,22 @@ public class LearnModeActivity extends Activity {
 		
 		//Populate status register
 		String statustext = battery_info.getDumpRegister(01);
-		my_status_reg.setText("(" + "0x" + statustext + ")");
+		my_status_reg.setText("(0x" + statustext + ")");
 		
 		//Populate voltage
 		String voltagetext = battery_info.getVoltage();
 		int volt = (Integer.parseInt(voltagetext));
 		my_live_voltage.setText(Integer.toString(volt));
+		
+		//Populate current
+		String current_text = battery_info.getCurrent();
+		double curr = (Double.parseDouble(current_text));
+		my_current.setText(Double.toString(curr/1000));
+		
+		//Populate mAh capacity
+		String capacity_text = battery_info.getMAh();
+		int mAh = (Integer.parseInt(capacity_text))/1000;
+		my_capacity.setText(Integer.toString(mAh));
 		
 		//Added volt check and learn mode check to update sample poll
 		if(my_learn_mode == true && volt <= 3500000){
@@ -276,9 +290,9 @@ public class LearnModeActivity extends Activity {
                 startActivity(myIntent);
                 break;
 	        case R.id.tech_help:     
-	        	String text = this.getResources().getText(R.string.about_test).toString();
+	        	String text = this.getResources().getText(R.string.status_register).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle(R.string.about);
+				builder.setTitle(R.string.status_title);
 				builder.setPositiveButton(R.string.ok, null);
 		        builder.setMessage(text).create().show();
 	        	break;

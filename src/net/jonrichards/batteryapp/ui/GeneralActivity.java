@@ -117,9 +117,9 @@ public class GeneralActivity extends Activity {
                 startActivity(myIntent);
 	            break;
 	        case R.id.tech_help:     
-	        	String text = this.getResources().getText(R.string.about_test).toString();
+	        	String text = this.getResources().getText(R.string.status_register).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle(R.string.about);
+				builder.setTitle(R.string.status_title);
 				builder.setPositiveButton(R.string.ok, null);
 		        builder.setMessage(text).create().show();
 	        	break;
@@ -192,7 +192,7 @@ public class GeneralActivity extends Activity {
 		//Populate current
 		String current_text = battery_info.getCurrent();
 		double curr = (Double.parseDouble(current_text));
-		my_current.setText(Double.toString(curr/1000));		
+		my_current.setText(Double.toString(curr/1000));
 		
 		//Populate full40
 		String full_40_text = battery_info.getFull40();

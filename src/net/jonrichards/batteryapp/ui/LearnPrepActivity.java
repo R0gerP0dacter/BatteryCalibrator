@@ -23,17 +23,21 @@ public class LearnPrepActivity extends Activity {
 	
 	private TextView my_age;
 	private Button my_age_button;
+	private TextView my_full_40;
+
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learnpreplayout);
 
-        //Added raw dumpreg to registers tab
+        //text views and button for the UI for this tab
         my_age = (TextView)findViewById(R.id.txtAge);
 		my_age_button = (Button)findViewById(R.id.btnAge);
-		//my_age.setText(setUIText());
+        my_full_40 = (TextView)findViewById(R.id.txtFull40);
+        
+        setUIText();
 		
-		//button click to manually update dumpreg
+		//button click to manually set age to 100%
         my_age_button.setOnClickListener(new OnClickListener() {
         	public void onClick(View v) {        		
         		//Populate age text view
@@ -58,9 +62,9 @@ public class LearnPrepActivity extends Activity {
                 startActivity(myIntent);
                 break;
 	        case R.id.tech_help:     
-	        	String text = this.getResources().getText(R.string.about_test).toString();
+	        	String text = this.getResources().getText(R.string.status_register).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle(R.string.about);
+				builder.setTitle(R.string.status_title);
 				builder.setPositiveButton(R.string.ok, null);
 		        builder.setMessage(text).create().show();
 		        break;
@@ -103,7 +107,11 @@ public class LearnPrepActivity extends Activity {
 		//Populate age
 		String age_text = battery_info.getDumpRegister(20);
 		int age_converted = (Integer.parseInt(age_text,16))*100/128;
-		my_age.setText(Integer.toString(age_converted));
+		my_age.setText(Integer.toString(age_converted)+ "%");
+		
+		//Populate full40
+		String full_40_text = battery_info.getFull40();
+		my_full_40.setText(full_40_text + " mAh");
 	}	
 	
 }

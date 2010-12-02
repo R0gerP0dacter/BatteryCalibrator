@@ -101,6 +101,15 @@ android:layout_gravity="center_vertical"
     android:layout_below="@id/widget14598" />
     />
 
+<LinearLayout
+android:id="@+id/widget1423"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:padding="5px"
+android:layout_marginTop="5px"
+android:layout_gravity="center_horizontal"
+android:gravity="center"
+>
 <TextView
 android:id="@+id/widget41"
 android:layout_width="wrap_content"
@@ -116,19 +125,20 @@ android:layout_gravity="center_horizontal"
 android:id="@+id/txtAge"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="100%"
+android:text=""
 android:textSize="20sp"
 android:textColor="#ffffff"
 android:layout_gravity="center_horizontal"
 >
 </TextView>
+</LinearLayout>
 
 <Button
 android:id="@+id/btnAge"
 android:layout_width="300px"
 android:layout_height="150px"
-android:text="Set Age (100)"
-android:textSize="16sp"
+android:text="Set Age Max (100%)"
+android:textSize="18sp"
 android:layout_gravity="center_horizontal"
 corners="android:radius=30dp"
 >
@@ -140,18 +150,67 @@ corners="android:radius=30dp"
 <View android:id="@+id/divider"
     android:background="@drawable/black_white_gradient"
     android:layout_width="fill_parent"
-    android:layout_height="2dp"
+    android:layout_height="5dp"
     android:layout_below="@id/widget14243" />
     />
 
+<TextView
+android:id="@+id/widget145978"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Set desired full40 value and press save."
+android:textSize="18sp"
+android:textStyle="bold"
+android:textColor="#ffffff"
+android:layout_gravity="center_vertical"
+>
+</TextView>
 
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:layout_below="@id/widget145978" />
+    />
 
+<LinearLayout
+android:id="@+id/widget142355"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:padding="5px"
+android:layout_marginTop="5px"
+android:layout_gravity="center_horizontal"
+android:gravity="center"
+>
+<TextView
+android:id="@+id/widget4100"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Full40: "
+android:textSize="18sp"
+android:textColor="#ffffff"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+
+<TextView
+android:id="@+id/txtFull40"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text=""
+android:textSize="20sp"
+android:textColor="#ffffff"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+</LinearLayout>
 <LinearLayout
 android:id="@+id/widget150"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:padding="5px"
 >
+
 <TextView
 android:id="@+id/widget151"
 android:layout_width="wrap_content"
