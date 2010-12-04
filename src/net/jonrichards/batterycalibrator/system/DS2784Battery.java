@@ -313,13 +313,23 @@ public class DS2784Battery {
 	 */
 	private String runSystemCommandAsRoot(String the_command_to_run) {
 		String result = "";
-
-        try {
-            result = runSystemCommand("su -c \"" + the_command_to_run + "\"");
-        } catch (Exception e) {
-            Log.d(TAG, "Error " + e.getMessage());
-        }
-
+		
+		try {
+			ShellCommand shell_command = new ShellCommand();
+			//If root commands are possible
+			if(shell_command.canSU()) {
+				CommandResult command_result = shell_command.su.runWaitFor(the_command_to_run);
+				
+				if (!command_result.success()) {
+					Log.v(TAG, "Error " + command_result.stderr);
+				} else {
+					result = command_result.stdout;
+				}
+			}
+		} catch(Exception e) {
+			Log.v(TAG, "Error " + e.getMessage());
+		}
+		
 		return result;
 	}
 }
