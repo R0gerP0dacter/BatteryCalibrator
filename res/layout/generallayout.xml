@@ -314,7 +314,7 @@ android:layout_gravity="center_horizontal"
 android:id="@+id/widget711221"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="Chg Current(mA):"
+android:text="Min Chg Curr (mA):"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:gravity="center"
@@ -326,7 +326,7 @@ android:layout_gravity="center_horizontal"
 android:id="@+id/widget7222"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="Empty Volt(V):"
+android:text="Min Chg Volt (mV):"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:gravity="center"
@@ -355,7 +355,7 @@ android:layout_gravity="center_horizontal"
 >
 </TextView>
 <TextView
-android:id="@+id/txtAEvolt"
+android:id="@+id/txtMinChgVolt"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text=""
@@ -385,7 +385,7 @@ android:layout_gravity="center_horizontal"
 android:id="@+id/widget71122111"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="Capacity(mAh):"
+android:text="Empty Curr (mA):"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:gravity="center"
@@ -397,7 +397,78 @@ android:layout_gravity="center_horizontal"
 android:id="@+id/widget722211"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="Spare:"
+android:text="Empty Volt (V):"
+android:textColor="#ffffff"
+android:textSize="18sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+</TableRow>
+<TableRow
+android:id="@+id/widget73332211"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/txtAEcurrent"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text=""
+android:textColor="#ffffff"
+android:textSize="32sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<TextView
+android:id="@+id/txtAEvolt"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text=""
+android:textColor="#ffffff"
+android:textSize="32sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+</TableRow>
+
+<View android:id="@+id/divider"
+    android:background="@drawable/black_white_gradient"
+    android:layout_width="fill_parent"
+    android:layout_height="2dp"
+    android:layout_below="@id/widget69229922" />
+    
+<TableRow
+android:id="@+id/widget69229922"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_gravity="center_horizontal"
+>
+<TextView
+android:id="@+id/widget71122111"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Capacity (mAh):"
+android:textColor="#ffffff"
+android:textSize="18sp"
+android:gravity="center"
+android:layout_weight="0.5"
+android:layout_gravity="center_horizontal"
+>
+</TextView>
+<TextView
+android:id="@+id/widget722211"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Aged Capa (mAh):"
 android:textColor="#ffffff"
 android:textSize="18sp"
 android:gravity="center"
@@ -426,10 +497,10 @@ android:layout_gravity="center_horizontal"
 >
 </TextView>
 <TextView
-android:id="@+id/txt"
+android:id="@+id/txtAgedCapacity"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="----"
+android:text="1393"
 android:textColor="#ffffff"
 android:textSize="32sp"
 android:gravity="center"

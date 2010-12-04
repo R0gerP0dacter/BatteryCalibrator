@@ -8,6 +8,9 @@
     <item android:id="@+id/settings"
         android:title="Settings"
         android:icon="@drawable/icon" />
+    <item android:id="@+id/instructions"
+        android:title="Instructions"
+        android:icon="@drawable/icon" />
     <item android:id="@+id/exit"
         android:title="Exit"
         android:icon="@drawable/icon" />

@@ -1,6 +1,7 @@
-package net.jonrichards.batteryapp.ui;
+package net.jonrichards.batterycalibrator.ui;
 
-import net.jonrichards.batteryapp.system.DS2784Battery;
+import net.jonrichards.batterycalibrator.ui.R;
+import net.jonrichards.batterycalibrator.system.DS2784Battery;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -77,6 +78,7 @@ public class LearnModeActivity extends Activity {
 	 * Called when the activity is first created, initializations happen here.
 	 * @param savedInstanceState 
 	 */
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learnmodelayout);
@@ -96,25 +98,25 @@ public class LearnModeActivity extends Activity {
         my_message_2 = (TextView)findViewById(R.id.txtMessage2);
 
         
-        my_learn_group = (RadioGroup) findViewById(R.id.learnmodegroup);
+        my_learn_group = (RadioGroup)findViewById(R.id.learnmodegroup);
         my_learn_on = (RadioButton)findViewById(R.id.btnLearnOn);
-		my_learn_off = (RadioButton)findViewById(R.id.btnLearnOff);
-		my_learn_off.setChecked(true);
-		my_learn_on.setOnClickListener(radio_listener);
+        my_learn_off = (RadioButton)findViewById(R.id.btnLearnOff);
+        my_learn_off.setChecked(true);
+        my_learn_on.setOnClickListener(radio_listener);
         my_learn_off.setOnClickListener(radio_listener);
 		
-		String text = this.getResources().getText(R.string.recalibrate_message).toString();
+		String text = getResources().getText(R.string.recalibrate_message).toString();
 		my_message_1.setText(text);
 
-        my_CHGTF_light = (ToggleButton) findViewById(R.id.CHGTFlight);
-        my_AEF_light = (ToggleButton) findViewById(R.id.AEFlight);
-        my_SEF_light = (ToggleButton) findViewById(R.id.SEFlight);
-        my_LEARNF_light = (ToggleButton) findViewById(R.id.LEARNFlight);
-        my_UVF_light = (ToggleButton) findViewById(R.id.UVFlight);
-        my_PORF_light = (ToggleButton) findViewById(R.id.PORFlight);
+		my_CHGTF_light = (ToggleButton)findViewById(R.id.CHGTFlight);
+		my_AEF_light = (ToggleButton)findViewById(R.id.AEFlight);
+		my_SEF_light = (ToggleButton)findViewById(R.id.SEFlight);
+		my_LEARNF_light = (ToggleButton)findViewById(R.id.LEARNFlight);
+		my_UVF_light = (ToggleButton)findViewById(R.id.UVFlight);
+		my_PORF_light = (ToggleButton)findViewById(R.id.PORFlight);
         
-        my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll);
-        setUIText();
+		my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll);
+		setUIText();
         
         /*
         final RadioButton learnon = (RadioButton) findViewById(R.id.btnLearnOn);
@@ -124,10 +126,12 @@ public class LearnModeActivity extends Activity {
         */
     }
 	
-	//Radio Button listener to set learn detect on or off
+	/**
+	 * Called when the view is clicked.
+	 */
 	public OnClickListener radio_listener = new OnClickListener() {
 	    public void onClick(View v) {
-	        // Perform action on clicks
+	        //Perform action on clicks
 	        //RadioButton rb = (RadioButton) v;
 	        if(v.getId() == R.id.btnLearnOn){
 	        	my_learn_mode = true;
@@ -150,7 +154,7 @@ public class LearnModeActivity extends Activity {
 	};
 	
 	/**
-	 * Pauses this activity.
+	 * Called when this activity is paused.
 	 */
 	@Override
     public void onPause() {
@@ -158,14 +162,12 @@ public class LearnModeActivity extends Activity {
 		if(wake_lock.isHeld()) {
 			wake_lock.release();
 		}
-	    my_handler.removeCallbacks(mUpdateUITimerTask);
+		my_handler.removeCallbacks(mUpdateUITimerTask);
 	    super.onPause();
     }
 	
-	
-	
 	/**
-	 * Resumes this activity.
+	 * Called when this activity is resumed.
 	 */
 	@Override
     public void onResume() {
@@ -174,17 +176,65 @@ public class LearnModeActivity extends Activity {
 			wake_lock.acquire();
 		//If learn mode is off and the wake lock is currently acquired, release it
 		} else if(!my_learn_mode && wake_lock.isHeld()) {
-				wake_lock.release();
+			wake_lock.release();
 		}
-	    my_handler.postDelayed(mUpdateUITimerTask, 2000);
+		my_handler.postDelayed(mUpdateUITimerTask, 2000);
 	    //setUIText();
 	    super.onResume();
     }
 	
 	/**
+	 * Creates an options menu.
+	 * @param menu The options menu to place the menu items in.
+	 * @return Returns boolean true.
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.menu, menu);
+	    return true;
+	}
+
+	/**
+	 * Called when an item in the options menu is selected.
+	 * @param item The MenuItem selected.
+	 * @return Returns a boolean true.
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case R.id.about:     
+	        	Intent myIntent = new Intent();
+                myIntent.setClass(this, AboutActivity.class);
+                startActivity(myIntent);
+                break;
+	        case R.id.tech_help:     
+	        	String text = getResources().getText(R.string.status_register).toString();
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setTitle(R.string.status_title);
+				builder.setPositiveButton(R.string.ok, null);
+		        builder.setMessage(text).create().show();
+	        	break;
+	        case R.id.settings: 
+	        	startActivity(new Intent(this, SettingsActivity.class));                
+	            break;
+	        case R.id.instructions: 
+	        	Toast.makeText(this, "Add directions for the app", Toast.LENGTH_LONG).show();
+	            break;
+	        case R.id.exit: 
+	        	//Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
+	        	finish();
+            break;
+	    }
+	    return true;
+	}
+	
+	//Private Methods
+	
+	/**
 	 * Sets the UI text.
 	 */
-	public void setUIText() {
+	private void setUIText() {
 		DS2784Battery battery_info = new DS2784Battery();
 		
 		//Populate status register
@@ -226,14 +276,14 @@ public class LearnModeActivity extends Activity {
 		//Message output when learn mode is active and learn flag is off
 		if (my_learn_mode == true && !intToBoolean(battery_info.getStatusRegister(4))) {
 			my_alert_displayed = false;
-			String text = this.getResources().getText(R.string.waiting_message1).toString();
-			String text1 = this.getResources().getText(R.string.waiting_message2).toString();
+			String text = getResources().getText(R.string.waiting_message1).toString();
+			String text1 = getResources().getText(R.string.waiting_message2).toString();
 			my_message_1.setText(text + my_empty_converted + text1);
 			
 		//Message output when learn mode is inactive
 		} else if (my_learn_mode == false) {
 			my_alert_displayed = false;
-			String text = this.getResources().getText(R.string.recalibrate_message).toString();
+			String text = getResources().getText(R.string.recalibrate_message).toString();
 			my_message_1.setText(text);
 			
 		//Message output when learn mode active and learn flag is on
@@ -250,72 +300,24 @@ public class LearnModeActivity extends Activity {
 				tone_generator.startTone(ToneGenerator.TONE_PROP_BEEP);
 				
 				//Display alert popup message with title and OK button
-				String text1 = this.getResources().getText(R.string.learn_popup).toString();
+				String text1 = getResources().getText(R.string.learn_popup).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.learn_popup_title);
 				builder.setPositiveButton(R.string.ok, null);
 		        builder.setMessage(text1).create().show();
 				
 		        //Display message inside the activity
-		        String text = this.getResources().getText(R.string.in_progress_message).toString();
+		        String text = getResources().getText(R.string.in_progress_message).toString();
 				my_message_1.setText(text);				
 			}			
 		}
 		
 		//Message when full charge is on
 		if (intToBoolean(battery_info.getStatusRegister(7))) {
-			String text = this.getResources().getText(R.string.chgtf_message).toString();
+			String text = getResources().getText(R.string.chgtf_message).toString();
 			my_message_2.setText(text);			
 		}
 	}
-
-	/**
-	 * Creates an options menu.
-	 * @param menu The options menu to place the menu items in.
-	 * @return Returns boolean true.
-	 */
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.menu, menu);
-	    return true;
-	}
-
-	/**
-	 * Called when an item in the options menu is selected.
-	 * @param item The MenuItem selected.
-	 * @return Returns a boolean true.
-	 */
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case R.id.about:     
-	        	Intent myIntent = new Intent();
-                myIntent.setClass(this, AboutActivity.class);
-                startActivity(myIntent);
-                break;
-	        case R.id.tech_help:     
-	        	String text = this.getResources().getText(R.string.status_register).toString();
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle(R.string.status_title);
-				builder.setPositiveButton(R.string.ok, null);
-		        builder.setMessage(text).create().show();
-	        	break;
-	        case R.id.settings: 
-	        	startActivity(new Intent(this, SettingsActivity.class));                
-	            break;
-	        case R.id.instructions: 
-	        	Toast.makeText(this, "Add directions for the app", Toast.LENGTH_LONG).show();
-	            break;
-	        case R.id.exit: 
-	        	//Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
-	        	finish();
-            break;
-	    }
-	    return true;
-	}
-	
-	//Private Methods
 	
 	/**
 	 * Our runnable to continuously update the UI.

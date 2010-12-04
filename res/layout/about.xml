@@ -17,7 +17,7 @@
       android:layout_height="fill_parent"
       android:textColor="#ffffff"
       android:gravity="center"
-      android:textSize="18sp"      
+      android:textSize="24sp"      
       android:layout_weight="0.5"      
       android:layout_gravity="center_horizontal"      
       />
@@ -40,10 +40,39 @@
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:textColor="#ffffff"
+      android:textSize="20sp"      
+      />
+      <TextView
+      android:id="@+id/txtAuthorName"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textColor="#ffffff"
       android:textSize="16sp"      
       />
       <TextView
+      android:id="@+id/txtDescription"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textColor="#ffffff"
+      android:textSize="20sp"
+      android:text="\nDescription\n"      
+      />
+      <TextView
       android:id="@+id/txtAbout"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textColor="#ffffff"
+      android:textSize="14sp"      
+      />
+      <TextView
+      android:id="@+id/txtSupport"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textColor="#ffffff"
+      android:textSize="20sp"      
+      />
+      <TextView
+      android:id="@+id/txtSupportText"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:textColor="#ffffff"
@@ -51,6 +80,65 @@
       android:linksClickable="true"
       android:autoLink="all"
       android:selectAllOnFocus="false"
+      />
+      <TextView
+      android:id="@+id/txtChange"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textColor="#ffffff"
+      android:textSize="20sp"
+      android:text="\nChangelog\n"
+      />
+      <TextView
+      android:id="@+id/txt122"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textColor="#ffffff"
+      android:textStyle="bold"      
+      android:textSize="16sp"
+      android:text="Version 0.8.5 Beta:"
+      />      
+      <TextView
+      android:id="@+id/txt112"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textColor="#ffffff"
+      android:textSize="16sp"
+      android:text="Added working full40 method and linked to the edit text box in Learn Prep Activity.\n"
+      />
+      <TextView
+      android:id="@+id/txt1"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textColor="#ffffff"
+      android:textStyle="bold"      
+      android:textSize="16sp"
+      android:text="Version 0.8.1 Beta:"
+      />      
+      <TextView
+      android:id="@+id/txt11"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textColor="#ffffff"
+      android:textSize="16sp"
+      android:text="Added set age to 100% button on second tab layout.\n"
+      />
+      <TextView
+      android:id="@+id/txt2"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textColor="#ffffff"
+      android:textStyle="bold"      
+      android:textSize="16sp"
+      android:text="Version 0.8.0 Beta:"
+      />
+      <TextView
+      android:id="@+id/txt12"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textColor="#ffffff"
+      android:textSize="16sp"
+      android:text="Began versioning the app and converted from alpha to beta.\n"
       />
     </LinearLayout>
     </ScrollView>

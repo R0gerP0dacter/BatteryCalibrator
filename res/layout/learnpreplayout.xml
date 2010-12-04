@@ -107,7 +107,7 @@ android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:padding="5px"
 android:layout_marginTop="5px"
-android:layout_gravity="center_horizontal"
+android:layout_gravity="center_vertical"
 android:gravity="center"
 >
 <TextView
@@ -117,7 +117,7 @@ android:layout_height="wrap_content"
 android:text="Age: "
 android:textSize="18sp"
 android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
+android:layout_gravity="center_vertical"
 >
 </TextView>
 
@@ -126,9 +126,9 @@ android:id="@+id/txtAge"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text=""
-android:textSize="20sp"
+android:textSize="18sp"
 android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
+android:layout_gravity="center_vertical"
 >
 </TextView>
 </LinearLayout>
@@ -179,7 +179,7 @@ android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:padding="5px"
 android:layout_marginTop="5px"
-android:layout_gravity="center_horizontal"
+android:layout_gravity="center_vertical"
 android:gravity="center"
 >
 <TextView
@@ -189,7 +189,7 @@ android:layout_height="wrap_content"
 android:text="Full40: "
 android:textSize="18sp"
 android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
+android:layout_gravity="center_vertical"
 >
 </TextView>
 
@@ -198,9 +198,9 @@ android:id="@+id/txtFull40"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text=""
-android:textSize="20sp"
+android:textSize="18sp"
 android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
+android:layout_gravity="center_vertical"
 >
 </TextView>
 </LinearLayout>
@@ -227,10 +227,8 @@ android:id="@+id/etFull40"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:textSize="18sp"
-android:textStyle="bold"
 android:layout_weight="1"
-android:inputType="phone"
->
+android:inputType="phone">
 </EditText>
 </LinearLayout>
 

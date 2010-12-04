@@ -1,11 +1,11 @@
-package net.jonrichards.batteryapp.ui;
+package net.jonrichards.batterycalibrator.ui;
 
+import net.jonrichards.batterycalibrator.ui.R;
+import net.jonrichards.batterycalibrator.system.DS2784Battery;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,72 +15,74 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.teslacoilsw.quicksshd.ShellCommand;
-import com.teslacoilsw.quicksshd.ShellCommand.CommandResult;
-
+/**
+ * A class for displaying information from the dump register.
+ * @author Jon Richards
+ * @author Roger Podacter
+ */
 public class RegistersActivity extends Activity {
 	
-	private static final String TAG = "RegistersActivity";
-
-	private final Handler mHandler = new Handler();
+	//Instance Variables
 	
-	private TextView dump01;
-	private Button updatebutton;
+	private TextView my_register_dump;
+	private Button my_update_button;
 
+	/**
+	 * Called when the activity is first created, initializations happen here.
+	 * @param savedInstanceState 
+	 */
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registerslayout);
         
         //Added raw dumpreg to registers tab
-        dump01 = (TextView)findViewById(R.id.widget1);
-		updatebutton = (Button)findViewById(R.id.btnUpdate);
-		dump01.setText(getUIText());
+        my_register_dump = (TextView)findViewById(R.id.widget1);
+        my_update_button = (Button)findViewById(R.id.btnUpdate);
+        setUIText();
 		
 		//button click to manually update dumpreg
-        updatebutton.setOnClickListener(new OnClickListener() {
+        my_update_button.setOnClickListener(new OnClickListener() {
         	public void onClick(View v) {        		
         		//Populate raw dumpreg for now
-        		dump01.setText(getUIText());        		
+        		setUIText();       		
         	}
         });
     }
 	
+	/**
+	 * Called when this activity is paused.
+	 */
 	@Override
-    public void onPause()
-    {
-            //mHandler.removeCallbacks(mUpdateUITimerTask);
-            super.onPause();
+    public void onPause() {
+        super.onPause();
     }
 	
+	/**
+	 * Called when this activity is resumed.
+	 */
 	@Override
-    public void onResume()
-    {
-            //mHandler.postDelayed(mUpdateUITimerTask, SAMPLE_POLL * 1000);
-            super.onResume();
+    public void onResume() {
+        super.onResume();
     }
 	
-	private String getUIText() {
-		String result = "";
-		
-		ShellCommand cmd = new ShellCommand();
-		CommandResult r = cmd.sh.runWaitFor("cat /sys/devices/platform/ds2784-battery/dumpreg");
-
-		if (!r.success()) {
-		  Log.v(TAG, "Error " + r.stderr);
-		} else {
-		  result = r.stdout;
-		}		
-		
-		return result;
-	}
-	//Options menu
+	/**
+	 * Creates an options menu.
+	 * @param menu The options menu to place the menu items in.
+	 * @return Returns boolean true.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.menu, menu);
 	    return true;
 	}
-	//Options menu
+	
+	/**
+	 * Called when an item in the options menu is selected.
+	 * @param item The MenuItem selected.
+	 * @return Returns a boolean true.
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
@@ -90,7 +92,7 @@ public class RegistersActivity extends Activity {
                 startActivity(myIntent);
                 break;
 	        case R.id.tech_help:     
-	        	String text = this.getResources().getText(R.string.status_register).toString();
+	        	String text = getResources().getText(R.string.status_register).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.status_title);
 				builder.setPositiveButton(R.string.ok, null);
@@ -103,13 +105,20 @@ public class RegistersActivity extends Activity {
 	        	Toast.makeText(this, "Add directions for the app", Toast.LENGTH_LONG).show();
 	            break;
 	        case R.id.exit: 
-	        	//Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
 	        	finish();
             break;
 	    }
 	    return true;
 	}
 	
+	//Private Methods
 	
-
+	/**
+	 * Sets the UI text.
+	 */
+	private void setUIText() {
+		DS2784Battery battery_info = new DS2784Battery();
+		my_register_dump.setText(battery_info.getDumpRegister());
+	}
 }
+//End of class Registers

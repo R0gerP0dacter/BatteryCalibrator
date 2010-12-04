@@ -1,18 +1,17 @@
-package net.jonrichards.batteryapp.ui;
+package net.jonrichards.batterycalibrator.ui;
 
 import java.math.BigDecimal;
 
-import net.jonrichards.batteryapp.system.DS2784Battery;
+import net.jonrichards.batterycalibrator.ui.R;
+import net.jonrichards.batterycalibrator.system.DS2784Battery;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +54,7 @@ public class GeneralActivity extends Activity {
 	 * Called when the activity is first created, initializations happen here.
 	 * @param savedInstanceState 
 	 */
-
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.generallayout);
@@ -123,7 +122,7 @@ public class GeneralActivity extends Activity {
                 startActivity(myIntent);
 	            break;
 	        case R.id.tech_help:     
-	        	String text = this.getResources().getText(R.string.status_register).toString();
+	        	String text = getResources().getText(R.string.status_register).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.status_title);
 				builder.setPositiveButton(R.string.ok, null);
@@ -161,7 +160,7 @@ public class GeneralActivity extends Activity {
 	}*/
 	
 	/**
-	 * Pauses this activity.
+	 * Called when this activity is paused.
 	 */
 	@Override
     public void onPause() {
@@ -170,7 +169,7 @@ public class GeneralActivity extends Activity {
     }
 	
 	/**
-	 * Resumes this activity.
+	 * Called when this activity is resumed.
 	 */
 	@Override
     public void onResume() {
@@ -185,10 +184,12 @@ public class GeneralActivity extends Activity {
         super.onResume();
     }
 	
+	//Private Methods
+	
 	/**
 	 * Sets the UI text.
 	 */
-	public void setUIText() {
+	private void setUIText() {
 		DS2784Battery battery_info = new DS2784Battery();
 		
 		//Populate voltage
@@ -257,8 +258,6 @@ public class GeneralActivity extends Activity {
 		String status_text = battery_info.getDumpRegister(01);
 		my_status_reg.setText("0x" + status_text);
 	}
-	
-	//Private Methods
 
 	/**
 	 * Our runnable to continuously update the UI.

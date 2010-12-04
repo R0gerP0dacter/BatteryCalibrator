@@ -1,4 +1,4 @@
-package net.jonrichards.batteryapp.system;
+package net.jonrichards.batterycalibrator.system;
 
 import android.util.Log;
 
@@ -84,7 +84,7 @@ public class DS2784Battery {
 			return value;
 		}
 
-		String result = this.catFile(STATUS_REGISTER_PATH);
+		String result = catFile(STATUS_REGISTER_PATH);
 
 		//If the result is empty, the kernel most likely does not have the battery driver modifications
 		if(result.length() > 0) {
@@ -107,7 +107,7 @@ public class DS2784Battery {
 	 * @return Returns the current voltage.
 	 */
 	public String getVoltage() {
-		String voltage = this.catFile(VOLTAGE_PATH).trim();
+		String voltage = catFile(VOLTAGE_PATH).trim();
 
 		return voltage;
 	}
@@ -117,7 +117,7 @@ public class DS2784Battery {
 	 * @return Returns the current current.
 	 */
 	public String getCurrent() {
-		String current = this.catFile(GET_CURRENT_PATH).trim();
+		String current = catFile(GET_CURRENT_PATH).trim();
 
 		return current;
 	}
@@ -127,7 +127,7 @@ public class DS2784Battery {
 	 * @return Returns the current average current.
 	 */
 	public String getAvgCurrent() {
-		String avg_current = this.catFile(GET_AVG_CURRENT_PATH).trim();
+		String avg_current = catFile(GET_AVG_CURRENT_PATH).trim();
 
 		return avg_current;
 	}
@@ -137,7 +137,7 @@ public class DS2784Battery {
 	 * @return Returns the current getFull40.
 	 */
 	public String getFull40() {
-		String full_40 = this.catFile(GET_FULL40_PATH).trim();
+		String full_40 = catFile(GET_FULL40_PATH).trim();
 
 		//If the full_40 is empty, the kernel most likely does not have the battery driver modifications
 		if(full_40.length() > 0) {
@@ -153,7 +153,7 @@ public class DS2784Battery {
 	 * @return Returns the current getmAh.
 	 */
 	public String getMAh() {
-		String mAh = this.catFile(GET_MAH_PATH).trim();
+		String mAh = catFile(GET_MAH_PATH).trim();
 
 		return mAh;
 	}
@@ -165,8 +165,8 @@ public class DS2784Battery {
 	public String getTemperature() {
 		String temperature = "";
 
-		String temp_MSB = this.getDumpRegister(10);
-        String temp_LSB = this.getDumpRegister(11);
+		String temp_MSB = getDumpRegister(10);
+        String temp_LSB = getDumpRegister(11);
         
         //If the either temp_MSB or temp_LSB is empty, the kernel most likely does not have the battery driver modifications
 	    if(temp_MSB.length() > 0 && temp_LSB.length() > 0) {
@@ -179,6 +179,15 @@ public class DS2784Battery {
 
 	    return temperature;
 	}
+	
+	/**
+	 * Returns the contents of the dump register.
+	 * @return The contents of the dump register.
+	 */
+	public String getDumpRegister() {
+		String dump_register_contents = catFile(DUMP_REGISTER_PATH);
+		return dump_register_contents;
+	}
 
 	/**
 	 * Returns the value of the dump register from the given position.
@@ -188,7 +197,7 @@ public class DS2784Battery {
 	public String getDumpRegister(int the_dump_register_position) {
 		String register = "";
 
-		String dump_register_contents = this.catFile(DUMP_REGISTER_PATH);
+		String dump_register_contents = catFile(DUMP_REGISTER_PATH);
 
 		//If the dump register is empty, the kernel most likely does not have the battery driver modifications
 		if(dump_register_contents.length() > 0) {
@@ -228,7 +237,7 @@ public class DS2784Battery {
 			return;
 		} else {
 			//TODO change this to be based of the_new_age, not hard coded to 100%
-			this.runSystemCommandAsRoot("echo 0x14 80 > /sys/devices/platform/ds2784-battery/setreg");
+			runSystemCommandAsRoot("echo 0x14 80 > /sys/devices/platform/ds2784-battery/setreg");
 		}
 	}
 
@@ -254,8 +263,8 @@ public class DS2784Battery {
 		String reg_6a = Integer.toHexString((int)(raw_value / 256));
 		String reg_6b = Integer.toHexString((int)Math.round((((raw_value / 256) - (int)(raw_value / 256)) * 256)));
 
-		this.runSystemCommandAsRoot("echo 0x6a " + reg_6a + " > /sys/devices/platform/ds2784-battery/setreg");
-		this.runSystemCommandAsRoot("echo 0x6b " + reg_6b + " > /sys/devices/platform/ds2784-battery/setreg");
+		runSystemCommandAsRoot("echo 0x6a " + reg_6a + " > /sys/devices/platform/ds2784-battery/setreg");
+		runSystemCommandAsRoot("echo 0x6b " + reg_6b + " > /sys/devices/platform/ds2784-battery/setreg");
 	}
 
 	//Private Methods	
@@ -268,7 +277,7 @@ public class DS2784Battery {
 	private String catFile(String the_file) {
 		String file_contents = "";
 
-		file_contents = this.runSystemCommand("cat " + the_file);
+		file_contents = runSystemCommand("cat " + the_file);
 
 		return file_contents;
 	}
@@ -306,7 +315,7 @@ public class DS2784Battery {
 		String result = "";
 
         try {
-            result = this.runSystemCommand("su -c \"" + the_command_to_run + "\"");
+            result = runSystemCommand("su -c \"" + the_command_to_run + "\"");
         } catch (Exception e) {
             Log.d(TAG, "Error " + e.getMessage());
         }

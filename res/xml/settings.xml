@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference android:key="TEST_VARIABLE"
+        android:title="Test Place Holder"
+        android:summary="This is just a test place holder for now."
+        android:entries="@array/test_options" 
+        android:entryValues="@array/test_values"
+        android:dialogTitle="Minimum variable" android:defaultValue="2" />
+    <CheckBoxPreference android:key="gps_polling"
+        android:title="@string/gps_polling_title"        
+        android:summary="@string/gps_polling_summary"
+        android:defaultValue="false" />
+    <CheckBoxPreference android:key="screen_brightness"
+        android:title="@string/screen_brightness_title"
+        android:summaryOn="@string/screen_on_summary"
+        android:summaryOff="@string/screen_off_summary"
+        android:defaultValue="true" />
+    <CheckBoxPreference android:key="ACR_adjustment"
+        android:title="@string/ACR_adjustment_title" 
+        android:summary="@string/ACR_adjustment_summary"
+        android:defaultValue="true" />
+</PreferenceScreen>

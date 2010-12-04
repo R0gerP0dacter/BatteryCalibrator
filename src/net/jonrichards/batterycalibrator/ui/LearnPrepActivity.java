@@ -1,12 +1,11 @@
-package net.jonrichards.batteryapp.ui;
+package net.jonrichards.batterycalibrator.ui;
 
-import net.jonrichards.batteryapp.system.DS2784Battery;
+import net.jonrichards.batterycalibrator.ui.R;
+import net.jonrichards.batterycalibrator.system.DS2784Battery;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,13 +14,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+/**
+ * A class for prepping the battery to enter learn mode.
+ * @author Jon Richards
+ * @author Roger Podacter
+ */
 public class LearnPrepActivity extends Activity {
 
-	private static final String TAG = "LearnPrepActivity";
-	private TextView textview;
-	private final Handler mHandler = new Handler();
+	//Instance Variables
 
 	private TextView my_age;
 	private Button my_age_button;
@@ -29,14 +30,21 @@ public class LearnPrepActivity extends Activity {
 	private Button my_save_button;
 	private Button my_cancel_button;
 	private EditText my_full_40_input;
-
+	
+	//Public Methods
+	
+	/**
+	 * Called when the activity is first created, initializations happen here.
+	 * @param savedInstanceState 
+	 */
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learnpreplayout);
 
         //text views and button for the UI for this tab
         my_age = (TextView)findViewById(R.id.txtAge);
-		my_age_button = (Button)findViewById(R.id.btnAge);
+        my_age_button = (Button)findViewById(R.id.btnAge);
         my_full_40 = (TextView)findViewById(R.id.txtFull40);
         my_save_button = (Button)findViewById(R.id.btnSave);
         my_cancel_button = (Button)findViewById(R.id.btnCancel);
@@ -44,7 +52,7 @@ public class LearnPrepActivity extends Activity {
         
         setUIText();
 
-		//button click to manually set age to 100%
+		//Button click to manually set age to 100%
         my_age_button.setOnClickListener(new OnClickListener() {
         	public void onClick(View v) {
         		DS2784Battery battery = new DS2784Battery();
@@ -77,14 +85,24 @@ public class LearnPrepActivity extends Activity {
 		});
         
     }
-	//Options menu
+	
+	/**
+	 * Creates an options menu.
+	 * @param menu The options menu to place the menu items in.
+	 * @return Returns boolean true.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.menu, menu);
 	    return true;
 	}
-	//Options menu
+	
+	/**
+	 * Called when an item in the options menu is selected.
+	 * @param item The MenuItem selected.
+	 * @return Returns a boolean true.
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
@@ -94,7 +112,7 @@ public class LearnPrepActivity extends Activity {
                 startActivity(myIntent);
                 break;
 	        case R.id.tech_help:     
-	        	String text = this.getResources().getText(R.string.status_register).toString();
+	        	String text = getResources().getText(R.string.status_register).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.status_title);
 				builder.setPositiveButton(R.string.ok, null);
@@ -111,29 +129,28 @@ public class LearnPrepActivity extends Activity {
 	    return true;
 	}
 
+	/**
+	 * Called when this activity is paused.
+	 */
 	@Override
-    public void onPause()
-    {
-            //mHandler.removeCallbacks(mUpdateUITimerTask);
-            super.onPause();
+    public void onPause() {
+        super.onPause();
     }
 
+	/**
+	 * Called when this activity is resumed.
+	 */
 	@Override
-    public void onResume()
-    {
-            //mHandler.postDelayed(mUpdateUITimerTask, 10 * 1000);
-            super.onResume();
+    public void onResume() {
+        super.onResume();
     }
 
-	/*private final Runnable mUpdateUITimerTask = new Runnable() {
-	    public void run() {
-	    	textview.setText(getText());
-	        //textview.append("Last updated: " + getDateTime());
-	        mHandler.postDelayed(mUpdateUITimerTask, 10 * 1000);
-	    }
-	};*/
-
-	public void setUIText() {
+	//Private Methods
+	
+	/**
+	 * Sets the UI text.
+	 */
+	private void setUIText() {
 		DS2784Battery battery_info = new DS2784Battery();		
 
 		//Populate age
@@ -146,3 +163,4 @@ public class LearnPrepActivity extends Activity {
 		my_full_40.setText(full_40_text + " mAh");
 	}
 }
+//End of class LearnPrepActivity
