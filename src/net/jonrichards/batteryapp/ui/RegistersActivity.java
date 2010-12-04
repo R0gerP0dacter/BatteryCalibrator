@@ -100,7 +100,7 @@ public class RegistersActivity extends Activity {
 	        	Toast.makeText(this, "Any possible settings?", Toast.LENGTH_LONG).show();
 	            break;
 	        case R.id.exit: 
-	        	Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
+	        	//Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
 	        	finish();
             break;
 	    }

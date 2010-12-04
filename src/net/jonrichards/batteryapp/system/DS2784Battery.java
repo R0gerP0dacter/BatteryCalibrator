@@ -232,6 +232,32 @@ public class DS2784Battery {
 		}
 	}
 	
+	/**
+	 * Sets the full 40 value.
+	 * @param the_new_mAh The new mAh to set the full 40 to, between 1200-3700.
+	 */
+	public void setFull40(int the_new_mAh) {
+		if(the_new_mAh < 1200 || the_new_mAh > 3700) {
+			return;
+		}
+		//1452mAh * 15 mO / 6.25 = 3485 
+		//1200 * 15 / 6.25 = 2880 minimum
+		//3400 * 15 / 6.25 = 8160 maximum
+		
+		//3485/256 = 13.61 --> so 13 converted to hex is 0d which goes into register 0x6a
+		//0.61*256 = 157 --> so 157 converted to hex is 9d which goes into register 0x6b
+		//set full40 will be more difficult, bit shifting is involved so perhaps this will go in its own method?
+		//the command would take one 4 digit number, say 3485, and bit shift it by 8.  take that whole number and throw it into register 6a.
+		//then take the remainder, bit shift it by 8 the other direction, and throw than into register 6b.
+		
+		double raw_value = (the_new_mAh * 15) / 6.25;
+		String reg_6a = Integer.toHexString((int)(raw_value / 256));
+		String reg_6b = Integer.toHexString((int)Math.round((((raw_value / 256) - (int)(raw_value / 256)) * 256)));
+		
+		this.runSystemCommandAsRoot("echo 0x6a " + reg_6a + " > /sys/devices/platform/ds2784-battery/setreg");
+		this.runSystemCommandAsRoot("echo 0x6b " + reg_6b + " > /sys/devices/platform/ds2784-battery/setreg");
+	}
+	
 	//Private Methods	
 	
 	/**

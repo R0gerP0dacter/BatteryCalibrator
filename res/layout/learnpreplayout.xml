@@ -229,6 +229,7 @@ android:layout_height="wrap_content"
 android:textSize="18sp"
 android:textStyle="bold"
 android:layout_weight="1"
+android:inputType="phone"
 >
 </EditText>
 </LinearLayout>
