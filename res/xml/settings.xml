@@ -10,8 +10,8 @@
         android:title="@string/gps_polling_title"        
         android:summary="@string/gps_polling_summary"
         android:defaultValue="false" />
-    <CheckBoxPreference android:key="screen_brightness"
-        android:title="@string/screen_brightness_title"
+    <CheckBoxPreference android:key="wake_lock"
+        android:title="@string/wake_lock_title"
         android:summaryOn="@string/screen_on_summary"
         android:summaryOff="@string/screen_off_summary"
         android:defaultValue="true" />

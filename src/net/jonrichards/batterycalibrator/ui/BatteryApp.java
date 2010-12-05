@@ -59,10 +59,10 @@ public class BatteryApp extends TabActivity {
 	    //Set the default tab when the app is opened to the General tab
 	    my_tab_host.setCurrentTab(0);
 	}
-	
+	/*
 	/**
 	 * Called when this activity is paused.
-	 */
+	 /
 	@Override
     public void onPause() {
         super.onPause();
@@ -70,10 +70,21 @@ public class BatteryApp extends TabActivity {
 	
 	/**
 	 * Called when this activity resumes.
-	 */
+	 /
 	@Override
     public void onResume() {
         super.onResume();
     }
+	
+	@Override
+	public void onStop() {
+		super.onStop();
+	}
+	
+	@Override
+	public void onDestroy() {
+		
+	}
+	*/
 }
 //End of class BatteryApp

@@ -1,5 +1,7 @@
 package net.jonrichards.batterycalibrator.ui;
 
+import java.math.BigDecimal;
+
 import net.jonrichards.batterycalibrator.system.DS2784Battery;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -154,15 +156,6 @@ public class LearnModeActivity extends Activity {
 	};
 	
 	/**
-	 * Called when this activity is paused.
-	 */
-	@Override
-    public void onPause() {
-		my_handler.removeCallbacks(mUpdateUITimerTask);
-	    super.onPause();
-    }
-	
-	/**
 	 * Called when this activity is resumed.
 	 */
 	@Override
@@ -171,6 +164,27 @@ public class LearnModeActivity extends Activity {
 	    super.onResume();
     }
 	
+	/**
+	 * Called when this activity is paused.
+	 */
+	@Override
+    public void onPause() {
+		my_handler.removeCallbacks(mUpdateUITimerTask);
+	    super.onPause();
+    }
+	/*
+	public void onStop() {
+		if(wake_lock.isHeld()) {
+			wake_lock.release();
+		}
+	}
+	
+	public void onDestroy() {
+		if(wake_lock.isHeld()) {
+			wake_lock.release();
+		}
+	}
+	*/
 	/**
 	 * Creates an options menu.
 	 * @param menu The options menu to place the menu items in.
@@ -226,12 +240,12 @@ public class LearnModeActivity extends Activity {
 	private void setUIText() {
 		
 		//Populate status register
-		String statustext = my_battery_info.getDumpRegister(01);
-		my_status_reg.setText("(0x" + statustext + ")");
+		String status_text = my_battery_info.getDumpRegister(01);
+		my_status_reg.setText("(0x" + status_text + ")");
 		
 		//Populate voltage
-		String voltagetext = my_battery_info.getVoltage();
-		int volt = (Integer.parseInt(voltagetext));
+		String voltage_text = my_battery_info.getVoltage();
+		int volt = (Integer.parseInt(voltage_text));
 		my_live_voltage.setText(Integer.toString(volt));
 		
 		//Populate current
@@ -319,7 +333,7 @@ public class LearnModeActivity extends Activity {
 	 */
 	private final Runnable mUpdateUITimerTask = new Runnable() {
 	    public void run() {
-			learnPrepHelp();
+			//learnPrepHelp();
 	    	setUIText();	    	
 	        my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll);
 	    }
@@ -344,7 +358,14 @@ public class LearnModeActivity extends Activity {
 					wake_lock.acquire();
 				}
 			}
-			if(SettingsActivity.getEnableGPSPolling(getBaseContext()) && Double.parseDouble(my_battery_info.getVoltage()) > 3500) {
+			
+			//Get the current voltage
+			String voltage_text = my_battery_info.getVoltage();
+			BigDecimal big_decimal = new BigDecimal(Double.parseDouble(voltage_text) / 1000);
+			big_decimal = big_decimal.setScale(2,BigDecimal.ROUND_UP);
+			
+			//Only do GPS polling if gps polling setting is enabled and current voltage is above 3500mV
+			if(SettingsActivity.getEnableGPSPolling(getBaseContext()) && big_decimal.doubleValue() > 3500) {
 				// Register the listener with the Location Manager to receive location updates
 				my_location_manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, my_location_listener);
 			} 

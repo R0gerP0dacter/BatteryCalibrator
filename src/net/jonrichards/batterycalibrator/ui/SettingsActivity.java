@@ -38,7 +38,7 @@ public class SettingsActivity extends PreferenceActivity {
 	 * @return Whether screen always on should be enabled or not during learn prep mode.
 	 */
 	public static boolean getEnableScreenOn(Context context) {
-	    return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("screen_brightness", true);
+	    return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("wake_lock", true);
 	}
 	
 	/**

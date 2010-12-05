@@ -95,7 +95,7 @@
 	
 	<string name="screen_on_summary">Screen will stay on during learn detect mode.</string>
 	<string name="screen_off_summary">Screen will turn off normally during learn detect.</string>
-	<string name="screen_brightness_title">Screen Brightness On/Off</string>
+	<string name="wake_lock_title">Wake Lock On/Off</string>
 	
 	<string name="ACR_adjustment_summary">During learn detect this option allows the ACR 
 	to be periodically adjusted to ensure mAh capacity does not run out.</string>
