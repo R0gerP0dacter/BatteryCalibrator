@@ -1,17 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/about"
         android:title="@string/about"
-        android:icon="@drawable/icon" />        
+        android:icon="@drawable/ic_menu_info_details" />        
     <item android:id="@+id/tech_help"
         android:title="Technical Info"
         android:icon="@drawable/icon" />        
     <item android:id="@+id/settings"
         android:title="Settings"
-        android:icon="@drawable/icon" />
+        android:icon="@drawable/ic_menu_preferences" />
     <item android:id="@+id/instructions"
         android:title="Instructions"
-        android:icon="@drawable/icon" />
+        android:icon="@drawable/ic_menu_help" />
     <item android:id="@+id/exit"
         android:title="Exit"
-        android:icon="@drawable/icon" />
+        android:icon="@android:drawable/ic_menu_close_clear_cancel" />
 </menu>
