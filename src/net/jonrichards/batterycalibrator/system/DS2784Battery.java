@@ -266,6 +266,13 @@ public class DS2784Battery {
 		runSystemCommandAsRoot("echo 0x6a " + reg_6a + " > /sys/devices/platform/ds2784-battery/setreg");
 		runSystemCommandAsRoot("echo 0x6b " + reg_6b + " > /sys/devices/platform/ds2784-battery/setreg");
 	}
+	
+	/**
+	 * Bumps up the remaining voltage.
+	 */
+	public void setACR() {
+		runSystemCommandAsRoot("echo 0x10 03 > /sys/devices/platform/ds2784-battery/setreg");
+	}
 
 	//Private Methods	
 

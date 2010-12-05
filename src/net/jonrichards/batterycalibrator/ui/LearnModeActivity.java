@@ -333,7 +333,7 @@ public class LearnModeActivity extends Activity {
 	 */
 	private final Runnable mUpdateUITimerTask = new Runnable() {
 	    public void run() {
-			//learnPrepHelp();
+			checkACR();
 	    	setUIText();	    	
 	        my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll);
 	    }
@@ -374,6 +374,19 @@ public class LearnModeActivity extends Activity {
 				wake_lock.release();
 			}
 			my_location_manager.removeUpdates(my_location_listener);
+		}
+	}
+	
+	/**
+	 * Checks the remaining capacity and remaining voltage, and bumps voltage up if needed.
+	 */
+	private void checkACR() {
+		int capacity = Integer.parseInt(my_battery_info.getMAh()) / 1000;		
+		double realtime_volt = (Integer.parseInt(my_battery_info.getVoltage())) / 1000000.00;
+		double empty_volt = ((Integer.parseInt(my_battery_info.getDumpRegister(54),16)) * 1952) / 100000.00;
+		
+		if(capacity < 70 && realtime_volt - empty_volt <= 0.1) {
+			my_battery_info.setACR();
 		}
 	}
 }
