@@ -5,10 +5,15 @@ This is a project to help properly calibrate the batteries on the Nexus One.
 Contributors
 ========
 Jon Richards
+
 Roger Podacter
+
 theloginwithnoname
+
 mtw4991
+
 Cosmin Bizon
+
 All those who tested for us: http://forum.xda-developers.com/showthread.php?t=765609
 
 Requirements
