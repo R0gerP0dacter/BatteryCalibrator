@@ -1,11 +1,17 @@
+/* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
 package net.jonrichards.batterycalibrator.ui;
 
-import net.jonrichards.batterycalibrator.ui.R;
 import net.jonrichards.batterycalibrator.system.DS2784Battery;
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,6 +37,9 @@ public class LearnPrepActivity extends Activity {
 	private Button my_cancel_button;
 	private EditText my_full_40_input;
 	
+	private PowerManager my_power_manager;
+	private WakeLock my_wake_lock;
+	
 	//Public Methods
 	
 	/**
@@ -41,6 +50,10 @@ public class LearnPrepActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learnpreplayout);
+        
+        my_power_manager = (PowerManager)getBaseContext().getSystemService(Context.POWER_SERVICE);
+        my_wake_lock = my_power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "LearnModeActivity");
+
 
         //text views and button for the UI for this tab
         my_age = (TextView)findViewById(R.id.txtAge);
@@ -106,43 +119,58 @@ public class LearnPrepActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
-	        case R.id.about:     
+		    case R.id.about:     
 	        	Intent myIntent = new Intent();
-                myIntent.setClass(this, AboutActivity.class);
-                startActivity(myIntent);
-                break;
-	        case R.id.tech_help:     
+	            myIntent.setClass(this, AboutActivity.class);
+	            startActivity(myIntent);
+	            break;
+	/*	        case R.id.tech_help:     
 	        	String text = getResources().getText(R.string.status_register).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.status_title);
 				builder.setPositiveButton(R.string.ok, null);
 		        builder.setMessage(text).create().show();
-		        break;
+	        	break;*/
 	        case R.id.settings: 
 	        	startActivity(new Intent(this, SettingsActivity.class));                
 	            break;
+	/*	        case R.id.instructions: 
+	        	Toast.makeText(this, "Add directions for the app", Toast.LENGTH_LONG).show();
+	            break;*/
 	        case R.id.exit: 
 	        	//Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
 	        	finish();
-            break;
+	        	break;
+	        default:
+	        	break;
 	    }
 	    return true;
 	}
-
-	/**
-	 * Called when this activity is paused.
-	 */
-	@Override
-    public void onPause() {
-        super.onPause();
-    }
 
 	/**
 	 * Called when this activity is resumed.
 	 */
 	@Override
     public void onResume() {
+		if(LearnModeActivity.LEARN_MODE && SettingsActivity.getEnableScreenOn(getBaseContext())) {
+			if(!my_wake_lock.isHeld()) {
+				my_wake_lock.acquire();
+			}
+		}
+		
         super.onResume();
+    }
+
+	/**
+	 * Called when this activity is paused.
+	 */
+	@Override
+    public void onPause() {
+		if(my_wake_lock.isHeld()) {
+			my_wake_lock.release();
+		}
+		
+        super.onPause();
     }
 
 	//Private Methods

@@ -1,8 +1,15 @@
+/* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
 package net.jonrichards.batterycalibrator.ui;
 
 import net.jonrichards.batterycalibrator.ui.R;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
@@ -13,6 +20,13 @@ import android.preference.PreferenceManager;
  */
 public class SettingsActivity extends PreferenceActivity {
 
+	//Instance Variables
+	
+	private PowerManager my_power_manager;
+	private WakeLock my_wake_lock;
+	
+	//Protected Methods
+	
 	/**
 	 * Called when the activity is first created, initializations happen here.
 	 * @param savedInstanceState 
@@ -21,7 +35,12 @@ public class SettingsActivity extends PreferenceActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    addPreferencesFromResource(R.xml.settings);
+	    
+	    my_power_manager = (PowerManager)getBaseContext().getSystemService(Context.POWER_SERVICE);
+        my_wake_lock = my_power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "LearnModeActivity");
 	}
+	
+	//Public Methods
 	
 	/**
 	 * Returns whether GPS polling should be enabled or not during learn prep mode.
@@ -49,5 +68,29 @@ public class SettingsActivity extends PreferenceActivity {
 	public static boolean getEnableACRAdjustment(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("ACR_adjustment", true);
 	}
+	
+	/**
+	 * Called when this activity is resumed.
+	 */
+	@Override
+    public void onResume() {
+		if(LearnModeActivity.LEARN_MODE && SettingsActivity.getEnableScreenOn(getBaseContext())) {
+			if(!my_wake_lock.isHeld()) {
+				my_wake_lock.acquire();
+			}
+		}
+        super.onResume();
+    }
+
+	/**
+	 * Called when this activity is paused.
+	 */
+	@Override
+    public void onPause() {
+		if(my_wake_lock.isHeld()) {
+			my_wake_lock.release();
+		}
+        super.onPause();
+    }
 }
 //End of class SettingsActivity

@@ -136,7 +136,7 @@ android:layout_gravity="center_vertical"
 <Button
 android:id="@+id/btnAge"
 android:layout_width="300px"
-android:layout_height="150px"
+android:layout_height="100px"
 android:text="Set Age Max (100%)"
 android:textSize="18sp"
 android:layout_gravity="center_horizontal"

@@ -1,3 +1,8 @@
+/* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
 package net.jonrichards.batterycalibrator.ui;
 
 import net.jonrichards.batterycalibrator.ui.R;
@@ -59,32 +64,5 @@ public class BatteryApp extends TabActivity {
 	    //Set the default tab when the app is opened to the General tab
 	    my_tab_host.setCurrentTab(0);
 	}
-	/*
-	/**
-	 * Called when this activity is paused.
-	 /
-	@Override
-    public void onPause() {
-        super.onPause();
-    }
-	
-	/**
-	 * Called when this activity resumes.
-	 /
-	@Override
-    public void onResume() {
-        super.onResume();
-    }
-	
-	@Override
-	public void onStop() {
-		super.onStop();
-	}
-	
-	@Override
-	public void onDestroy() {
-		
-	}
-	*/
 }
 //End of class BatteryApp

@@ -1,19 +1,24 @@
+/* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
 package net.jonrichards.batterycalibrator.ui;
 
 import java.math.BigDecimal;
 
-import net.jonrichards.batterycalibrator.ui.R;
 import net.jonrichards.batterycalibrator.system.DS2784Battery;
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * A class for displaying general information about the current status of the battery.
@@ -41,7 +46,9 @@ public class GeneralActivity extends Activity {
 	private TextView my_status_reg;
 	private TextView my_capacity;
 	private TextView my_aged_capacity;
-
+	
+	private PowerManager my_power_manager;
+	private WakeLock my_wake_lock;
 
 	/**
 	 * The polling frequency in milliseconds.
@@ -58,6 +65,9 @@ public class GeneralActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.generallayout);
+        
+        my_power_manager = (PowerManager)getBaseContext().getSystemService(Context.POWER_SERVICE);
+        my_wake_lock = my_power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "LearnModeActivity");
         
         /**
          * Ignore this savedInstanceState code below, was just experimenting
@@ -121,23 +131,25 @@ public class GeneralActivity extends Activity {
                 myIntent.setClass(this, AboutActivity.class);
                 startActivity(myIntent);
 	            break;
-	        case R.id.tech_help:     
+/*	        case R.id.tech_help:     
 	        	String text = getResources().getText(R.string.status_register).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.status_title);
 				builder.setPositiveButton(R.string.ok, null);
 		        builder.setMessage(text).create().show();
-	        	break;
+	        	break;*/
 	        case R.id.settings: 
 	        	startActivity(new Intent(this, SettingsActivity.class));                
 	            break;
-	        case R.id.instructions: 
+/*	        case R.id.instructions: 
 	        	Toast.makeText(this, "Add directions for the app", Toast.LENGTH_LONG).show();
-	            break;
+	            break;*/
 	        case R.id.exit: 
 	        	//Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
 	        	finish();
-            break;
+	        	break;
+	        default:
+	        	break;
 	    }
 	    return true;
 	}
@@ -160,19 +172,16 @@ public class GeneralActivity extends Activity {
 	}*/
 	
 	/**
-	 * Called when this activity is paused.
-	 */
-	@Override
-    public void onPause() {
-		my_handler.removeCallbacks(mUpdateUITimerTask);
-        super.onPause();
-    }
-	
-	/**
 	 * Called when this activity is resumed.
 	 */
 	@Override
     public void onResume() {
+		if(LearnModeActivity.LEARN_MODE && SettingsActivity.getEnableScreenOn(getBaseContext())) {
+			if(!my_wake_lock.isHeld()) {
+				my_wake_lock.acquire();
+			}
+		}
+		
 		my_handler.postDelayed(mUpdateUITimerTask, 2000);
             
 		/**Should update the UI onResume; for now we won't.  We see a delay
@@ -182,6 +191,19 @@ public class GeneralActivity extends Activity {
 		 */
         //setUIText();
         super.onResume();
+    }
+
+	/**
+	 * Called when this activity is paused.
+	 */
+	@Override
+    public void onPause() {
+		if(my_wake_lock.isHeld()) {
+			my_wake_lock.release();
+		}
+		
+		my_handler.removeCallbacks(mUpdateUITimerTask);
+        super.onPause();
     }
 	
 	//Private Methods

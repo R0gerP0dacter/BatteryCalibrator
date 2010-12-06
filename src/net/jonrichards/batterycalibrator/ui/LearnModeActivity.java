@@ -1,15 +1,15 @@
+/* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
 package net.jonrichards.batterycalibrator.ui;
-
-import java.math.BigDecimal;
 
 import net.jonrichards.batterycalibrator.system.DS2784Battery;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
@@ -24,7 +24,6 @@ import android.view.View.OnClickListener;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 /**
@@ -33,6 +32,10 @@ import android.widget.ToggleButton;
  * @author Roger Podacter
  */
 public class LearnModeActivity extends Activity {
+	
+	//Static Variables
+	
+	public static boolean LEARN_MODE = false;
 	
 	//Instance Variables
 	
@@ -73,10 +76,8 @@ public class LearnModeActivity extends Activity {
 	 */
 	private boolean my_alert_displayed = false;
 	
-	private PowerManager power_manager;
-	private WakeLock wake_lock;
-	private LocationManager my_location_manager;
-	private LocationListener my_location_listener;
+	private PowerManager my_power_manager;
+	private WakeLock my_wake_lock;
 	
 	private DS2784Battery my_battery_info;
 
@@ -94,16 +95,8 @@ public class LearnModeActivity extends Activity {
         
         my_battery_info = new DS2784Battery();
         
-        my_location_manager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
-		my_location_listener = new LocationListener() {
-		    public void onLocationChanged(Location location) {}
-		    public void onStatusChanged(String provider, int status, Bundle extras) {}
-		    public void onProviderEnabled(String provider) {}
-		    public void onProviderDisabled(String provider) {}
-		  };
-        
-        power_manager = (PowerManager)getBaseContext().getSystemService(Context.POWER_SERVICE);
-        wake_lock = power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "LearnModeActivity");
+        my_power_manager = (PowerManager)getBaseContext().getSystemService(Context.POWER_SERVICE);
+        my_wake_lock = my_power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "LearnModeActivity");
  
         DS2784Battery battery_info = new DS2784Battery();
         String empty_volt_text = battery_info.getDumpRegister(54);
@@ -144,11 +137,11 @@ public class LearnModeActivity extends Activity {
 	    public void onClick(View v) {
 	        //Perform action on clicks
 	        if(v.getId() == R.id.btnLearnOn){
-	        	my_learn_mode = true;
+	        	LEARN_MODE = true;
 	        	setUIText();
 	            learnPrepHelp();
 	        } else if(v.getId() == R.id.btnLearnOff){
-	        	my_learn_mode = false;
+	        	LEARN_MODE = false;
 	        	setUIText();
 	            learnPrepHelp();
 	        }
@@ -160,6 +153,11 @@ public class LearnModeActivity extends Activity {
 	 */
 	@Override
     public void onResume() {
+		if(LEARN_MODE && SettingsActivity.getEnableScreenOn(getBaseContext())) {
+			if(!my_wake_lock.isHeld()) {
+				my_wake_lock.acquire();
+			}
+		}
 		my_handler.postDelayed(mUpdateUITimerTask, 2000);
 	    super.onResume();
     }
@@ -169,22 +167,13 @@ public class LearnModeActivity extends Activity {
 	 */
 	@Override
     public void onPause() {
+		if(my_wake_lock.isHeld()) {
+			my_wake_lock.release();
+		}
 		my_handler.removeCallbacks(mUpdateUITimerTask);
 	    super.onPause();
     }
-	/*
-	public void onStop() {
-		if(wake_lock.isHeld()) {
-			wake_lock.release();
-		}
-	}
 	
-	public void onDestroy() {
-		if(wake_lock.isHeld()) {
-			wake_lock.release();
-		}
-	}
-	*/
 	/**
 	 * Creates an options menu.
 	 * @param menu The options menu to place the menu items in.
@@ -205,25 +194,26 @@ public class LearnModeActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch(item.getItemId()) {
-	        case R.id.about:     
+		    case R.id.about:     
 	        	Intent myIntent = new Intent();
-                myIntent.setClass(this, AboutActivity.class);
-                startActivity(myIntent);
-                break;
-	        case R.id.tech_help:     
+	            myIntent.setClass(this, AboutActivity.class);
+	            startActivity(myIntent);
+	            break;
+	/*	        case R.id.tech_help:     
 	        	String text = getResources().getText(R.string.status_register).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.status_title);
 				builder.setPositiveButton(R.string.ok, null);
 		        builder.setMessage(text).create().show();
-	        	break;
+	        	break;*/
 	        case R.id.settings: 
 	        	startActivity(new Intent(this, SettingsActivity.class));                
 	            break;
-	        case R.id.instructions: 
+	/*	        case R.id.instructions: 
 	        	Toast.makeText(this, "Add directions for the app", Toast.LENGTH_LONG).show();
-	            break;
-	        case R.id.exit:
+	            break;*/
+	        case R.id.exit: 
+	        	//Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
 	        	finish();
 	        	break;
 	        default:
@@ -259,11 +249,11 @@ public class LearnModeActivity extends Activity {
 		my_capacity.setText(Integer.toString(mAh));
 		
 		//Added volt check and learn mode check to update sample poll
-		if(my_learn_mode == true && volt <= 3500000){
+		if(LEARN_MODE == true && volt <= 3500000){
 			my_sample_poll = 3000;
-		}else if(my_learn_mode == true && volt > 3500000){
+		}else if(LEARN_MODE == true && volt > 3500000){
 			my_sample_poll = 20000;
-		}else if(my_learn_mode == false){
+		}else if(LEARN_MODE == false){
 			my_sample_poll = 30000;
 		}
 		
@@ -276,20 +266,20 @@ public class LearnModeActivity extends Activity {
 		my_PORF_light.setChecked(intToBoolean(my_battery_info.getStatusRegister(1)));
 		
 		//Message output when learn mode is active and learn flag is off
-		if (my_learn_mode == true && !intToBoolean(my_battery_info.getStatusRegister(4))) {
+		if (LEARN_MODE && !intToBoolean(my_battery_info.getStatusRegister(4))) {
 			my_alert_displayed = false;
 			String text = getResources().getText(R.string.waiting_message1).toString();
 			String text1 = getResources().getText(R.string.waiting_message2).toString();
 			my_message_1.setText(text + my_empty_converted + text1);
 			
 		//Message output when learn mode is inactive
-		} else if (my_learn_mode == false) {
+		} else if (!LEARN_MODE) {
 			my_alert_displayed = false;
 			String text = getResources().getText(R.string.recalibrate_message).toString();
 			my_message_1.setText(text);
 			
 		//Message output when learn mode active and learn flag is on
-		} else if (my_learn_mode == true && intToBoolean(my_battery_info.getStatusRegister(4))) {
+		} else if (LEARN_MODE && intToBoolean(my_battery_info.getStatusRegister(4))) {
 			
 			//If the alert has not just been displayed
 			if(!my_alert_displayed) {
@@ -300,14 +290,7 @@ public class LearnModeActivity extends Activity {
 				tone_generator.startTone(ToneGenerator.TONE_PROP_BEEP);
 				tone_generator.startTone(ToneGenerator.TONE_PROP_BEEP);
 				tone_generator.startTone(ToneGenerator.TONE_PROP_BEEP);
-				
-				//Set learn detect button back to off
-				my_learn_off.setChecked(true);
-				//Disable learn mode
-				my_learn_mode = false;
-				//Clear out any remaining learn prep helpers
-				learnPrepHelp();
-				
+								
 				//Display alert popup message with title and OK button
 				String text1 = getResources().getText(R.string.learn_popup).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -317,7 +300,14 @@ public class LearnModeActivity extends Activity {
 				
 		        //Display message inside the activity
 		        String text = getResources().getText(R.string.in_progress_message).toString();
-				my_message_1.setText(text);				
+				my_message_1.setText(text);
+				
+				//Set learn detect button back to off
+				my_learn_off.setChecked(true);
+				//Disable learn mode
+				LEARN_MODE = false;
+				//Clear out any remaining learn prep helpers
+				learnPrepHelp();
 			}			
 		}
 		
@@ -333,7 +323,10 @@ public class LearnModeActivity extends Activity {
 	 */
 	private final Runnable mUpdateUITimerTask = new Runnable() {
 	    public void run() {
-			checkACR();
+	    	//If the user has selected to have the application handle ACR adjustments
+	    	if(SettingsActivity.getEnableACRAdjustment(getBaseContext())) {
+	    		checkACR();
+	    	}
 	    	setUIText();	    	
 	        my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll);
 	    }
@@ -352,28 +345,18 @@ public class LearnModeActivity extends Activity {
 	 * If learn mode is active, helps drain the battery faster.
 	 */
 	private void learnPrepHelp() {
-		if(my_learn_mode) {
+		//If learn detect mode is active
+		if(LEARN_MODE) {
+			//Keep the screen from locking if the user preference is selected
 			if(SettingsActivity.getEnableScreenOn(getBaseContext())) {
-				if(!wake_lock.isHeld()) {
-					wake_lock.acquire();
+				if(!my_wake_lock.isHeld()) {
+					my_wake_lock.acquire();
 				}
 			}
-			
-			//Get the current voltage
-			String voltage_text = my_battery_info.getVoltage();
-			BigDecimal big_decimal = new BigDecimal(Double.parseDouble(voltage_text) / 1000);
-			big_decimal = big_decimal.setScale(2,BigDecimal.ROUND_UP);
-			
-			//Only do GPS polling if gps polling setting is enabled and current voltage is above 3500mV
-			if(SettingsActivity.getEnableGPSPolling(getBaseContext()) && big_decimal.doubleValue() > 3500) {
-				// Register the listener with the Location Manager to receive location updates
-				my_location_manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, my_location_listener);
-			} 
 		} else {
-			if(wake_lock.isHeld()) {
-				wake_lock.release();
+			if(my_wake_lock.isHeld()) {
+				my_wake_lock.release();
 			}
-			my_location_manager.removeUpdates(my_location_listener);
 		}
 	}
 	
@@ -385,7 +368,8 @@ public class LearnModeActivity extends Activity {
 		double realtime_volt = (Integer.parseInt(my_battery_info.getVoltage())) / 1000000.00;
 		double empty_volt = ((Integer.parseInt(my_battery_info.getDumpRegister(54),16)) * 1952) / 100000.00;
 		
-		if(capacity < 70 && realtime_volt - empty_volt <= 0.1) {
+		//If remaining capacity and voltage are low, and learn mode has not come on, bump voltage
+		if(capacity < 70 && realtime_volt - empty_volt <= 0.2 && !intToBoolean(my_battery_info.getStatusRegister(4))) {
 			my_battery_info.setACR();
 		}
 	}
