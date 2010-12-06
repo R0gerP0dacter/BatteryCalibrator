@@ -28,7 +28,7 @@ Installation
 ========
 Currently there are a couple of ways to install the application:
 
-1.  Download the latest binary of the application from http://jonrichards.net/xda/battery_calibrator/.
+1.  Download the latest binary of the application from <a href="http://jonrichards.net/xda/battery_calibrator/">http://jonrichards.net/xda/battery_calibrator/</a>.
 2.  Fork the project and build the source code on your own.
 
 Soon we will put the application up on the Android Market.
