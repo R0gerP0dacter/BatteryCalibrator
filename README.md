@@ -14,7 +14,7 @@ mtw4991
 
 Cosmin Bizon
 
-All those who tested for us: http://forum.xda-developers.com/showthread.php?t=765609
+All those who tested for us: <a href="http://forum.xda-developers.com/showthread.php?t=765609">http://forum.xda-developers.com/showthread.php?t=765609</a>
 
 Requirements
 ========
@@ -70,9 +70,9 @@ Note2: Learn mode cannot be achieve with the phone off. Leave the phone on until
 Technical Information
 ========
 
-1.  Thread on XDA:  http://forum.xda-developers.com/showthread.php?t=765609
-2.  DS2784 data sheet:  http://datasheets.maxim-ic.com/en/ds/DS2784.pdf
-3.  Dr. Battery thread (inspiration for this project):  http://discussion.treocentral.com/homebrew-apps/260947-dr-battery.html
+1.  Thread on XDA:  <a href="http://forum.xda-developers.com/showthread.php?t=765609">http://forum.xda-developers.com/showthread.php?t=765609</a>
+2.  DS2784 data sheet:  <a href="http://datasheets.maxim-ic.com/en/ds/DS2784.pdf">http://datasheets.maxim-ic.com/en/ds/DS2784.pdf</a>
+3.  Dr. Battery thread (inspiration for this project):  <a href="http://discussion.treocentral.com/homebrew-apps/260947-dr-battery.html">http://discussion.treocentral.com/homebrew-apps/260947-dr-battery.html</a>
 
 Licensing
 ========
