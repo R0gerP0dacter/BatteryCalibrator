@@ -271,10 +271,14 @@ public class GeneralActivity extends Activity {
 		int mAh = (Integer.parseInt(capacity_text))/1000;
 		my_capacity.setText(Integer.toString(mAh));
 		
-		//Populate aged mAh capacity
-		/*String aged_capacity_text = battery_info.getDumpRegister();
-		int aged_mAh = (Integer.parseInt(capacity_text))/1000;
-		my_capacity.setText(Integer.toString(aged_mAh));*/
+		//Populate aged mAh capacity 
+		String aged_capacity_text_MSB = battery_info.getDumpRegister(50);
+		String aged_capacity_text_LSB = battery_info.getDumpRegister(51);
+		int MSB = (Integer.parseInt(aged_capacity_text_MSB, 16));
+		int LSB = (Integer.parseInt(aged_capacity_text_LSB, 16));
+	    int aged = ((MSB<<8) | LSB)*625/1500;
+
+		my_aged_capacity.setText(Integer.toString(aged));
 		
 		//Populate status register
 		String status_text = battery_info.getDumpRegister(01);
