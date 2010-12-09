@@ -324,8 +324,8 @@ public class LearnModeActivity extends Activity {
 	private final Runnable mUpdateUITimerTask = new Runnable() {
 	    public void run() {
 	    	//If the user has selected to have the application handle ACR adjustments
-	    	if(SettingsActivity.getEnableACRAdjustment(getBaseContext())) {
-	    		checkACR();
+	    	if(SettingsActivity.getEnableACRAdjustmentGreaterThan(getBaseContext())) {
+	    		checkACRGreater();
 	    	}
 	    	setUIText();	    	
 	        my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll);
@@ -363,7 +363,18 @@ public class LearnModeActivity extends Activity {
 	/**
 	 * Checks the remaining capacity and remaining voltage, and bumps voltage up if needed.
 	 */
-	private void checkACR() {
+	private void checkACRGreater() {
+		int capacity = Integer.parseInt(my_battery_info.getMAh()) / 1000;		
+		double realtime_volt = (Integer.parseInt(my_battery_info.getVoltage())) / 1000000.00;
+		double empty_volt = ((Integer.parseInt(my_battery_info.getDumpRegister(54),16)) * 1952) / 100000.00;
+		
+		//If remaining capacity and voltage are low, and learn mode has not come on, bump voltage
+		if(capacity < 70 && realtime_volt - empty_volt >= 0.2 && !intToBoolean(my_battery_info.getStatusRegister(4))) {
+			my_battery_info.setACR();
+		}
+	}
+	
+	private void checkACRLess() {
 		int capacity = Integer.parseInt(my_battery_info.getMAh()) / 1000;		
 		double realtime_volt = (Integer.parseInt(my_battery_info.getVoltage())) / 1000000.00;
 		double empty_volt = ((Integer.parseInt(my_battery_info.getDumpRegister(54),16)) * 1952) / 100000.00;

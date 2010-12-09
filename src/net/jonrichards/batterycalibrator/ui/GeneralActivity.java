@@ -63,9 +63,9 @@ public class GeneralActivity extends Activity {
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);        
         setContentView(R.layout.generallayout);
-        
+
         my_power_manager = (PowerManager)getBaseContext().getSystemService(Context.POWER_SERVICE);
         my_wake_lock = my_power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "LearnModeActivity");
         
@@ -239,7 +239,7 @@ public class GeneralActivity extends Activity {
 		String age_text = battery_info.getDumpRegister(20);
 		int age_converted = (Integer.parseInt(age_text,16))*100/128;
 		my_age.setText(Integer.toString(age_converted));
-		//test
+		
 		//Populate percent
 		String percent_text = battery_info.getDumpRegister(6);
 		my_percent.setText(Integer.toString(Integer.parseInt(percent_text,16)));

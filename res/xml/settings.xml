@@ -9,8 +9,12 @@
         android:summaryOn="@string/screen_on_summary"
         android:summaryOff="@string/screen_off_summary"
         android:defaultValue="true" />
-    <CheckBoxPreference android:key="ACR_adjustment"
-        android:title="@string/ACR_adjustment_title" 
-        android:summary="@string/ACR_adjustment_summary"
+    <CheckBoxPreference android:key="ACR_adjustment_greater"
+        android:title="@string/ACR_adjustment_title1" 
+        android:summary="@string/ACR_adjustment_summary1"
+        android:defaultValue="true" />
+    <CheckBoxPreference android:key="ACR_adjustment_less"
+        android:title="@string/ACR_adjustment_title2" 
+        android:summary="@string/ACR_adjustment_summary2"
         android:defaultValue="true" />
 </PreferenceScreen>

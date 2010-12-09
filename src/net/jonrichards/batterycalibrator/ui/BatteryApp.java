@@ -5,11 +5,11 @@
  * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
 package net.jonrichards.batterycalibrator.ui;
 
-import net.jonrichards.batterycalibrator.ui.R;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
@@ -18,7 +18,7 @@ import android.widget.TabHost.TabSpec;
  * @author Jon Richards
  * @author Roger Podacter
  */
-public class BatteryApp extends TabActivity {
+public class BatteryApp extends TabActivity {	
 	
 	//Instance Variables
 	
@@ -64,5 +64,6 @@ public class BatteryApp extends TabActivity {
 	    //Set the default tab when the app is opened to the General tab
 	    my_tab_host.setCurrentTab(0);
 	}
+	
 }
 //End of class BatteryApp

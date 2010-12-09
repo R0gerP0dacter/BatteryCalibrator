@@ -7,6 +7,7 @@
     <string name="tech_help">Technical Info</string>
     <string name="settings">Settings</string>
     <string name="exit">Exit</string>
+    <string name="splash">Splash</string>    
     
     <string name="learn_prep_text">
     Use this to configure your battery to setup for learn mode.
@@ -91,7 +92,10 @@
 	<string name="screen_off_summary">Screen will turn off normally during learn detect.</string>
 	<string name="wake_lock_title">Wake Lock On/Off</string>
 	
-	<string name="ACR_adjustment_summary">During learn detect this option allows the ACR 
+	<string name="ACR_adjustment_summary1">During learn detect this option allows the ACR 
 	to be periodically adjusted to ensure mAh capacity does not run out.</string>
-	<string name="ACR_adjustment_title">ACR Adjustment On/Off</string>
+	<string name="ACR_adjustment_title1">ACR Adjustment GREATER THAN 0.2volts</string>
+	<string name="ACR_adjustment_summary2">During learn detect this option allows the ACR 
+	to be periodically adjusted to ensure mAh capacity does not run out.</string>
+	<string name="ACR_adjustment_title2">ACR Adjustment LESS THAN 0.2volts</string>
 </resources>

@@ -61,12 +61,21 @@ public class SettingsActivity extends PreferenceActivity {
 	}
 	
 	/**
-	 * Returns whether automatic ACR adjustment should be enabled or not during learn prep mode.
+	 * Returns whether automatic ACR adjustment GREATER THAN 0.2 should be enabled or not during learn prep mode.
 	 * @param context
 	 * @return Whether automatic ACR adjustment should be enabled or not during learn prep mode.
 	 */
-	public static boolean getEnableACRAdjustment(Context context) {
-		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("ACR_adjustment", true);
+	public static boolean getEnableACRAdjustmentGreaterThan(Context context) {
+		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("ACR_adjustment_greater", true);
+	}
+	
+	/**
+	 * Returns whether automatic ACR adjustment LESS THAN 0.2 should be enabled or not during learn prep mode.
+	 * @param context
+	 * @return Whether automatic ACR adjustment should be enabled or not during learn prep mode.
+	 */
+	public static boolean getEnableACRAdjustmentLessThan(Context context) {
+		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("ACR_adjustment_less", true);
 	}
 	
 	/**
