@@ -327,6 +327,9 @@ public class LearnModeActivity extends Activity {
 	    	if(SettingsActivity.getEnableACRAdjustmentGreaterThan(getBaseContext())) {
 	    		checkACRGreater();
 	    	}
+	    	if(SettingsActivity.getEnableACRAdjustmentLessThan(getBaseContext())) {
+	    		checkACRLess();
+	    	}
 	    	setUIText();	    	
 	        my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll);
 	    }
