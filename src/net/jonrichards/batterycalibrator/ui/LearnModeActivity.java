@@ -32,9 +32,7 @@ import android.widget.ToggleButton;
  * @author Roger Podacter
  */
 public class LearnModeActivity extends Activity {
-	
-	private Context _context;
-	
+			
 	//Static Variables
 	
 	public static boolean LEARN_MODE = false;
@@ -62,6 +60,9 @@ public class LearnModeActivity extends Activity {
 	
 	//Handler for updating the UI
 	private final Handler my_handler = new Handler();
+	
+	//Context for ACR write settings
+	private Context my_context;
 	
 	//Declare the text views for this tab
 	private TextView my_status_reg;
@@ -396,9 +397,9 @@ public class LearnModeActivity extends Activity {
 		double realtime_volt = (Integer.parseInt(my_battery_info.getVoltage())) / 1000000.00;
 		double empty_volt = ((Integer.parseInt(my_battery_info.getDumpRegister(54),16)) * 1952) / 100000.00;
 		
-		int ACR = Integer.parseInt(SettingsActivity.getACRVariable(this._context));
+		int ACR = Integer.parseInt(SettingsActivity.getACRVariable(this.my_context));
 		
-		//If remaining capacity and voltage are low, and learn mode has not come on, bump voltage
+		//If remaining capacity and voltage are low, and learn mode has not come on, bump capacity
 		switch(ACR) {
 			case 0:  // Off - Do nothing
 				break;				
@@ -412,7 +413,7 @@ public class LearnModeActivity extends Activity {
 					my_battery_info.setACR();
 				}
 				break;
-			case 3: // <70mAh and both LESS and GREATER with popup
+			case 3: // <70mAh and both LESS and GREATER with popup to indicate, for testing only
 				if(capacity < 70 && realtime_volt - empty_volt <= 0.2 && !intToBoolean(my_battery_info.getStatusRegister(4))) {
 					my_battery_info.setACR();
 					
