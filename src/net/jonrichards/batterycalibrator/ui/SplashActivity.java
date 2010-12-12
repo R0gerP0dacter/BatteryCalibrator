@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
 /**
  * A class for showing information about this application.
  * @author Jon Richards
@@ -18,10 +17,9 @@ import android.view.Menu;
 public class SplashActivity extends Activity {
 	
 	//Instance Variables
+	
     private final int SPLASH_DISPLAY_LENGHT = 1000;
 
-	
-	
 	//Public Methods
 	
 	/**
@@ -37,14 +35,14 @@ public class SplashActivity extends Activity {
             //@Override
             public void run() {
 
-                    /* Create an Intent that will start the Main-Activity. */
-                    Intent mainIntent = new Intent(SplashActivity.this,BatteryApp.class);
-                    SplashActivity.this.startActivity(mainIntent);
-                    SplashActivity.this.finish();
+	            /* Create an Intent that will start the Main-Activity. */
+	            Intent mainIntent = new Intent(SplashActivity.this,BatteryApp.class);
+	            SplashActivity.this.startActivity(mainIntent);
+	            SplashActivity.this.finish();
             }
 
-    }, SPLASH_DISPLAY_LENGHT);
-	}	
+		}, SPLASH_DISPLAY_LENGHT);
+	}
 	
 }
 //End of class SplashActivity

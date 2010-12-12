@@ -104,7 +104,7 @@
       android:layout_height="wrap_content"
       android:textColor="#ffffff"
       android:textSize="16sp"
-      android:text="Expanded ACR options, add splash screen (testing feedback opinions), fixed hard-coded age capacity.\n"
+      android:text="Corrected when ACR method is called, request SU permission on ACR being selected, added splash screen (testing feedback opinions), fixed hard-coded age capacity.\n"
       />
       <TextView
       android:id="@+id/txt3"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Battery Calibrator</string>
-    <string name="app_version">v0.8.7 Beta</string>
+    <string name="app_version">v0.8.8 Beta</string>
     <string name="about">About</string>
     <string name="status_title">Status Register</string>    
     <string name="tech_help">Technical Info</string>
@@ -104,10 +104,7 @@
 	<string name="screen_off_summary">Screen will turn off normally during learn detect.</string>
 	<string name="wake_lock_title">Wake Lock On/Off</string>
 	
-	<string name="ACR_adjustment_summary1">During learn detect this option allows the ACR 
+	<string name="ACR_adjustment_summary">During learn detect this option allows the ACR 
 	to be periodically adjusted to ensure mAh capacity does not run out.</string>
-	<string name="ACR_adjustment_title1">ACR Adjustment GREATER THAN 0.2volts</string>
-	<string name="ACR_adjustment_summary2">During learn detect this option allows the ACR 
-	to be periodically adjusted to ensure mAh capacity does not run out.</string>
-	<string name="ACR_adjustment_title2">ACR Adjustment LESS THAN 0.2volts</string>
+	<string name="ACR_adjustment_title">ACR Adjustment</string>
 </resources>

@@ -9,7 +9,6 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Handler;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 

@@ -5,13 +5,16 @@
  * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
 package net.jonrichards.batterycalibrator.ui;
 
-import net.jonrichards.batterycalibrator.ui.R;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
+
+import com.teslacoilsw.quicksshd.ShellCommand;
 
 /**
  * A class to set settings for this application.
@@ -19,9 +22,6 @@ import android.preference.PreferenceManager;
  * @author Roger Podacter
  */
 public class SettingsActivity extends PreferenceActivity {
-
-	private static final String OPTION_ACR = "ACR_Adjustment_Values";
-    private static final String OPTION_ACR_DEFAULT = "0";
     
 	//Instance Variables
 	
@@ -64,31 +64,12 @@ public class SettingsActivity extends PreferenceActivity {
 	}
 	
 	/**
-	 * Returns whether automatic ACR adjustment GREATER THAN 0.2 should be enabled or not during learn prep mode.
+	 * Returns whether automatic ACR adjustment should be enabled or not during learn prep mode.
 	 * @param context
 	 * @return Whether automatic ACR adjustment should be enabled or not during learn prep mode.
 	 */
-	public static boolean getEnableACRAdjustmentGreaterThan(Context context) {
-		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("ACR_adjustment_greater", true);
-	}
-	
-	/**
-	 * Returns whether automatic ACR adjustment LESS THAN 0.2 should be enabled or not during learn prep mode.
-	 * @param context
-	 * @return Whether automatic ACR adjustment should be enabled or not during learn prep mode.
-	 */
-	public static boolean getEnableACRAdjustmentLessThan(Context context) {
-		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("ACR_adjustment_less", true);
-	}
-	
-	/**
-	 * Returns whether automatic ACR adjustment is Off, < 0.2volts, > 0.2volts, or both, during learn prep mode.
-	 * @param context
-	 * @return Four possible options, 0: Off, 1: < 0.2, 2: > 0.2, 3: Both less and greater than with pop up for testing.
-	 */
-	public static String getACRVariable(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).
-            getString(OPTION_ACR, OPTION_ACR_DEFAULT);
+	public static boolean getEnableACRAdjustment(Context context) {
+		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("ACR_adjustment", true);
 	}
 	
 	/**
@@ -114,5 +95,22 @@ public class SettingsActivity extends PreferenceActivity {
 		}
         super.onPause();
     }
+	
+	/**
+	 * Called when a preference item is selected.
+	 */
+	@Override
+	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+		//If the item select is for ACR adjustment
+		if(preference.getKey().equals("ACR_adjustment")) {
+			//Request SU ability if ACR adjustment is being turned on
+			if(PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getBoolean("ACR_adjustment", true)) {
+				ShellCommand shell_command = new ShellCommand();
+				shell_command.canSU();
+			}
+		}
+		// TODO Auto-generated method stub
+		return super.onPreferenceTreeClick(preferenceScreen, preference);
+	}
 }
 //End of class SettingsActivity
