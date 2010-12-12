@@ -20,6 +20,9 @@ import android.preference.PreferenceManager;
  */
 public class SettingsActivity extends PreferenceActivity {
 
+	private static final String OPTION_ACR = "ACR_Adjustment_Values";
+    private static final String OPTION_ACR_DEFAULT = "0";
+    
 	//Instance Variables
 	
 	private PowerManager my_power_manager;
@@ -76,6 +79,16 @@ public class SettingsActivity extends PreferenceActivity {
 	 */
 	public static boolean getEnableACRAdjustmentLessThan(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("ACR_adjustment_less", true);
+	}
+	
+	/**
+	 * Returns whether automatic ACR adjustment is Off, < 0.2volts, > 0.2volts, or both, during learn prep mode.
+	 * @param context
+	 * @return Four possible options, 0: Off, 1: < 0.2, 2: > 0.2, 3: Both less and greater than with pop up for testing.
+	 */
+	public static String getACRVariable(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).
+            getString(OPTION_ACR, OPTION_ACR_DEFAULT);
 	}
 	
 	/**

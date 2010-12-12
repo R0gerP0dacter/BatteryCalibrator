@@ -84,8 +84,20 @@
     <string name="learn_popup">
     PLUG IN NOW!!  The learn flag is on!
     </string>
+    <string name="learn_popup_title">LEARN IS ACTIVATED!</string>
+    
+    <string name="lessthan_popup">
+    ACR write LESS than 0.2 volts happened.
+    </string>
 	
-	<string name="learn_popup_title">LEARN IS ACTIVATED!</string>
+	<string name="lessthan_popup_title">LESS THAN occurred</string>
+	
+	<string name="greaterthan_popup">
+    ACR write GREATER than 0.2 volts happened.
+    </string>
+	
+	<string name="greaterthan_popup_title">GREATER THAN occurred</string>
+	
 	<string name="ok">OK</string>
 	
 	<string name="screen_on_summary">Screen will stay on during learn detect mode.</string>

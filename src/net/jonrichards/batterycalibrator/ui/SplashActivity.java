@@ -18,7 +18,7 @@ import android.view.Menu;
 public class SplashActivity extends Activity {
 	
 	//Instance Variables
-    private final int SPLASH_DISPLAY_LENGHT = 2000;
+    private final int SPLASH_DISPLAY_LENGHT = 1000;
 
 	
 	
@@ -35,21 +35,16 @@ public class SplashActivity extends Activity {
 		new Handler().postDelayed(new Runnable(){
 			 
             //@Override
-
             public void run() {
 
                     /* Create an Intent that will start the Main-Activity. */
-
                     Intent mainIntent = new Intent(SplashActivity.this,BatteryApp.class);
-
                     SplashActivity.this.startActivity(mainIntent);
-
                     SplashActivity.this.finish();
-
             }
 
     }, SPLASH_DISPLAY_LENGHT);
 	}	
 	
 }
-//End of class AboutActivity
+//End of class SplashActivity

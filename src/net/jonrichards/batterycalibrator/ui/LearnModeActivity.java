@@ -33,6 +33,8 @@ import android.widget.ToggleButton;
  */
 public class LearnModeActivity extends Activity {
 	
+	private Context _context;
+	
 	//Static Variables
 	
 	public static boolean LEARN_MODE = false;
@@ -324,12 +326,13 @@ public class LearnModeActivity extends Activity {
 	private final Runnable mUpdateUITimerTask = new Runnable() {
 	    public void run() {
 	    	//If the user has selected to have the application handle ACR adjustments
-	    	if(SettingsActivity.getEnableACRAdjustmentGreaterThan(getBaseContext())) {
+	    	/*if(SettingsActivity.getEnableACRAdjustmentGreaterThan(getBaseContext())) {
 	    		checkACRGreater();
 	    	}
 	    	if(SettingsActivity.getEnableACRAdjustmentLessThan(getBaseContext())) {
 	    		checkACRLess();
-	    	}
+	    	}*/
+	    	checkACR();
 	    	setUIText();	    	
 	        my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll);
 	    }
@@ -366,7 +369,7 @@ public class LearnModeActivity extends Activity {
 	/**
 	 * Checks the remaining capacity and remaining voltage, and bumps voltage up if needed.
 	 */
-	private void checkACRGreater() {
+	/*private void checkACRGreater() {
 		int capacity = Integer.parseInt(my_battery_info.getMAh()) / 1000;		
 		double realtime_volt = (Integer.parseInt(my_battery_info.getVoltage())) / 1000000.00;
 		double empty_volt = ((Integer.parseInt(my_battery_info.getDumpRegister(54),16)) * 1952) / 100000.00;
@@ -386,6 +389,52 @@ public class LearnModeActivity extends Activity {
 		if(capacity < 70 && realtime_volt - empty_volt <= 0.2 && !intToBoolean(my_battery_info.getStatusRegister(4))) {
 			my_battery_info.setACR();
 		}
+	}*/
+	
+	private void checkACR() {
+		int capacity = Integer.parseInt(my_battery_info.getMAh()) / 1000;		
+		double realtime_volt = (Integer.parseInt(my_battery_info.getVoltage())) / 1000000.00;
+		double empty_volt = ((Integer.parseInt(my_battery_info.getDumpRegister(54),16)) * 1952) / 100000.00;
+		
+		int ACR = Integer.parseInt(SettingsActivity.getACRVariable(this._context));
+		
+		//If remaining capacity and voltage are low, and learn mode has not come on, bump voltage
+		switch(ACR) {
+			case 0:  // Off - Do nothing
+				break;				
+			case 1: // <70mAh and <= 0.2 volts
+				if(capacity < 70 && realtime_volt - empty_volt <= 0.2 && !intToBoolean(my_battery_info.getStatusRegister(4))) {
+					my_battery_info.setACR();
+				}
+				break;
+			case 2: // <70mAh and >= 0.2 volts
+				if(capacity < 70 && realtime_volt - empty_volt >= 0.2 && !intToBoolean(my_battery_info.getStatusRegister(4))) {
+					my_battery_info.setACR();
+				}
+				break;
+			case 3: // <70mAh and both LESS and GREATER with popup
+				if(capacity < 70 && realtime_volt - empty_volt <= 0.2 && !intToBoolean(my_battery_info.getStatusRegister(4))) {
+					my_battery_info.setACR();
+					
+					String less_than_text = getResources().getText(R.string.lessthan_popup).toString();
+					AlertDialog.Builder builder = new AlertDialog.Builder(this);
+					builder.setTitle(R.string.lessthan_popup_title);
+					builder.setPositiveButton(R.string.ok, null);
+			        builder.setMessage(less_than_text).create().show();
+				}
+				if(capacity < 70 && realtime_volt - empty_volt >= 0.2 && !intToBoolean(my_battery_info.getStatusRegister(4))) {
+					my_battery_info.setACR();
+					
+					String greater_than_text = getResources().getText(R.string.greaterthan_popup).toString();
+					AlertDialog.Builder builder = new AlertDialog.Builder(this);
+					builder.setTitle(R.string.greaterthan_popup_title);
+					builder.setPositiveButton(R.string.ok, null);
+			        builder.setMessage(greater_than_text).create().show();
+				}
+				break;
+		}		
+		
 	}
+	
 }
 //End of class LearnModeActivity

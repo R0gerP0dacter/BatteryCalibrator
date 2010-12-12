@@ -9,7 +9,7 @@
         android:summaryOn="@string/screen_on_summary"
         android:summaryOff="@string/screen_off_summary"
         android:defaultValue="true" />
-    <CheckBoxPreference android:key="ACR_adjustment_greater"
+<!--<CheckBoxPreference android:key="ACR_adjustment_greater"
         android:title="@string/ACR_adjustment_title1" 
         android:summary="@string/ACR_adjustment_summary1"
         android:defaultValue="true" />
@@ -17,4 +17,12 @@
         android:title="@string/ACR_adjustment_title2" 
         android:summary="@string/ACR_adjustment_summary2"
         android:defaultValue="true" />
+-->        
+	<ListPreference android:key="ACR_Adjustment_Values"
+        android:title="ACR Adjustment"
+        android:summary="When mAh gets below 70mAh and the voltage is either LESS THAN or GREATER THAN 0.2 volts, the ACR adjustment will take place."
+        android:entries="@array/ACR_Adjustment_Options" 
+        android:entryValues="@array/ACR_Adjustment_Values"
+        android:dialogTitle="Pick ACR Option" 
+        android:defaultValue="0" />
 </PreferenceScreen>

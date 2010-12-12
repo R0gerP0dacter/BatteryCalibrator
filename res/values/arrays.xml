@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="test_options">
-        <item>your mom\'s box</item>
-        <item>testing stuff</item>
-        <item>more funtimes</item>
-        <item>that\'s what she said</item>
-        <item>the end</item>        
+    <string-array name="ACR_Adjustment_Options">
+        <item>Off</item>
+        <item>Less than 0.2 volts (original)</item>
+        <item>Greater than 0.2 volts (new)</item>
+        <item>Both (with pop-up, for testing only)</item>
     </string-array>
-    <string-array name="test_values">
+    <string-array name="ACR_Adjustment_Values">
         <item>0</item>
         <item>1</item>
         <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
+        <item>3</item>        
     </string-array>
+
 </resources>
