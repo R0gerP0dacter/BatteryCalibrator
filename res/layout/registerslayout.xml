@@ -31,7 +31,7 @@ android:id="@+id/widget29111"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:orientation="vertical"
-android:background="@drawable/gradient_test1"
+android:background="@drawable/gradient_table_row"
 >
 <View android:id="@+id/divider"
     android:background="@drawable/black_white_gradient"

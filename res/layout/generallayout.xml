@@ -6,8 +6,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        >
+        android:layout_height="fill_parent" >
         <TabWidget
             android:id="@android:id/tabs"
             android:layout_width="fill_parent"
@@ -15,510 +14,408 @@
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-             />
-        
+            android:layout_height="fill_parent" />
     </LinearLayout>
-
-<ScrollView
-android:id="@+id/widget29"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:background="@drawable/gradient_test1"
-xmlns:android="http://schemas.android.com/apk/res/android"
->
-
-<LinearLayout
-android:id="@+id/widget29666"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:orientation="vertical"
->
-
-<View android:id="@+id/divider"
-android:background="@drawable/black_white_gradient"
-android:layout_width="fill_parent"
-android:layout_height="10dp"
-/>
-     
-<LinearLayout
-android:id="@+id/widget131"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:padding="5px"
->
-<TextView
-android:id="@+id/statusreg"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Battery Status Register:"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-
-<TextView
-android:id="@+id/txtStatusReg"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#ffffff"
-android:textSize="20sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</LinearLayout>
-
-<View android:id="@+id/divider"
-android:background="@drawable/black_white_gradient"
-android:layout_width="fill_parent"
-android:layout_height="10dp"
-android:layout_below="@id/widget131" />
-/>
-
-<TableLayout
-android:id="@+id/widget6"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="vertical"
->
-
-<TableRow
-android:id="@+id/widget6966"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_gravity="center_horizontal"
->
-<TextView
-android:id="@+id/widget710"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Voltage (mV):"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget720"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Current (mA):"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</TableRow>
-
-<TableRow
-android:id="@+id/widget730"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_gravity="center_horizontal"
->
-<TextView
-android:id="@+id/txtVoltage"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#ffffff"
-android:textSize="32sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/txtCurrent"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#ffffff"
-android:textSize="32sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</TableRow>
-
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="2dp"
-    android:layout_below="@id/widget6966" />
-
-<TableRow
-android:id="@+id/widget699"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_gravity="center_horizontal"
->
-<TextView
-android:id="@+id/widget711"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Temp.(C):"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget722"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Percent(%):"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</TableRow>
-<TableRow
-android:id="@+id/widget733"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_gravity="center_horizontal"
->
-<TextView
-android:id="@+id/txtTemperature"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#ffffff"
-android:textSize="32sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/txtPercent"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#adff2f"
-android:textSize="32sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</TableRow>
-
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="2dp"
-    android:layout_below="@id/widget733" />
-    
-<TableRow
-android:id="@+id/widget6999"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_gravity="center_horizontal"
->
-<TextView
-android:id="@+id/widget7111"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Batt Age(%):"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget7222"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Full40(mAh):"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</TableRow>
-<TableRow
-android:id="@+id/widget7333"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_gravity="center_horizontal"
->
-<TextView
-android:id="@+id/txtAge"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#ffffff"
-android:textSize="32sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/txtFull40"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#ffffff"
-android:textSize="32sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</TableRow>
-
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="2dp"
-    android:layout_below="@id/widget733" />
-    
-<TableRow
-android:id="@+id/widget692299"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_gravity="center_horizontal"
->
-<TextView
-android:id="@+id/widget711221"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Min Chg Curr (mA):"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget7222"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Min Chg Volt (mV):"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</TableRow>
-<TableRow
-android:id="@+id/widget733322"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_gravity="center_horizontal"
->
-<TextView
-android:id="@+id/txtMinChgCurrent"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#ffffff"
-android:textSize="32sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/txtMinChgVolt"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#ffffff"
-android:textSize="32sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</TableRow>
-
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="2dp"
-    android:layout_below="@id/widget733" />
-    
-<TableRow
-android:id="@+id/widget69229922"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_gravity="center_horizontal"
->
-<TextView
-android:id="@+id/widget71122111"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Empty Curr (mA):"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget722211"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Empty Volt (V):"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</TableRow>
-<TableRow
-android:id="@+id/widget73332211"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_gravity="center_horizontal"
->
-<TextView
-android:id="@+id/txtAEcurrent"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#ffffff"
-android:textSize="32sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/txtAEvolt"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#ffffff"
-android:textSize="32sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</TableRow>
-
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="2dp"
-    android:layout_below="@id/widget69229922" />
-    
-<TableRow
-android:id="@+id/widget69229922"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_gravity="center_horizontal"
->
-<TextView
-android:id="@+id/widget71122111"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Capacity (mAh):"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/widget722211"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Aged Capa (mAh):"
-android:textColor="#ffffff"
-android:textSize="18sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</TableRow>
-<TableRow
-android:id="@+id/widget73332211"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_gravity="center_horizontal"
->
-<TextView
-android:id="@+id/txtCapacity"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#ffffff"
-android:textSize="32sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-<TextView
-android:id="@+id/txtAgedCapacity"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:textColor="#ffffff"
-android:textSize="32sp"
-android:gravity="center"
-android:layout_weight="0.5"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-</TableRow>
-
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="10dp"
-    android:layout_below="@id/widget69229922" />
-    
-</TableLayout>
-
-
-</LinearLayout>
-</ScrollView>
+	<ScrollView
+		android:id="@+id/widget29"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:background="#ff191919"
+		xmlns:android="http://schemas.android.com/apk/res/android" >
+		<LinearLayout
+			android:id="@+id/widget29666"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:orientation="vertical" >
+			<TableLayout
+				android:id="@+id/widget6"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical" >
+				<TableRow
+					android:id="@+id/widget6966"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_gravity="center_horizontal" >
+					<TextView
+						android:id="@+id/widget710"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Voltage (mV)"
+						android:textColor="#ffffff"
+						android:textSize="18sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+					<TextView
+						android:id="@+id/widget720"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Current (mA)"
+						android:textColor="#ffffff"
+						android:textSize="18sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+				</TableRow>
+				<TableRow
+					android:id="@+id/widget730"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_gravity="center_horizontal" >
+					<TextView
+						android:id="@+id/txtVoltage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="#ffffff"
+						android:textSize="34sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+					<TextView
+						android:id="@+id/txtCurrent"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="#ffffff"
+						android:textSize="34sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+				</TableRow>
+				
+				<View android:id="@+id/divider"
+				    android:background="@drawable/gradient_table_row"
+				    android:layout_width="fill_parent"
+				    android:layout_height="4dp"
+				    android:layout_below="@id/widget6966" />
+				    
+				<TableRow
+					android:id="@+id/widget699"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_gravity="center_horizontal" >
+					<TextView
+						android:id="@+id/widget711"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Temp (C)"
+						android:textColor="#ffffff"
+						android:textSize="18sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+					<TextView
+						android:id="@+id/widget722"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Percent (%)"
+						android:textColor="#ffffff"
+						android:textSize="18sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+				</TableRow>
+				<TableRow
+					android:id="@+id/widget733"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_gravity="center_horizontal" >
+					<TextView
+						android:id="@+id/txtTemperature"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="#ffffff"
+						android:textSize="34sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+					<TextView
+						android:id="@+id/txtPercent"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="#adff2f"
+						android:textSize="34sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+				</TableRow>
+				
+				<View android:id="@+id/divider"
+				    android:background="@drawable/gradient_table_row"
+				    android:layout_width="fill_parent"
+				    android:layout_height="4dp"
+				    android:layout_below="@id/widget6966" />
+				    
+				<TableRow
+					android:id="@+id/widget6999"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_gravity="center_horizontal" >
+					<TextView
+						android:id="@+id/widget7111"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Batt Age (%)"
+						android:textColor="#ffffff"
+						android:textSize="18sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+					<TextView
+						android:id="@+id/widget7222"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Full40 (mAh)"
+						android:textColor="#ffffff"
+						android:textSize="18sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+				</TableRow>
+				<TableRow
+					android:id="@+id/widget7333"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_gravity="center_horizontal" >
+					<TextView
+						android:id="@+id/txtAge"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="#ffffff"
+						android:textSize="34sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+					<TextView
+						android:id="@+id/txtFull40"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="#ffffff"
+						android:textSize="34sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+				</TableRow>
+				
+				<View android:id="@+id/divider"
+				    android:background="@drawable/gradient_table_row"
+				    android:layout_width="fill_parent"
+				    android:layout_height="4dp"
+				    android:layout_below="@id/widget6966" />
+				    
+				<TableRow
+					android:id="@+id/widget692299"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_gravity="center_horizontal" >
+					<TextView
+						android:id="@+id/widget711221"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Min Chg Curr (mA)"
+						android:textColor="#ffffff"
+						android:textSize="18sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+					<TextView
+						android:id="@+id/widget7222"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Min Chg Volt (mV)"
+						android:textColor="#ffffff"
+						android:textSize="18sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+				</TableRow>
+				<TableRow
+					android:id="@+id/widget733322"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_gravity="center_horizontal" >
+					<TextView
+						android:id="@+id/txtMinChgCurrent"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="#ffffff"
+						android:textSize="34sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+					<TextView
+						android:id="@+id/txtMinChgVolt"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="#ffffff"
+						android:textSize="34sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+				</TableRow>
+				
+				<View android:id="@+id/divider"
+				    android:background="@drawable/gradient_table_row"
+				    android:layout_width="fill_parent"
+				    android:layout_height="4dp"
+				    android:layout_below="@id/widget6966" />
+				    
+				<TableRow
+					android:id="@+id/widget69229922"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_gravity="center_horizontal" >
+					<TextView
+						android:id="@+id/widget71122111"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Empty Curr (mA)"
+						android:textColor="#ffffff"
+						android:textSize="18sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+					<TextView
+						android:id="@+id/widget722211"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Empty Volt (V)"
+						android:textColor="#ffffff"
+						android:textSize="18sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+				</TableRow>
+				<TableRow
+					android:id="@+id/widget73332211"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_gravity="center_horizontal" >
+					<TextView
+						android:id="@+id/txtAEcurrent"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="#ffffff"
+						android:textSize="34sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+					<TextView
+						android:id="@+id/txtAEvolt"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="#ffffff"
+						android:textSize="34sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+				</TableRow>
+				
+				<View android:id="@+id/divider"
+				    android:background="@drawable/gradient_table_row"
+				    android:layout_width="fill_parent"
+				    android:layout_height="4dp"
+				    android:layout_below="@id/widget6966" />
+				    
+				<TableRow
+					android:id="@+id/widget69229922"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_gravity="center_horizontal" >
+					<TextView
+						android:id="@+id/widget71122111"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Capacity (mAh)"
+						android:textColor="#ffffff"
+						android:textSize="18sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+					<TextView
+						android:id="@+id/widget722211"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Aged Capa (mAh)"
+						android:textColor="#ffffff"
+						android:textSize="18sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+				</TableRow>
+				<TableRow
+					android:id="@+id/widget73332211"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_gravity="center_horizontal" >
+					<TextView
+						android:id="@+id/txtCapacity"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="#ffffff"
+						android:textSize="34sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+					<TextView
+						android:id="@+id/txtAgedCapacity"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text=""
+						android:textColor="#ffffff"
+						android:textSize="34sp"
+						android:gravity="center"
+						android:layout_weight="0.5"
+						android:layout_gravity="center_horizontal" >
+					</TextView>
+				</TableRow>
+			</TableLayout>
+		</LinearLayout>
+	</ScrollView>
 </TabHost>

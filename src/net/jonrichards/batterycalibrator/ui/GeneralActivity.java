@@ -43,7 +43,7 @@ public class GeneralActivity extends Activity {
 	private TextView my_charge_volt;
 	private TextView my_empty_current;
 	private TextView my_empty_volt;
-	private TextView my_status_reg;
+	//private TextView my_status_reg;
 	private TextView my_capacity;
 	private TextView my_aged_capacity;
 	
@@ -93,7 +93,7 @@ public class GeneralActivity extends Activity {
         my_charge_volt = (TextView)findViewById(R.id.txtMinChgVolt);       
         my_empty_volt = (TextView)findViewById(R.id.txtAEvolt);
         my_empty_current = (TextView)findViewById(R.id.txtAEcurrent);
-        my_status_reg = (TextView)findViewById(R.id.txtStatusReg);
+        //my_status_reg = (TextView)findViewById(R.id.txtStatusReg);
         my_capacity = (TextView)findViewById(R.id.txtCapacity);
         my_aged_capacity = (TextView)findViewById(R.id.txtAgedCapacity);
 
@@ -281,8 +281,8 @@ public class GeneralActivity extends Activity {
 		my_aged_capacity.setText(Integer.toString(aged));
 		
 		//Populate status register
-		String status_text = battery_info.getDumpRegister(01);
-		my_status_reg.setText("0x" + status_text);
+		//String status_text = battery_info.getDumpRegister(01);
+		//my_status_reg.setText("0x" + status_text);
 	}
 
 	/**
