@@ -238,11 +238,11 @@ public class DS2784Battery {
 	 * @param the_new_age The new battery age, between 80-100.
 	 */
 	public void setAge(int the_new_age) {
-		if(the_new_age > 100 || the_new_age < 80) {
+		if(the_new_age > 100 || the_new_age < 65) {
 			return;
 		} else {
-			//TODO change this to be based of the_new_age, not hard coded to 100%
-			runSystemCommandAsRoot("echo 0x14 80 > /sys/devices/platform/ds2784-battery/setreg");
+			String hex_age = Integer.toHexString(the_new_age);
+			runSystemCommandAsRoot("echo 0x14 " + hex_age + " > /sys/devices/platform/ds2784-battery/setreg");
 		}
 	}
 
