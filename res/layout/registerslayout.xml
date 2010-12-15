@@ -6,8 +6,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        >
+        android:layout_height="fill_parent" >
         <TabWidget
             android:id="@android:id/tabs"
             android:layout_width="fill_parent"
@@ -15,125 +14,75 @@
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-             />
-        
+            android:layout_height="fill_parent" />
     </LinearLayout>
+	<ScrollView
+		android:id="@+id/widget288"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		xmlns:android="http://schemas.android.com/apk/res/android" >
+		<LinearLayout
+			android:id="@+id/widget29111"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:orientation="vertical"
+			android:background="#ff191919" >
+			<TextView
+				android:id="@+id/widget102233"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="This is a raw dump from your battery's EEPROM registers. Each row contains 16 registers in hexadecimal format."
+				android:textSize="16sp"
+				android:layout_margin="1dip"
+				android:textColor="#ffffff"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginBottom="5px" >
+			</TextView>
 
-<ScrollView
-android:id="@+id/widget288"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-xmlns:android="http://schemas.android.com/apk/res/android"
->
-<LinearLayout
-android:id="@+id/widget29111"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:orientation="vertical"
-android:background="@drawable/gradient_table_row"
->
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="10dp"
-     />
+			<View android:id="@+id/divider"
+			    android:background="@drawable/gradient_table_row"
+			    android:layout_width="fill_parent"
+			    android:layout_height="4dp"
+			    android:layout_below="@id/widget6966" />
 
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="10dp"/>
+			<LinearLayout
+				android:id="@+id/widget131"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:padding="5px"
+				android:orientation="horizontal" >
+				<TextView
+					android:id="@+id/widget1"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:text="Dumpreg"
+					android:textSize="18sp"
+					android:textColor="#ffffff"
+					android:layout_gravity="center_horizontal" >
+				</TextView>
+			</LinearLayout>
 
-<TextView
-android:id="@+id/widget1022"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="Dumpreg"
-android:textSize="18sp"
-android:layout_margin="1dip"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
-android:layout_marginBottom="5px"
->
-</TextView>
-
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="2dp"
-    android:layout_below="@id/widget1022" />
-
-<TextView
-android:id="@+id/widget102233"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="This is a raw dump from your battery's EEPROM registers.  
-Each row contains 16 registers in hexadecimal format."
-android:textSize="16sp"
-android:layout_margin="1dip"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
-android:layout_marginBottom="5px"
->
-</TextView>
-
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="2dp"
-    android:layout_below="@id/widget102233" />
-
-<LinearLayout
-android:id="@+id/widget131"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:padding="5px"
-android:orientation="horizontal"
->
-<TextView
-android:id="@+id/widget1"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="Dumpreg"
-android:textSize="18sp"
-android:textColor="#ffffff"
-android:layout_gravity="center_horizontal"
->
-</TextView>
-
-</LinearLayout>
-
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="2dp"
-    android:layout_below="@id/widget131" />
+			<View android:id="@+id/divider"
+			    android:background="@drawable/gradient_table_row"
+			    android:layout_width="fill_parent"
+			    android:layout_height="4dp"
+			    android:layout_below="@id/widget6966" />
     
-<LinearLayout
-android:id="@+id/widget1266"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:padding="20px"
-android:orientation="vertical"
->
-
-<Button
-android:id="@+id/btnUpdate"
-android:layout_width="300px"
-android:layout_height="130px"
-android:textSize="18sp"
-android:text="Update Dumpreg"
-android:layout_gravity="center_horizontal"
->
-</Button>
-</LinearLayout>
-
-<View android:id="@+id/divider"
-    android:background="@drawable/black_white_gradient"
-    android:layout_width="fill_parent"
-    android:layout_height="10dp"
-    android:layout_below="@id/widget1266" />
-
-</LinearLayout>
-</ScrollView>
+			<LinearLayout
+				android:id="@+id/widget1266"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:padding="20px"
+				android:orientation="vertical" >
+				<Button
+					android:id="@+id/btnUpdate"
+					android:layout_width="300px"
+					android:layout_height="130px"
+					android:textSize="18sp"
+					android:text="Update Dumpreg"
+					android:layout_gravity="center_horizontal" >
+				</Button>
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
 </TabHost>

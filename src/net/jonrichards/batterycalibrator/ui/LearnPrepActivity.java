@@ -31,10 +31,13 @@ public class LearnPrepActivity extends Activity {
 	//Instance Variables
 
 	private TextView my_age;
-	private Button my_age_button;
+	private EditText my_age_input;
+	private Button my_age_save_button;
+	private Button my_age_cancel_button;
+	
 	private TextView my_full_40;
-	private Button my_save_button;
-	private Button my_cancel_button;
+	private Button my_full_40_save_button;
+	private Button my_full_40_cancel_button;
 	private EditText my_full_40_input;
 	
 	private PowerManager my_power_manager;
@@ -57,25 +60,43 @@ public class LearnPrepActivity extends Activity {
 
         //text views and button for the UI for this tab
         my_age = (TextView)findViewById(R.id.txtAge);
-        my_age_button = (Button)findViewById(R.id.btnAge);
+        my_age_input = (EditText)findViewById(R.id.etAge);
+        my_age_save_button = (Button)findViewById(R.id.btnAgeSave);
+        my_age_cancel_button = (Button)findViewById(R.id.btnAgeCancel);
+        
         my_full_40 = (TextView)findViewById(R.id.txtFull40);
-        my_save_button = (Button)findViewById(R.id.btnSave);
-        my_cancel_button = (Button)findViewById(R.id.btnCancel);
+        my_full_40_save_button = (Button)findViewById(R.id.btnFull40Save);
+        my_full_40_cancel_button = (Button)findViewById(R.id.btnFull40Cancel);
         my_full_40_input = (EditText)findViewById(R.id.etFull40);
         
         setUIText();
 
-		//Button click to manually set age to 100%
-        my_age_button.setOnClickListener(new OnClickListener() {
-        	public void onClick(View v) {
-        		DS2784Battery battery = new DS2784Battery();
-        		battery.setAge(100);
-        		setUIText();        		
-        	}
-        });
+      //Sets the new age value when pressed
+        my_age_save_button.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				DS2784Battery battery = new DS2784Battery();
+				try {
+					int new_age = Integer.parseInt((my_age_input.getText().toString()));
+					battery.setAge(new_age);
+					my_age_input.setText("");
+				} catch(Exception e) {
+					my_age_input.setText("");
+				}
+        		setUIText();
+			}
+		});
+        
+        //Clears the age input field when pressed
+        my_age_cancel_button.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				my_age_input.setText("");
+        		setUIText();
+			}
+		});
+        
         
         //Sets the new full 40 value when pressed
-        my_save_button.setOnClickListener(new OnClickListener() {
+        my_full_40_save_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				DS2784Battery battery = new DS2784Battery();
 				try {
@@ -90,7 +111,7 @@ public class LearnPrepActivity extends Activity {
 		});
         
         //Clears the full 40 input field when pressed
-        my_cancel_button.setOnClickListener(new OnClickListener() {
+        my_full_40_cancel_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				my_full_40_input.setText("");
         		setUIText();

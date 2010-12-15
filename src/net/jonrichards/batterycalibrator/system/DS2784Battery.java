@@ -241,7 +241,8 @@ public class DS2784Battery {
 		if(the_new_age > 100 || the_new_age < 65) {
 			return;
 		} else {
-			String hex_age = Integer.toHexString(the_new_age);
+			//To convert to an equivalent hex string, multiply the input by 1.28 to bring us to 128 being 100% age
+			String hex_age = Integer.toHexString((int)(Math.ceil((the_new_age * 1.28))));
 			runSystemCommandAsRoot("echo 0x14 " + hex_age + " > /sys/devices/platform/ds2784-battery/setreg");
 		}
 	}
@@ -254,16 +255,7 @@ public class DS2784Battery {
 		if(the_new_mAh < 1200 || the_new_mAh > 3700) {
 			return;
 		}
-		//1452mAh * 15 mO / 6.25 = 3485 
-		//1200 * 15 / 6.25 = 2880 minimum
-		//3400 * 15 / 6.25 = 8160 maximum
-
-		//3485/256 = 13.61 --> so 13 converted to hex is 0d which goes into register 0x6a
-		//0.61*256 = 157 --> so 157 converted to hex is 9d which goes into register 0x6b
-		//set full40 will be more difficult, bit shifting is involved so perhaps this will go in its own method?
-		//the command would take one 4 digit number, say 3485, and bit shift it by 8.  take that whole number and throw it into register 6a.
-		//then take the remainder, bit shift it by 8 the other direction, and throw than into register 6b.
-
+		
 		double raw_value = (the_new_mAh * 15) / 6.25;
 		String reg_6a = Integer.toHexString((int)(raw_value / 256));
 		String reg_6b = Integer.toHexString((int)Math.round((((raw_value / 256) - (int)(raw_value / 256)) * 256)));
