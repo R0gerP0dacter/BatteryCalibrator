@@ -5,6 +5,8 @@
  * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
 package net.jonrichards.batterycalibrator.system;
 
+import java.io.File;
+
 import android.util.Log;
 
 import com.teslacoilsw.quicksshd.ShellCommand;
@@ -34,11 +36,6 @@ public class DS2784Battery {
 	 */
 	private static String VOLTAGE_PATH = "/sys/devices/platform/ds2784-battery/getvoltage";
 
-	///**
-	// * The path to the uevent file.
-	// */
-	//private static String UEVENT_PATH = "/sys/devices/platform/ds2784-battery/power_supply/battery/uevent";
-
 	/**
 	 * The path to the dumpreg file.
 	 */
@@ -63,6 +60,11 @@ public class DS2784Battery {
 	 * The path to the getmAh file.
 	 */
 	private static String GET_MAH_PATH = "/sys/devices/platform/ds2784-battery/getmAh";
+	
+	/**
+	 * The path to the getmAh file.
+	 */
+	private static String SET_REG = "/sys/devices/platform/ds2784-battery/setreg";
 
 	//Instance Variables
 
@@ -112,6 +114,9 @@ public class DS2784Battery {
 	 * @return Returns the current voltage.
 	 */
 	public String getVoltage() {
+		if(!(new File(VOLTAGE_PATH)).exists()) {
+			VOLTAGE_PATH = "/sys/devices/platform/ds2784-battery/voltage";
+		}
 		String voltage = catFile(VOLTAGE_PATH).trim();
 
 		return voltage;
@@ -122,6 +127,9 @@ public class DS2784Battery {
 	 * @return Returns the current current.
 	 */
 	public String getCurrent() {
+		if(!(new File(GET_CURRENT_PATH)).exists()) {
+			GET_CURRENT_PATH = "/sys/devices/platform/ds2784-battery/current";
+		}
 		String current = catFile(GET_CURRENT_PATH).trim();
 
 		return current;
@@ -132,6 +140,9 @@ public class DS2784Battery {
 	 * @return Returns the current average current.
 	 */
 	public String getAvgCurrent() {
+		if(!(new File(GET_AVG_CURRENT_PATH)).exists()) {
+			GET_AVG_CURRENT_PATH = "/sys/devices/platform/ds2784-battery/avgcurrent";
+		}
 		String avg_current = catFile(GET_AVG_CURRENT_PATH).trim();
 
 		return avg_current;
@@ -142,6 +153,12 @@ public class DS2784Battery {
 	 * @return Returns the current getFull40.
 	 */
 	public String getFull40() {
+		if(!(new File(GET_FULL40_PATH)).exists()) {
+			GET_FULL40_PATH = "/sys/devices/platform/ds2784-battery/getfull40";
+		}
+		if(!(new File(GET_FULL40_PATH)).exists()) {
+			GET_FULL40_PATH = "/sys/devices/platform/ds2784-battery/full40";
+		}
 		String full_40 = catFile(GET_FULL40_PATH).trim();
 
 		//If the full_40 is empty, the kernel most likely does not have the battery driver modifications
@@ -158,6 +175,9 @@ public class DS2784Battery {
 	 * @return Returns the current getmAh.
 	 */
 	public String getMAh() {
+		if(!(new File(GET_MAH_PATH)).exists()) {
+			GET_MAH_PATH = "/sys/devices/platform/ds2784-battery/mah";
+		}
 		String mAh = catFile(GET_MAH_PATH).trim();
 
 		return mAh;
@@ -243,7 +263,7 @@ public class DS2784Battery {
 		} else {
 			//To convert to an equivalent hex string, multiply the input by 1.28 to bring us to 128 being 100% age
 			String hex_age = Integer.toHexString((int)(Math.ceil((the_new_age * 1.28))));
-			runSystemCommandAsRoot("echo 0x14 " + hex_age + " > /sys/devices/platform/ds2784-battery/setreg");
+			runSystemCommandAsRoot("echo 0x14 " + hex_age + " > " + SET_REG);
 		}
 	}
 
@@ -260,15 +280,15 @@ public class DS2784Battery {
 		String reg_6a = Integer.toHexString((int)(raw_value / 256));
 		String reg_6b = Integer.toHexString((int)Math.round((((raw_value / 256) - (int)(raw_value / 256)) * 256)));
 
-		runSystemCommandAsRoot("echo 0x6a " + reg_6a + " > /sys/devices/platform/ds2784-battery/setreg");
-		runSystemCommandAsRoot("echo 0x6b " + reg_6b + " > /sys/devices/platform/ds2784-battery/setreg");
+		runSystemCommandAsRoot("echo 0x6a " + reg_6a + " > " + SET_REG);
+		runSystemCommandAsRoot("echo 0x6b " + reg_6b + " > " + SET_REG);
 	}
 	
 	/**
 	 * Bumps up the remaining voltage.
 	 */
 	public void setACR() {
-		runSystemCommandAsRoot("echo 0x10 02 > /sys/devices/platform/ds2784-battery/setreg");
+		runSystemCommandAsRoot("echo 0x10 02 > " + SET_REG);
 	}
 
 	//Private Methods	
