@@ -6,6 +6,7 @@
 package net.jonrichards.batterycalibrator.ui;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
@@ -38,6 +39,11 @@ public class SettingsActivity extends PreferenceActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    addPreferencesFromResource(R.xml.settings);
+	    
+	    //Set the background color to dark gray since we can't do it in the XML file
+	    getListView().setBackgroundColor(Color.TRANSPARENT);
+        getListView().setCacheColorHint(Color.TRANSPARENT);
+        getListView().setBackgroundColor(Color.rgb(25, 25, 25));
 	    
 	    my_power_manager = (PowerManager)getBaseContext().getSystemService(Context.POWER_SERVICE);
         my_wake_lock = my_power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "LearnModeActivity");

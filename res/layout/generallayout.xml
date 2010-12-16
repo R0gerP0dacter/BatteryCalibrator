@@ -27,7 +27,7 @@
 		android:id="@+id/widget29"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:background="#000000"
+		android:background="#ff191919"
 		xmlns:android="http://schemas.android.com/apk/res/android" >
 		<LinearLayout
 			android:id="@+id/widget29666"
@@ -99,9 +99,12 @@
 				</TableRow>
 				
 				<View android:id="@+id/divider"
-				    android:background="@drawable/gradient_table_row"
+				    android:background="#424242"
 				    android:layout_width="fill_parent"
-				    android:layout_height="4dp"
+				    android:layout_height="2dp"
+				    android:layout_marginLeft="20dp"
+				    android:layout_marginRight="20dp"
+				    android:layout_marginBottom="2dp"
 				    android:layout_below="@id/widget6966" />
 				    
 				<TableRow
@@ -164,9 +167,12 @@
 				</TableRow>
 				
 				<View android:id="@+id/divider"
-				    android:background="@drawable/gradient_table_row"
+				    android:background="#424242"
 				    android:layout_width="fill_parent"
-				    android:layout_height="4dp"
+				    android:layout_height="2dp"
+				    android:layout_marginLeft="20dp"
+				    android:layout_marginRight="20dp"
+				    android:layout_marginBottom="2dp"
 				    android:layout_below="@id/widget6966" />
 				    
 				<TableRow
@@ -229,9 +235,12 @@
 				</TableRow>
 				
 				<View android:id="@+id/divider"
-				    android:background="@drawable/gradient_table_row"
+				    android:background="#424242"
 				    android:layout_width="fill_parent"
-				    android:layout_height="4dp"
+				    android:layout_height="2dp"
+				    android:layout_marginLeft="20dp"
+				    android:layout_marginRight="20dp"
+				    android:layout_marginBottom="2dp"
 				    android:layout_below="@id/widget6966" />
 				    
 				<TableRow
@@ -294,9 +303,12 @@
 				</TableRow>
 				
 				<View android:id="@+id/divider"
-				    android:background="@drawable/gradient_table_row"
+				    android:background="#424242"
 				    android:layout_width="fill_parent"
-				    android:layout_height="4dp"
+				    android:layout_height="2dp"
+				    android:layout_marginLeft="20dp"
+				    android:layout_marginRight="20dp"
+				    android:layout_marginBottom="2dp"
 				    android:layout_below="@id/widget6966" />
 				    
 				<TableRow
@@ -359,9 +371,12 @@
 				</TableRow>
 				
 				<View android:id="@+id/divider"
-				    android:background="@drawable/gradient_table_row"
+				    android:background="#424242"
 				    android:layout_width="fill_parent"
-				    android:layout_height="4dp"
+				    android:layout_height="2dp"
+				    android:layout_marginLeft="20dp"
+				    android:layout_marginRight="20dp"
+				    android:layout_marginBottom="2dp"
 				    android:layout_below="@id/widget6966" />
 				    
 				<TableRow

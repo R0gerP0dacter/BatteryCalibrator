@@ -9,7 +9,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#000000">
+    android:background="#ff191919">
     <LinearLayout
 		android:id="@+id/widget1"
 		android:layout_width="fill_parent"
@@ -83,6 +83,21 @@
 	      android:textColor="#ffffff"
 	      android:textSize="20sp"
 	      android:text="\nChangelog\n" />
+	  <TextView
+	      android:id="@+id/txt3"
+	      android:layout_width="fill_parent"
+	      android:layout_height="wrap_content"
+	      android:textColor="#ffffff"
+	      android:textStyle="bold"      
+	      android:textSize="16sp"
+	      android:text="Version 0.9.0 Beta:" />
+	  <TextView
+	      android:id="@+id/txt33"
+	      android:layout_width="fill_parent"
+	      android:layout_height="wrap_content"
+	      android:textColor="#ffffff"
+	      android:textSize="16sp"
+	      android:text="Fixed issues with app force closing. Some UI enhancements (more to come).\n" />
       <TextView
 	      android:id="@+id/txt3"
 	      android:layout_width="fill_parent"
@@ -90,7 +105,7 @@
 	      android:textColor="#ffffff"
 	      android:textStyle="bold"      
 	      android:textSize="16sp"
-	      android:text="Version 0.8.8 Beta:" />      
+	      android:text="Version 0.8.8 Beta:" />
       <TextView
 	      android:id="@+id/txt33"
 	      android:layout_width="fill_parent"
