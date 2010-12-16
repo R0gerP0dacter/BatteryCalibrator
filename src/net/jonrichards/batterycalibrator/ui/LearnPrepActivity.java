@@ -204,8 +204,13 @@ public class LearnPrepActivity extends Activity {
 
 		//Populate age
 		String age_text = battery_info.getDumpRegister(20);
-		int age_converted = (Integer.parseInt(age_text,16))*100/128;
-		my_age.setText(Integer.toString(age_converted)+ "%");
+		try {
+			int age_converted = (Integer.parseInt(age_text,16))*100/128;
+			age_text = Integer.toString(age_converted);
+		} catch(Exception e) {
+			
+		}
+		my_age.setText(age_text + "%");
 
 		//Populate full40
 		String full_40_text = battery_info.getFull40();

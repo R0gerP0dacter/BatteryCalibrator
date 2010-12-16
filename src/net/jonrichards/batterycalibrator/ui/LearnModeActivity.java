@@ -52,9 +52,6 @@ public class LearnModeActivity extends Activity {
 	private RadioButton my_learn_on;
 	private RadioButton my_learn_off;
 	
-	//Used to turn learn mode on or off
-	//private boolean my_learn_mode = false;
-	
 	//Sample rate used for learn mode on or off
 	private int my_sample_poll = 30000;
 	
@@ -103,7 +100,11 @@ public class LearnModeActivity extends Activity {
  
         DS2784Battery battery_info = new DS2784Battery();
         String empty_volt_text = battery_info.getDumpRegister(54);
-        my_empty_converted = (Integer.parseInt(empty_volt_text,16))*1952/100;
+        try {
+        	my_empty_converted = (Integer.parseInt(empty_volt_text,16))*1952/100;
+        } catch(Exception e) {
+        	my_empty_converted = 0;
+        }
         
         my_status_reg = (TextView)findViewById(R.id.txtStatusNumber);
         my_live_voltage = (TextView)findViewById(R.id.txtRealTimeVoltage);
@@ -238,18 +239,35 @@ public class LearnModeActivity extends Activity {
 		
 		//Populate voltage
 		String voltage_text = my_battery_info.getVoltage();
-		int volt = (Integer.parseInt(voltage_text));
-		my_live_voltage.setText(Integer.toString(volt));
+		int volt;
+		try {
+			volt = (Integer.parseInt(voltage_text));
+			voltage_text = Integer.toString(volt);
+		} catch(Exception e) {
+			//Set to trigger highest sample poll
+			volt = 3500001;
+		}
+		my_live_voltage.setText(voltage_text);
 		
 		//Populate current
 		String current_text = my_battery_info.getCurrent();
-		double curr = (Double.parseDouble(current_text));
-		my_current.setText(Double.toString(curr/1000));
+		try {
+			double curr = (Double.parseDouble(current_text));
+			current_text = Double.toString(curr/1000);
+		} catch(Exception e) {
+			
+		}
+		my_current.setText(current_text);
 		
 		//Populate mAh capacity
 		String capacity_text = my_battery_info.getMAh();
-		int mAh = (Integer.parseInt(capacity_text))/1000;
-		my_capacity.setText(Integer.toString(mAh));
+		try {
+			int mAh = (Integer.parseInt(capacity_text))/1000;
+			capacity_text = Integer.toString(mAh);
+		} catch(Exception e) {
+			
+		}
+		my_capacity.setText(capacity_text);
 		
 		//Added volt check and learn mode check to update sample poll
 		if(LEARN_MODE == true && volt <= 3500000){
@@ -367,13 +385,17 @@ public class LearnModeActivity extends Activity {
 	 * Checks the remaining capacity and remaining voltage, and bumps voltage up if needed.
 	 */
 	private void checkACR() {
-		int capacity = Integer.parseInt(my_battery_info.getMAh()) / 1000;		
-		double realtime_volt = (Integer.parseInt(my_battery_info.getVoltage())) / 1000000.00;
-		double empty_volt = ((Integer.parseInt(my_battery_info.getDumpRegister(54),16)) * 1952) / 100000.00;
-		
-		//If remaining capacity is low, but remaining voltage is not low, and learn mode has not come on, bump capacity
-		if(capacity < 70 && realtime_volt - empty_volt >= 0.3 && !intToBoolean(my_battery_info.getStatusRegister(4))) {
-			my_battery_info.setACR();
+		try {
+			int capacity = Integer.parseInt(my_battery_info.getMAh()) / 1000;		
+			double realtime_volt = (Integer.parseInt(my_battery_info.getVoltage())) / 1000000.00;
+			double empty_volt = ((Integer.parseInt(my_battery_info.getDumpRegister(54),16)) * 1952) / 100000.00;
+			
+			//If remaining capacity is low, but remaining voltage is not low, and learn mode has not come on, bump capacity
+			if(capacity < 70 && realtime_volt - empty_volt >= 0.3 && !intToBoolean(my_battery_info.getStatusRegister(4))) {
+				my_battery_info.setACR();
+			}
+		} catch(Exception e) {
+			
 		}
 		
 	}

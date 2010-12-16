@@ -216,15 +216,24 @@ public class GeneralActivity extends Activity {
 		
 		//Populate voltage
 		String voltage_text = battery_info.getVoltage();
-		BigDecimal big_decimal = new BigDecimal(Double.parseDouble(voltage_text) / 1000);
-		big_decimal = big_decimal.setScale(2,BigDecimal.ROUND_UP);
-		voltage_text = big_decimal.toString();
+		try {
+			BigDecimal big_decimal = new BigDecimal(Double.parseDouble(voltage_text) / 1000);
+			big_decimal = big_decimal.setScale(2,BigDecimal.ROUND_UP);
+			voltage_text = big_decimal.toString();
+		} catch(Exception e) {
+			
+		}
 		my_voltage.setText(voltage_text);
 		
 		//Populate current
 		String current_text = battery_info.getCurrent();
-		double curr = (Double.parseDouble(current_text));
-		my_current.setText(Double.toString(curr/1000));
+		try {
+			double curr = (Double.parseDouble(current_text));
+			current_text = Double.toString(curr/1000);
+		} catch(Exception e) {
+			
+		}
+		my_current.setText(current_text);
 		
 		//Populate full40
 		String full_40_text = battery_info.getFull40();
@@ -232,57 +241,100 @@ public class GeneralActivity extends Activity {
 		
 		//Populate temperature - not outputting correctly (my fault, conversion issue)
 		String temperature_text = battery_info.getTemperature();
-		int temp = Integer.parseInt(temperature_text);
-		my_temperature.setText(Integer.toString(temp/10) + "." + Integer.toString(temp%10));
+		try {
+			int temp = Integer.parseInt(temperature_text);
+			temperature_text = Integer.toString(temp/10) + "." + Integer.toString(temp%10);
+		} catch(Exception e) {
+			
+		}
+		my_temperature.setText(temperature_text);
 		
 		//Populate age
 		String age_text = battery_info.getDumpRegister(20);
-		int age_converted = (Integer.parseInt(age_text,16))*100/128;
-		my_age.setText(Integer.toString(age_converted));
+		try {
+			int age_converted = (Integer.parseInt(age_text,16))*100/128;
+			age_text = Integer.toString(age_converted);
+		} catch(Exception e) {
+			
+		}
+		my_age.setText(age_text);
 		
 		//Populate percent
 		String percent_text = battery_info.getDumpRegister(6);
-		my_percent.setText(Integer.toString(Integer.parseInt(percent_text,16)));
+		try {
+			percent_text = Integer.toString(Integer.parseInt(percent_text,16));
+		} catch(Exception e) {
+			
+		}
+		my_percent.setText(percent_text);
 		
 		//Populate min charge current
 		String charge_current_text = battery_info.getDumpRegister(53);
-		int charge_current_converted = (Integer.parseInt(charge_current_text,16))*50/15;
-		my_charge_current.setText(Integer.toString(charge_current_converted));
+		try {
+			int charge_current_converted = (Integer.parseInt(charge_current_text,16))*50/15;
+			charge_current_text = Integer.toString(charge_current_converted);
+		} catch(Exception e) {
+			
+		}
+		my_charge_current.setText(charge_current_text);
 		
 		//Populate min charge volt
 		String charge_volt_text = battery_info.getDumpRegister(52);
-		int charge_volt_converted = (Integer.parseInt(charge_volt_text,16))*1952/100;
-		my_charge_volt.setText(Integer.toString(charge_volt_converted));
+		try {
+			int charge_volt_converted = (Integer.parseInt(charge_volt_text,16))*1952/100;
+			charge_volt_text = Integer.toString(charge_volt_converted);
+		} catch(Exception e) {
+			
+		}
+		my_charge_volt.setText(charge_volt_text);
 		
 		//Populate AEvolt (for some reason parseDouble would not accept hex conversion)
 		String empty_volt_text = battery_info.getDumpRegister(54);
-		int empty_converted = (Integer.parseInt(empty_volt_text,16))*1952/100;
-		double empty = empty_converted;
-		my_empty_volt.setText(Double.toString(empty/1000));
+		try {
+			int empty_converted = (Integer.parseInt(empty_volt_text,16))*1952/100;
+			double empty = empty_converted;
+			empty_volt_text = Double.toString(empty/1000);
+		} catch(Exception e) {
+			
+		}
+		my_empty_volt.setText(empty_volt_text);
 		
 		//Populate AEcurrent
 		String empty_current_text = battery_info.getDumpRegister(55);
-		int empty_current_converted = (Integer.parseInt(empty_current_text,16))*200/15;
-		double empty_current = empty_current_converted;
-		my_empty_current.setText(Double.toString(empty_current));
+		try {
+			int empty_current_converted = (Integer.parseInt(empty_current_text,16))*200/15;
+			double empty_current = empty_current_converted;
+			empty_current_text = Double.toString(empty_current);
+		} catch(Exception e) {
+			
+		}
+		my_empty_current.setText(empty_current_text);
 		
 		//Populate mAh capacity
 		String capacity_text = battery_info.getMAh();
-		int mAh = (Integer.parseInt(capacity_text))/1000;
-		my_capacity.setText(Integer.toString(mAh));
+		try {
+			int mAh = (Integer.parseInt(capacity_text))/1000;
+			capacity_text = Integer.toString(mAh);
+		} catch(Exception e) {
+			
+		}
+		my_capacity.setText(capacity_text);
 		
 		//Populate aged mAh capacity 
 		String aged_capacity_text_MSB = battery_info.getDumpRegister(50);
 		String aged_capacity_text_LSB = battery_info.getDumpRegister(51);
-		int MSB = (Integer.parseInt(aged_capacity_text_MSB, 16));
-		int LSB = (Integer.parseInt(aged_capacity_text_LSB, 16));
-	    int aged = ((MSB<<8) | LSB)*625/1500;
+		int MSB, LSB, aged;
+		String aged_capacity_text = "";
+		try {
+			MSB = (Integer.parseInt(aged_capacity_text_MSB, 16));
+			LSB = (Integer.parseInt(aged_capacity_text_LSB, 16));
+		    aged = ((MSB<<8) | LSB)*625/1500;
+		    aged_capacity_text = Integer.toString(aged);
+		} catch(Exception e) {
+			
+		}
 
-		my_aged_capacity.setText(Integer.toString(aged));
-		
-		//Populate status register
-		//String status_text = battery_info.getDumpRegister(01);
-		//my_status_reg.setText("0x" + status_text);
+		my_aged_capacity.setText(aged_capacity_text);
 	}
 
 	/**
