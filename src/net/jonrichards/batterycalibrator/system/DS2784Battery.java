@@ -164,7 +164,16 @@ public class DS2784Battery {
 		//If the full_40 is empty, the kernel most likely does not have the battery driver modifications
 		if(full_40.length() > 0) {
 			//Remove unneeded text
-			full_40 = full_40.substring(full_40.indexOf(" ") + 1, full_40.lastIndexOf(" "));
+			try {
+				full_40 = full_40.substring(full_40.indexOf(" ") + 1, full_40.lastIndexOf(" "));
+			} catch(Exception e) {
+				
+			}
+			try {
+				full_40 = full_40.substring(0, full_40.indexOf("m"));
+			} catch(Exception e) {
+				
+			}
 		}
 
 		return full_40;
