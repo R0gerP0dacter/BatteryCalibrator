@@ -5,7 +5,6 @@
  * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
 package net.jonrichards.batterycalibrator.ui;
 
-import net.jonrichards.batterycalibrator.ui.R;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -55,6 +54,7 @@ public class AboutActivity extends Activity {
 		my_about_text.setText(getResources().getText(R.string.about_text).toString());
 		my_support_title.setText(getResources().getText(R.string.support_title).toString());
 		my_support_text.setText(getResources().getText(R.string.support_text).toString());
+		
 	}
 	
 	/**
@@ -67,6 +67,7 @@ public class AboutActivity extends Activity {
 				my_wake_lock.acquire();
 			}
 		}
+
         super.onResume();
     }
 
@@ -78,6 +79,7 @@ public class AboutActivity extends Activity {
 		if(my_wake_lock.isHeld()) {
 			my_wake_lock.release();
 		}
+
         super.onPause();
     }
 }

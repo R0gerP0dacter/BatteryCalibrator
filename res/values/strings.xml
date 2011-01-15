@@ -114,4 +114,9 @@
 	<string name="ACR_adjustment_summary">During learn detect this option allows the ACR 
 	to be periodically adjusted to ensure mAh capacity does not run out.</string>
 	<string name="ACR_adjustment_title">ACR Adjustment</string>
+	
+	<string name="logging_summary">Logs important battery stats to an internal log which persists between reboots.
+	Useful for tracking down issues with learn mode.
+	</string>
+	<string name="logging_title">Logging</string>
 </resources>

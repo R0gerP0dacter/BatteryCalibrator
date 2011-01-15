@@ -49,6 +49,8 @@ public class GeneralActivity extends Activity {
 	
 	private PowerManager my_power_manager;
 	private WakeLock my_wake_lock;
+	
+	private DS2784Battery my_battery_info;
 
 	/**
 	 * The polling frequency in milliseconds.
@@ -69,18 +71,7 @@ public class GeneralActivity extends Activity {
         my_power_manager = (PowerManager)getBaseContext().getSystemService(Context.POWER_SERVICE);
         my_wake_lock = my_power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "LearnModeActivity");
         
-        /**
-         * Ignore this savedInstanceState code below, was just experimenting
-         */
-        /*if (savedInstanceState != null)
-        {
-          String strValue = savedInstanceState.getString("vol");
-          if (strValue != null)
-          {
-            TextView oControl = (TextView)findViewById(R.id.txtVoltage);
-            oControl.setText(strValue);
-          }          
-        }*/
+        my_battery_info = new DS2784Battery();
         
         //Defining all text views and linking to UI elements
         my_voltage = (TextView)findViewById(R.id.txtVoltage);
@@ -126,26 +117,18 @@ public class GeneralActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
-	        case R.id.about:     
+	        case R.id.about:
 	        	Intent myIntent = new Intent();
                 myIntent.setClass(this, AboutActivity.class);
                 startActivity(myIntent);
 	            break;
-/*	        case R.id.tech_help:     
-	        	String text = getResources().getText(R.string.status_register).toString();
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle(R.string.status_title);
-				builder.setPositiveButton(R.string.ok, null);
-		        builder.setMessage(text).create().show();
-	        	break;*/
-	        case R.id.settings: 
+	        case R.id.settings:
 	        	startActivity(new Intent(this, SettingsActivity.class));                
 	            break;
-/*	        case R.id.instructions: 
-	        	Toast.makeText(this, "Add directions for the app", Toast.LENGTH_LONG).show();
-	            break;*/
-	        case R.id.exit: 
-	        	//Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
+	        case R.id.log:
+	        	startActivity(new Intent(this, LogActivity.class));
+	        	break;
+	        case R.id.exit:
 	        	finish();
 	        	break;
 	        default:
@@ -153,23 +136,6 @@ public class GeneralActivity extends Activity {
 	    }
 	    return true;
 	}
-	
-	/**
-	 * Ignore this Instance code, just experimenting.
-	 *
-	@Override
-	public void onSaveInstanceState(Bundle savedInstanceState) 
-	{
-	  // Store UI state to the savedInstanceState.
-	  // This bundle will be passed to onCreate on next call.
-
-	  TextView txtName1 = (TextView)findViewById(R.id.txtVoltage);
-	  String strName1 = txtName1.getText().toString();	  
-	  
-	  savedInstanceState.putString("vol", strName1);
-	  
-	  super.onSaveInstanceState(savedInstanceState);
-	}*/
 	
 	/**
 	 * Called when this activity is resumed.
@@ -182,7 +148,8 @@ public class GeneralActivity extends Activity {
 			}
 		}
 		
-		my_handler.postDelayed(mUpdateUITimerTask, 2000);
+		//my_handler.postDelayed(mUpdateUITimerTask, 2000);
+		my_handler.post(mUpdateUITimerTask);
             
 		/**Should update the UI onResume; for now we won't.  We see a delay
 		 *when calling the detUIText function onResume.  We need a way to
@@ -212,10 +179,9 @@ public class GeneralActivity extends Activity {
 	 * Sets the UI text.
 	 */
 	private void setUIText() {
-		DS2784Battery battery_info = new DS2784Battery();
 		
 		//Populate voltage
-		String voltage_text = battery_info.getVoltage();
+		String voltage_text = my_battery_info.getVoltage();
 		try {
 			BigDecimal big_decimal = new BigDecimal(Double.parseDouble(voltage_text) / 1000);
 			big_decimal = big_decimal.setScale(2,BigDecimal.ROUND_UP);
@@ -226,7 +192,7 @@ public class GeneralActivity extends Activity {
 		my_voltage.setText(voltage_text);
 		
 		//Populate current
-		String current_text = battery_info.getCurrent();
+		String current_text = my_battery_info.getCurrent();
 		try {
 			double curr = (Double.parseDouble(current_text));
 			current_text = Double.toString(curr/1000);
@@ -236,11 +202,11 @@ public class GeneralActivity extends Activity {
 		my_current.setText(current_text);
 		
 		//Populate full40
-		String full_40_text = battery_info.getFull40();
+		String full_40_text = my_battery_info.getFull40();
 		my_full_40.setText(full_40_text);
 		
 		//Populate temperature - not outputting correctly (my fault, conversion issue)
-		String temperature_text = battery_info.getTemperature();
+		String temperature_text = my_battery_info.getTemperature();
 		try {
 			int temp = Integer.parseInt(temperature_text);
 			temperature_text = Integer.toString(temp/10) + "." + Integer.toString(temp%10);
@@ -250,7 +216,7 @@ public class GeneralActivity extends Activity {
 		my_temperature.setText(temperature_text);
 		
 		//Populate age
-		String age_text = battery_info.getDumpRegister(20);
+		String age_text = my_battery_info.getDumpRegister(20);
 		try {
 			int age_converted = (Integer.parseInt(age_text,16))*100/128;
 			age_text = Integer.toString(age_converted);
@@ -260,7 +226,7 @@ public class GeneralActivity extends Activity {
 		my_age.setText(age_text);
 		
 		//Populate percent
-		String percent_text = battery_info.getDumpRegister(6);
+		String percent_text = my_battery_info.getDumpRegister(6);
 		try {
 			percent_text = Integer.toString(Integer.parseInt(percent_text,16));
 		} catch(Exception e) {
@@ -269,7 +235,7 @@ public class GeneralActivity extends Activity {
 		my_percent.setText(percent_text);
 		
 		//Populate min charge current
-		String charge_current_text = battery_info.getDumpRegister(53);
+		String charge_current_text = my_battery_info.getDumpRegister(53);
 		try {
 			int charge_current_converted = (Integer.parseInt(charge_current_text,16))*50/15;
 			charge_current_text = Integer.toString(charge_current_converted);
@@ -279,7 +245,7 @@ public class GeneralActivity extends Activity {
 		my_charge_current.setText(charge_current_text);
 		
 		//Populate min charge volt
-		String charge_volt_text = battery_info.getDumpRegister(52);
+		String charge_volt_text = my_battery_info.getDumpRegister(52);
 		try {
 			int charge_volt_converted = (Integer.parseInt(charge_volt_text,16))*1952/100;
 			charge_volt_text = Integer.toString(charge_volt_converted);
@@ -289,7 +255,7 @@ public class GeneralActivity extends Activity {
 		my_charge_volt.setText(charge_volt_text);
 		
 		//Populate AEvolt (for some reason parseDouble would not accept hex conversion)
-		String empty_volt_text = battery_info.getDumpRegister(54);
+		String empty_volt_text = my_battery_info.getDumpRegister(54);
 		try {
 			int empty_converted = (Integer.parseInt(empty_volt_text,16))*1952/100;
 			double empty = empty_converted;
@@ -300,7 +266,7 @@ public class GeneralActivity extends Activity {
 		my_empty_volt.setText(empty_volt_text);
 		
 		//Populate AEcurrent
-		String empty_current_text = battery_info.getDumpRegister(55);
+		String empty_current_text = my_battery_info.getDumpRegister(55);
 		try {
 			int empty_current_converted = (Integer.parseInt(empty_current_text,16))*200/15;
 			double empty_current = empty_current_converted;
@@ -311,7 +277,7 @@ public class GeneralActivity extends Activity {
 		my_empty_current.setText(empty_current_text);
 		
 		//Populate mAh capacity
-		String capacity_text = battery_info.getMAh();
+		String capacity_text = my_battery_info.getMAh();
 		try {
 			int mAh = (Integer.parseInt(capacity_text))/1000;
 			capacity_text = Integer.toString(mAh);
@@ -321,8 +287,8 @@ public class GeneralActivity extends Activity {
 		my_capacity.setText(capacity_text);
 		
 		//Populate aged mAh capacity 
-		String aged_capacity_text_MSB = battery_info.getDumpRegister(50);
-		String aged_capacity_text_LSB = battery_info.getDumpRegister(51);
+		String aged_capacity_text_MSB = my_battery_info.getDumpRegister(50);
+		String aged_capacity_text_LSB = my_battery_info.getDumpRegister(51);
 		int MSB, LSB, aged;
 		String aged_capacity_text = "";
 		try {

@@ -197,27 +197,19 @@ public class LearnModeActivity extends Activity {
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch(item.getItemId()) {
-		    case R.id.about:     
+	    switch (item.getItemId()) {
+	        case R.id.about:
 	        	Intent myIntent = new Intent();
-	            myIntent.setClass(this, AboutActivity.class);
-	            startActivity(myIntent);
+                myIntent.setClass(this, AboutActivity.class);
+                startActivity(myIntent);
 	            break;
-	/*	        case R.id.tech_help:     
-	        	String text = getResources().getText(R.string.status_register).toString();
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle(R.string.status_title);
-				builder.setPositiveButton(R.string.ok, null);
-		        builder.setMessage(text).create().show();
-	        	break;*/
-	        case R.id.settings: 
+	        case R.id.settings:
 	        	startActivity(new Intent(this, SettingsActivity.class));                
 	            break;
-	/*	        case R.id.instructions: 
-	        	Toast.makeText(this, "Add directions for the app", Toast.LENGTH_LONG).show();
-	            break;*/
-	        case R.id.exit: 
-	        	//Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
+	        case R.id.log:
+	        	startActivity(new Intent(this, LogActivity.class));
+	        	break;
+	        case R.id.exit:
 	        	finish();
 	        	break;
 	        default:

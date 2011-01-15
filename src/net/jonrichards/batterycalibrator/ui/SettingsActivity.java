@@ -47,6 +47,7 @@ public class SettingsActivity extends PreferenceActivity {
 	    
 	    my_power_manager = (PowerManager)getBaseContext().getSystemService(Context.POWER_SERVICE);
         my_wake_lock = my_power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "LearnModeActivity");
+
 	}
 	
 	//Public Methods
@@ -66,7 +67,7 @@ public class SettingsActivity extends PreferenceActivity {
 	 * @return Whether screen always on should be enabled or not during learn prep mode.
 	 */
 	public static boolean getEnableScreenOn(Context context) {
-	    return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("wake_lock", true);
+	    return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("wake_lock", false);
 	}
 	
 	/**
@@ -75,7 +76,7 @@ public class SettingsActivity extends PreferenceActivity {
 	 * @return Whether automatic ACR adjustment should be enabled or not during learn prep mode.
 	 */
 	public static boolean getEnableACRAdjustment(Context context) {
-		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("ACR_adjustment", true);
+		return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("ACR_adjustment", false);
 	}
 	
 	/**
@@ -88,6 +89,7 @@ public class SettingsActivity extends PreferenceActivity {
 				my_wake_lock.acquire();
 			}
 		}
+
         super.onResume();
     }
 
@@ -99,6 +101,7 @@ public class SettingsActivity extends PreferenceActivity {
 		if(my_wake_lock.isHeld()) {
 			my_wake_lock.release();
 		}
+		
         super.onPause();
     }
 	
@@ -115,8 +118,9 @@ public class SettingsActivity extends PreferenceActivity {
 				shell_command.canSU();
 			}
 		}
-		// TODO Auto-generated method stub
+
 		return super.onPreferenceTreeClick(preferenceScreen, preference);
 	}
+	
 }
 //End of class SettingsActivity

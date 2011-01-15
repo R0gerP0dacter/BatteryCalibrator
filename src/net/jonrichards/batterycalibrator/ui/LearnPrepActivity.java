@@ -43,6 +43,8 @@ public class LearnPrepActivity extends Activity {
 	private PowerManager my_power_manager;
 	private WakeLock my_wake_lock;
 	
+	private DS2784Battery my_battery_info;
+	
 	//Public Methods
 	
 	/**
@@ -53,6 +55,8 @@ public class LearnPrepActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learnpreplayout);
+        
+        my_battery_info = new DS2784Battery();
         
         my_power_manager = (PowerManager)getBaseContext().getSystemService(Context.POWER_SERVICE);
         my_wake_lock = my_power_manager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "LearnModeActivity");
@@ -71,7 +75,7 @@ public class LearnPrepActivity extends Activity {
         
         setUIText();
 
-      //Sets the new age value when pressed
+        //Sets the new age value when pressed
         my_age_save_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				DS2784Battery battery = new DS2784Battery();
@@ -98,10 +102,9 @@ public class LearnPrepActivity extends Activity {
         //Sets the new full 40 value when pressed
         my_full_40_save_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				DS2784Battery battery = new DS2784Battery();
 				try {
 					int new_full_40 = Integer.parseInt((my_full_40_input.getText().toString()));
-					battery.setFull40(new_full_40);
+					my_battery_info.setFull40(new_full_40);
 					my_full_40_input.setText("");
 				} catch(Exception e) {
 					my_full_40_input.setText("");
@@ -140,26 +143,18 @@ public class LearnPrepActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
-		    case R.id.about:     
+	        case R.id.about:
 	        	Intent myIntent = new Intent();
-	            myIntent.setClass(this, AboutActivity.class);
-	            startActivity(myIntent);
+                myIntent.setClass(this, AboutActivity.class);
+                startActivity(myIntent);
 	            break;
-	/*	        case R.id.tech_help:     
-	        	String text = getResources().getText(R.string.status_register).toString();
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle(R.string.status_title);
-				builder.setPositiveButton(R.string.ok, null);
-		        builder.setMessage(text).create().show();
-	        	break;*/
-	        case R.id.settings: 
+	        case R.id.settings:
 	        	startActivity(new Intent(this, SettingsActivity.class));                
 	            break;
-	/*	        case R.id.instructions: 
-	        	Toast.makeText(this, "Add directions for the app", Toast.LENGTH_LONG).show();
-	            break;*/
-	        case R.id.exit: 
-	        	//Toast.makeText(this, "Exit to stop the app.", Toast.LENGTH_LONG).show();
+	        case R.id.log:
+	        	startActivity(new Intent(this, LogActivity.class));
+	        	break;
+	        case R.id.exit:
 	        	finish();
 	        	break;
 	        default:

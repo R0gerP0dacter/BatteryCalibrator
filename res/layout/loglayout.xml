@@ -34,24 +34,6 @@
 			android:layout_height="fill_parent"
 			android:orientation="vertical"
 			android:background="#ff191919" >
-			<TextView
-				android:id="@+id/widget102233"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:text="This is a raw dump from your battery's EEPROM registers. Each row contains 16 registers in hexadecimal format."
-				android:textSize="16sp"
-				android:layout_margin="1dip"
-				android:textColor="#ffffff"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginBottom="5px" >
-			</TextView>
-
-			<View android:id="@+id/divider"
-			    android:background="@drawable/gradient_table_row"
-			    android:layout_width="fill_parent"
-			    android:layout_height="4dp"
-			    android:layout_below="@id/widget6966" />
-
 			<LinearLayout
 				android:id="@+id/widget131"
 				android:layout_width="fill_parent"
@@ -62,33 +44,11 @@
 					android:id="@+id/widget1"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:text="Dumpreg"
+					android:text="Log"
 					android:textSize="18sp"
 					android:textColor="#ffffff"
 					android:layout_gravity="center_horizontal" >
 				</TextView>
-			</LinearLayout>
-
-			<View android:id="@+id/divider"
-			    android:background="@drawable/gradient_table_row"
-			    android:layout_width="fill_parent"
-			    android:layout_height="4dp"
-			    android:layout_below="@id/widget6966" />
-    
-			<LinearLayout
-				android:id="@+id/widget1266"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:padding="20px"
-				android:orientation="vertical" >
-				<Button
-					android:id="@+id/btnUpdate"
-					android:layout_width="300px"
-					android:layout_height="130px"
-					android:textSize="18sp"
-					android:text="Update Dumpreg"
-					android:layout_gravity="center_horizontal" >
-				</Button>
 			</LinearLayout>
 		</LinearLayout>
 	</ScrollView>
