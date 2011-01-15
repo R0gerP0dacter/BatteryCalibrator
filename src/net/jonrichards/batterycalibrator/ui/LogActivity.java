@@ -34,7 +34,7 @@ public class LogActivity extends Activity {
 	/**
 	 * The polling frequency in milliseconds.
 	 */
-	private int my_sample_poll = 60000;
+	private int my_sample_poll = 30000;
 
 	/**
 	 * Called when the activity is first created, initializations happen here.
@@ -125,6 +125,7 @@ public class LogActivity extends Activity {
 			
 		}
 		
+	
 		
 		return log_contents;
 	}

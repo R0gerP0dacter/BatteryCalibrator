@@ -20,8 +20,4 @@
         android:title="@string/ACR_adjustment_title" 
         android:summary="@string/ACR_adjustment_summary"
         android:defaultValue="false" />
-        <CheckBoxPreference android:key="logging"
-        android:title="@string/logging_title" 
-        android:summary="@string/logging_summary"
-        android:defaultValue="false" />
 </PreferenceScreen>
