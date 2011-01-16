@@ -2,6 +2,7 @@ package net.jonrichards.batterycalibrator.system;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -150,6 +151,35 @@ public class LoggingService extends Service {
 		Calendar calendar = Calendar.getInstance();
 		String date = calendar.getTime().toString();
 		
+		//Populate mAh capacity
+		String capacity_text = my_battery_info.getMAh();
+		try {
+			int mAh = (Integer.parseInt(capacity_text))/1000;
+			capacity_text = Integer.toString(mAh);
+		} catch(Exception e) {
+			
+		}
+		
+		//Populate voltage
+		String voltage_text = my_battery_info.getVoltage();
+		try {
+			BigDecimal big_decimal = new BigDecimal(Double.parseDouble(voltage_text) / 1000);
+			big_decimal = big_decimal.setScale(2,BigDecimal.ROUND_UP);
+			voltage_text = big_decimal.toString();
+		} catch(Exception e) {
+			
+		}
+		
+		//Populate current
+		String current_text = my_battery_info.getCurrent();
+		try {
+			double curr = (Double.parseDouble(current_text));
+			current_text = Double.toString(curr/1000);
+		} catch(Exception e) {
+			
+		}
+		
+		//Populate age
 		String age_text = my_battery_info.getDumpRegister(20);
 		try {
 			int age_converted = (Integer.parseInt(age_text,16))*100/128;
@@ -158,6 +188,7 @@ public class LoggingService extends Service {
 			
 		}
 		
+		//Populate battery percent
 		String percent_text = my_battery_info.getDumpRegister(6);
 		try {
 			percent_text = Integer.toString(Integer.parseInt(percent_text,16));
@@ -166,10 +197,11 @@ public class LoggingService extends Service {
 		}
 		
 		log_message = date + "\n";
-		log_message += "mAh: " + my_battery_info.getMAh() + "\n";
-		log_message += "volt: " + my_battery_info.getVoltage() + "\n";
+		log_message += "Capacity: " + capacity_text + "mAh\n";
+		log_message += "Voltage: " + voltage_text + "mV\n";
+		log_message += "Current: " + current_text + "mAh\n";
 		log_message += "age: " + age_text + "\n";
-		log_message += "battery %: " + percent_text + "\n";
+		log_message += "battery : " + percent_text + "%\n";
 		log_message += "\n";
 		
 		return log_message;
