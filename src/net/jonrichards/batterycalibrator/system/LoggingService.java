@@ -199,7 +199,7 @@ public class LoggingService extends Service {
 		log_message = date + "\n";
 		log_message += "Capacity: " + capacity_text + "mAh\n";
 		log_message += "Voltage: " + voltage_text + "mV\n";
-		log_message += "Current: " + current_text + "mAh\n";
+		log_message += "Current: " + current_text + "mA\n";
 		log_message += "age: " + age_text + "\n";
 		log_message += "battery : " + percent_text + "%\n";
 		log_message += "\n";
