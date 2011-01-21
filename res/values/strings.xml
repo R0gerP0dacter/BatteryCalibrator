@@ -15,6 +15,7 @@
     <string name="settings">Settings</string>
     <string name="exit">Exit</string>
     <string name="splash">Splash</string>    
+    <string name="dump_reg">Raw Register Dump</string>
     
     <string name="learn_prep_text">
     Use this to configure your battery to prepare for learn mode.

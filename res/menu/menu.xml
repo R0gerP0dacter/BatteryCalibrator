@@ -15,6 +15,9 @@
     <item android:id="@+id/log"
         android:title="Log"
         android:icon="@drawable/ic_menu_compose" />
+    <item android:id="@+id/dump_reg"
+        android:title="Register Dump"
+        android:icon="@drawable/icon" />
     <item android:id="@+id/exit"
         android:title="Exit"
         android:icon="@android:drawable/ic_menu_close_clear_cancel" />

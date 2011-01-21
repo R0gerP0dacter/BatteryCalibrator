@@ -8,10 +8,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import net.jonrichards.batterycalibrator.ui.BatteryApp;
+import net.jonrichards.batterycalibrator.ui.RegistersActivity;
 
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
 
 /**
@@ -25,12 +27,15 @@ public class LoggingService extends Service {
 	
 	private static final int INTERVAL = 30000;
 	private static final int LOG_LENGTH = 100;
+	private int my_sample_poll = 2;
 	
 	//Instance Variables
 	
 	private Timer my_timer;
 	private DS2784Battery my_battery_info;
-	
+	private final Handler my_handler = new Handler();
+	private static RegistersActivity mDisplay;
+
 	/**
 	 * Called when the service is first created, initializations happen here.
 	 */
@@ -40,6 +45,8 @@ public class LoggingService extends Service {
 		
 		my_timer = new Timer();
 		my_battery_info = new DS2784Battery();
+		mDisplay = new RegistersActivity();
+		//mDisplay.createGraph();
 	}
 	
 	/**
@@ -76,6 +83,8 @@ public class LoggingService extends Service {
 				appendToLog();
 			}
 		}, 0, INTERVAL);
+		
+		my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll*1000);
 	}
 
 	/**
@@ -85,6 +94,8 @@ public class LoggingService extends Service {
 		if (my_timer != null){
 			my_timer.cancel();
 		}
+		
+		my_handler.removeCallbacks(mUpdateUITimerTask);
 	}
 	
 
@@ -232,6 +243,12 @@ public class LoggingService extends Service {
 		writeToLog(log);
 	}
 
-
+	private final Runnable mUpdateUITimerTask = new Runnable() {
+	    public void run() {
+	    	
+	    	mDisplay.populateGraph();	    	
+	        my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll*1000);
+	    }
+	};
 }
 //End of class LoggingService

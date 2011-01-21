@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+/* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
+-->
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </LinearLayout>	
+	<ScrollView
+		android:id="@+id/widget29"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		xmlns:android="http://schemas.android.com/apk/res/android" >
+		<LinearLayout 
+			xmlns:android="http://schemas.android.com/apk/res/android"
+			android:orientation="vertical" 
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+			<TextView
+				android:id="@+id/graphCurrent"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text=""
+				android:textColor="#ffffff"
+				android:textSize="18sp"
+				android:gravity="center"
+				android:layout_weight="0.5"
+				android:layout_gravity="center_horizontal" >
+			</TextView>		
+			<LinearLayout 
+				xmlns:android="http://schemas.android.com/apk/res/android"
+				android:orientation="horizontal" 
+				android:layout_width="fill_parent"
+				android:layout_height="300px" 
+				android:id="@+id/currentChart">
+			</LinearLayout>				
+			<TextView
+				android:id="@+id/graphVoltage"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text=""
+				android:textColor="#ffffff"
+				android:textSize="18sp"
+				android:gravity="center"
+				android:layout_weight="0.5"
+				android:layout_gravity="center_horizontal" >
+			</TextView>	
+			<LinearLayout 
+				xmlns:android="http://schemas.android.com/apk/res/android"
+				android:orientation="horizontal" 
+				android:layout_width="fill_parent"
+				android:layout_height="300px" 
+				android:id="@+id/voltageChart">	
+			</LinearLayout>
+			<TextView
+				android:id="@+id/graphMAH"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text=""
+				android:textColor="#ffffff"
+				android:textSize="18sp"
+				android:gravity="center"
+				android:layout_weight="0.5"
+				android:layout_gravity="center_horizontal" >
+			</TextView>		
+			<LinearLayout 
+				xmlns:android="http://schemas.android.com/apk/res/android"
+				android:orientation="horizontal" 
+				android:layout_width="fill_parent"
+				android:layout_height="300px" 
+				android:id="@+id/mahChart">
+			</LinearLayout>	
+			<TextView
+				android:id="@+id/graphPercent"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text=""
+				android:textColor="#ffffff"
+				android:textSize="18sp"
+				android:gravity="center"
+				android:layout_weight="0.5"
+				android:layout_gravity="center_horizontal" >
+			</TextView>		
+			<LinearLayout 
+				xmlns:android="http://schemas.android.com/apk/res/android"
+				android:orientation="horizontal" 
+				android:layout_width="fill_parent"
+				android:layout_height="300px" 
+				android:id="@+id/percentChart">
+			</LinearLayout>	
+			<LinearLayout
+				android:id="@+id/widget1423"
+				android:orientation="horizontal"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:padding="4px"
+				android:layout_marginTop="4px"
+				android:layout_gravity="center_vertical"
+				android:gravity="center" >
+				<TextView
+					android:id="@+id/widget41"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Sample poll : "
+					android:textSize="18dp"
+					android:textColor="#ffffff"
+					android:layout_gravity="center_vertical" >
+				</TextView>
+				<TextView
+					android:id="@+id/txtSamplePoll"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text=""
+					android:textSize="18dp"
+					android:textColor="#ffffff"
+					android:layout_gravity="center_vertical" >
+				</TextView>
+			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/widget1506"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:padding="4px" >
+				<TextView
+					android:id="@+id/widget1516"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Poll:"
+					android:textSize="20sp"
+					android:textStyle="bold"
+					android:textColor="#ffffff"
+					android:layout_gravity="center_vertical" >
+				</TextView>
+				<EditText
+					android:id="@+id/etSamplePoll"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textSize="18sp"
+					android:layout_weight="1"
+					android:inputType="phone">
+				</EditText>
+			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/widget31116"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="4px" >
+				<Button
+					android:id="@+id/btnPollSave"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Save"
+					android:textSize="16sp"
+					android:layout_weight="2" >
+				</Button>
+				<Button
+					android:id="@+id/btnPollCancel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Cancel"
+					android:textSize="16sp"
+					android:layout_weight="3" >
+				</Button>
+			</LinearLayout>								
+		</LinearLayout>
+	</ScrollView>
+</TabHost>

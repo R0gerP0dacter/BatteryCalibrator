@@ -23,6 +23,8 @@
         </activity>
         <activity android:label="@string/app_name" android:name="net.jonrichards.batterycalibrator.ui.LearnModeActivity">
         </activity>
+        <activity android:label="@string/app_name" android:name="net.jonrichards.batterycalibrator.ui.RegistersActivity">
+        </activity>
         <activity android:label="@string/app_name" android:name="net.jonrichards.batterycalibrator.ui.LogActivity">
         </activity>
         
