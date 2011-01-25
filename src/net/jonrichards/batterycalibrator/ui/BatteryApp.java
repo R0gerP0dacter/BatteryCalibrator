@@ -44,7 +44,7 @@ public class BatteryApp extends TabActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		
 	    super.onCreate(savedInstanceState);
-		startService(new Intent(this, LoggingService.class));
+		//startService(new Intent(this, LoggingService.class));
 	    setContentView(R.layout.main);
 	    
 	    my_resources = getResources();

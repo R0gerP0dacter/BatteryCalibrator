@@ -104,7 +104,35 @@
 				android:layout_width="fill_parent"
 				android:layout_height="300px" 
 				android:id="@+id/percentChart">
-			</LinearLayout>	
+			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/widget14234"
+				android:orientation="horizontal"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:padding="4px"
+				android:layout_marginTop="4px"
+				android:layout_gravity="center_vertical"
+				android:gravity="center" >
+				<TextView
+					android:id="@+id/widget42"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="%/hr: "
+					android:textSize="24dp"
+					android:textColor="#ffffff"
+					>
+				</TextView>
+				<TextView
+					android:id="@+id/txtDropRate"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="2 %/hr"
+					android:textSize="24dp"
+					android:textColor="#ffffff"
+					>
+				</TextView>
+			</LinearLayout>
 			<LinearLayout
 				android:id="@+id/widget1423"
 				android:orientation="horizontal"
@@ -118,7 +146,7 @@
 					android:id="@+id/widget41"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Sample poll : "
+					android:text="Sample poll: "
 					android:textSize="18dp"
 					android:textColor="#ffffff"
 					android:layout_gravity="center_vertical" >

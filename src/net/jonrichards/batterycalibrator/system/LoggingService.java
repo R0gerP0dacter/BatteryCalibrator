@@ -27,7 +27,7 @@ public class LoggingService extends Service {
 	
 	private static final int INTERVAL = 30000;
 	private static final int LOG_LENGTH = 100;
-	private int my_sample_poll = 2;
+	//private int my_sample_poll = 2;
 	
 	//Instance Variables
 	
@@ -35,6 +35,8 @@ public class LoggingService extends Service {
 	private DS2784Battery my_battery_info;
 	private final Handler my_handler = new Handler();
 	private static RegistersActivity mDisplay;
+	private static RegistersActivity mSamplePoll;
+
 
 	/**
 	 * Called when the service is first created, initializations happen here.
@@ -47,6 +49,8 @@ public class LoggingService extends Service {
 		my_battery_info = new DS2784Battery();
 		mDisplay = new RegistersActivity();
 		//mDisplay.createGraph();
+		mSamplePoll = new RegistersActivity();
+
 	}
 	
 	/**
@@ -81,10 +85,13 @@ public class LoggingService extends Service {
 		my_timer.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
 				appendToLog();
+				
+				mDisplay.populatePercentageGraph();
+				mDisplay.populateCapacityGraph();
 			}
 		}, 0, INTERVAL);
 		
-		my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll*1000);
+		my_handler.postDelayed(mUpdateUITimerTask, mSamplePoll.my_sample_poll*1000);
 	}
 
 	/**
@@ -247,7 +254,7 @@ public class LoggingService extends Service {
 	    public void run() {
 	    	
 	    	mDisplay.populateGraph();	    	
-	        my_handler.postDelayed(mUpdateUITimerTask, my_sample_poll*1000);
+	        my_handler.postDelayed(mUpdateUITimerTask, mSamplePoll.my_sample_poll*500);
 	    }
 	};
 }
