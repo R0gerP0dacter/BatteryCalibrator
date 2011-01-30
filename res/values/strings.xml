@@ -94,6 +94,11 @@
     </string>
     <string name="learn_popup_title">LEARN IS ACTIVATED!</string>
     
+    <string name="learn_failed_popup">
+    The learn cycle failed to complete.
+    </string>
+    <string name="learn_failed_title">Learn Cycle FAILED.</string>
+    
     <string name="lessthan_popup">
     ACR write LESS than 0.2 volts happened.
     </string>

@@ -68,7 +68,8 @@ public class LearnModeActivity extends Activity {
 	private TextView my_capacity;
 	private TextView my_message_1;
 	private TextView my_message_2;
-	
+	private TextView my_learn_failed_message;
+
 	private int my_empty_converted;
 	
 	/**
@@ -76,6 +77,8 @@ public class LearnModeActivity extends Activity {
 	 */
 	private boolean my_alert_displayed = false;
 	
+	private boolean my_learn_mode_tracker = false;
+
 	private PowerManager my_power_manager;
 	private WakeLock my_wake_lock;
 	
@@ -303,7 +306,7 @@ public class LearnModeActivity extends Activity {
 				tone_generator.startTone(ToneGenerator.TONE_PROP_BEEP);
 				tone_generator.startTone(ToneGenerator.TONE_PROP_BEEP);
 				tone_generator.startTone(ToneGenerator.TONE_PROP_BEEP);
-								
+				
 				//Display alert popup message with title and OK button
 				String text1 = getResources().getText(R.string.learn_popup).toString();
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -321,7 +324,22 @@ public class LearnModeActivity extends Activity {
 				LEARN_MODE = false;
 				//Clear out any remaining learn prep helpers
 				learnPrepHelp();
-			}			
+				//Set learn flag tracking boolean
+				my_learn_mode_tracker = true;
+			}
+			//Learn flag tracking to display pop up when failure before 4.15 volt
+			if(my_learn_mode_tracker) {				
+				if(!intToBoolean(my_battery_info.getStatusRegister(4)) && volt <= 4150000) {
+					String text2 = getResources().getText(R.string.learn_failed_popup).toString();
+					AlertDialog.Builder builder = new AlertDialog.Builder(this);
+					builder.setTitle(R.string.learn_failed_title);
+					builder.setPositiveButton(R.string.ok, null);
+			        builder.setMessage(text2).create().show();
+			        
+					my_learn_mode_tracker = false;
+
+				}
+			}
 		}
 		
 		//Message when full charge is on

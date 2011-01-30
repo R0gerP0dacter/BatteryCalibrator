@@ -35,7 +35,7 @@ public class LoggingService extends Service {
 	private DS2784Battery my_battery_info;
 	private final Handler my_handler = new Handler();
 	private static RegistersActivity mDisplay;
-	private static RegistersActivity mSamplePoll;
+	//private static RegistersActivity mSamplePoll;
 
 
 	/**
@@ -49,7 +49,7 @@ public class LoggingService extends Service {
 		my_battery_info = new DS2784Battery();
 		mDisplay = new RegistersActivity();
 		//mDisplay.createGraph();
-		mSamplePoll = new RegistersActivity();
+		//mSamplePoll = new RegistersActivity();
 
 	}
 	
@@ -91,7 +91,7 @@ public class LoggingService extends Service {
 			}
 		}, 0, INTERVAL);
 		
-		my_handler.postDelayed(mUpdateUITimerTask, mSamplePoll.my_sample_poll*1000);
+		my_handler.postDelayed(mUpdateUITimerTask, mDisplay.my_sample_poll*1000);
 	}
 
 	/**
@@ -254,7 +254,7 @@ public class LoggingService extends Service {
 	    public void run() {
 	    	
 	    	mDisplay.populateGraph();	    	
-	        my_handler.postDelayed(mUpdateUITimerTask, mSamplePoll.my_sample_poll*500);
+	        my_handler.postDelayed(mUpdateUITimerTask, mDisplay.my_sample_poll*1000);
 	    }
 	};
 }

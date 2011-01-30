@@ -89,7 +89,7 @@ public class RegistersActivity extends Activity {
 	private Button my_poll_cancel_button;
 
 	//Sample rate used for updating the chart UI
-	public int my_sample_poll = 7;
+	public int my_sample_poll = 3;
 	
 	private static final int INTERVAL = 60000;
 	
